@@ -1,0 +1,14 @@
+<div class="sidenav-header">
+  <img width="100" height="100" src="/assets/images/profile-pic.png" alt="Profile" class="profile-image">
+  <div class="header-text">
+    <h3>John Doe</h3>
+    <p>IT Director</p>
+  </div>
+</div>
+
+<mat-nav-list>
+  <a mat-list-item *ngFor="let item of menuItems()" [routerLink]="item.route" routerLinkActive="active-link">
+    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+    <span matListItemTitle>{{ item.label }}</span>
+  </a>
+</mat-nav-list>
