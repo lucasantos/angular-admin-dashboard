@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +14,10 @@ import { CustomSidenav } from "./components/custom-sidenav/custom-sidenav";
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('Admin Dashboard');
+  protected readonly title = signal('Dashboard');
   protected readonly logo = 'icons/icon-72x72.png';
+
+  collapsed = signal(false);
+
+  sidenavWidth = computed(() => this.collapsed() ? '65px' : '250px');
 }
