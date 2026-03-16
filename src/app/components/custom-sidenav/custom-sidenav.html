@@ -8,8 +8,20 @@
 
 <mat-nav-list>
   @for (item of menuItems(); track item) {
-    <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link">
-      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+    <a
+      mat-list-item
+      class="menu-item"
+      [routerLink]="item.route"
+      routerLinkActive="selected-menu-item"
+      #rla="routerLinkActive"
+      [activated]="rla.isActive"
+      [title]="!sideNavCollapsed() ? item.label : ''"
+      [matTooltip]="sideNavCollapsed() ? item.label : ''"
+      matTooltipPosition="right"
+    >
+      <mat-icon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" matListItemIcon>
+        {{ item.icon }}
+      </mat-icon>
 
       @if (!sideNavCollapsed()) {
         <span matListItemTitle>{{ item.label }}</span>

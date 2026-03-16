@@ -1,8 +1,13 @@
 <mat-toolbar class="mat-elevation-z3" color="primary">
-    <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <button mat-icon-button (click)="collapsed.set(!collapsed())"
+      [matTooltip]="!collapsed() ? 'Collapse menu' : 'Expand menu'"
+      matTooltipPosition="below">
         <mat-icon>menu</mat-icon>
     </button>
-    <img [src]="logo" alt="Logo" class="logo">
+
+    <a routerLink="/" class="logo">
+      <img [src]="logo" alt="Logo" class="logo">
+    </a>
 
     <span>{{ title() }}</span>
 </mat-toolbar>
