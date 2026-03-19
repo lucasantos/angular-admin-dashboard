@@ -5,6 +5,8 @@
 .sidenav-header {
   padding-top: 24px;
   text-align: center;
+  // position: sticky;
+  // top: 0;
 
 
   > img {
@@ -31,33 +33,5 @@
   .hide-header-text {
     opacity: 0;
     height: 0px !important;
-  }
-}
-
-.menu-item {
-  border-left: 5px solid;
-  border-left-color: rgba(0, 0, 0, 0);
-  border-radius: 0px !important;
-
-  &:last-child {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    border-left: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-
-    mat-icon {
-      color: var(--mat-sys-primary);
-    }
-  }
-}
-
-.selected-menu-item {
-  border-left-color: var(--mat-sys-primary) !important;
-  background: rgba(0, 0, 0, 0.05) !important;
-
-  mat-icon {
-    color: var(--mat-sys-primary) !important;
   }
 }

@@ -4,16 +4,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from "@angular/material/list";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
-
-export type MenuItem = {
-    label: string;
-    icon: string;
-    route: string | null;
-};
+import { MenuItems } from '../../models/menu-item';
+import { MenuItem } from "../menu-item/menu-item";
 
 @Component({
   selector: 'app-custom-sidenav',
-  imports: [CommonModule, MatListModule, MatIconModule, RouterModule, MatTooltipModule],
+  imports: [CommonModule, MatListModule, MatIconModule, RouterModule, MatTooltipModule, MenuItem],
   templateUrl: './custom-sidenav.html',
   styleUrl: './custom-sidenav.scss',
 })
@@ -23,14 +19,22 @@ export class CustomSidenav {
     this.sideNavCollapsed.set(value);
   }
 
-  protected readonly menuItems = signal<MenuItem[]>([
+  protected readonly menuItems = signal<MenuItems[]>([
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-    { label: 'Content', icon: 'video_library', route: '/content' },
+    {
+      label: 'Content', icon: 'video_library', route: '/content', subItems: [
+        { label: 'Articles', icon: 'article', route: '/articles' },
+        { label: 'Videos', icon: 'videocam', route: '/videos' },
+        { label: 'Podcasts', icon: 'podcasts', route: '/podcasts' },
+        { label: 'Images', icon: 'image', route: '/images' },
+        { label: 'Documents', icon: 'description', route: '/documents' },
+      ]
+    },
     { label: 'Analytics', icon: 'analytics', route: '/analytics' },
     { label: 'Comments', icon: 'comment', route: '/comments' },
     { label: 'Settings', icon: 'settings', route: '/settings' },
     { label: 'Feedback', icon: 'feedback', route: '/feedback' },
-    { label: 'Logout', icon: 'logout', route: '/logout' },
+    { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
   ]);
 
   profilePicSize = computed(() => (this.sideNavCollapsed() ? '50' : '100'));

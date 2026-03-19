@@ -15,6 +15,33 @@ export const routes: Routes = [
     path: 'content',
     loadComponent: () =>
       import('./pages/content/content').then((m) => m.Content),
+    children: [
+      {
+        path: 'articles',
+        loadComponent: () =>
+          import('./pages/content/articles/articles').then((m) => m.Articles),
+      },
+      {
+        path: 'videos',
+        loadComponent: () =>
+          import('./pages/content/videos/videos').then((m) => m.Videos),
+      },
+      {
+        path: 'podcasts',
+        loadComponent: () =>
+          import('./pages/content/podcasts/podcasts').then((m) => m.Podcasts),
+      },
+      {
+        path: 'images',
+        loadComponent: () =>
+          import('./pages/content/images/images').then((m) => m.Images),
+      },
+      {
+        path: 'documents',
+        loadComponent: () =>
+          import('./pages/content/documents/documents').then((m) => m.Documents),
+      }
+    ],
   },
   {
     path: 'analytics',
