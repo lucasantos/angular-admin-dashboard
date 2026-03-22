@@ -20,6 +20,23 @@ export const routes: Routes = [
         path: 'articles',
         loadComponent: () =>
           import('./pages/content/articles/articles').then((m) => m.Articles),
+        children: [
+          {
+            path: 'tech',
+            loadComponent: () =>
+              import('./pages/content/articles/tech/tech').then((m) => m.Tech),
+          },
+          {
+            path: 'health',
+            loadComponent: () =>
+              import('./pages/content/articles/health/health').then((m) => m.Health),
+          },
+          {
+            path: 'travel',
+            loadComponent: () =>
+              import('./pages/content/articles/travel/travel').then((m) => m.Travel),
+          }
+        ]
       },
       {
         path: 'videos',

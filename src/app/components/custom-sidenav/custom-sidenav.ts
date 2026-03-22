@@ -22,8 +22,15 @@ export class CustomSidenav {
   protected readonly menuItems = signal<MenuItems[]>([
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
     {
-      label: 'Content', icon: 'video_library', route: '/content', subItems: [
-        { label: 'Articles', icon: 'article', route: '/articles' },
+      label: 'Content', icon: 'video_library', route: '/content',
+      subItems: [
+        { label: 'Articles', icon: 'article', route: '/articles',
+          subItems: [
+            { label: 'Tech', icon: 'memory', route: '/tech' },
+            { label: 'Health', icon: 'health_and_safety', route: '/health' },
+            { label: 'Travel', icon: 'flight_takeoff', route: '/travel' },
+          ]
+        },
         { label: 'Videos', icon: 'videocam', route: '/videos' },
         { label: 'Podcasts', icon: 'podcasts', route: '/podcasts' },
         { label: 'Images', icon: 'image', route: '/images' },

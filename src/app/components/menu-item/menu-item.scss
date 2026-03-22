@@ -6,7 +6,6 @@
   border-left: 5px solid;
   border-left-color: rgba(0, 0, 0, 0);
   border-radius: 0px !important;
-  z-index: auto !important;
 
   &.logout {
     position: absolute;
@@ -29,10 +28,6 @@
   mat-icon {
     color: var(--mat-sys-primary) !important;
   }
-}
-
-.indented {
-  --mat-list-list-item-leading-icon-start-space: 48px;
 }
 
 .enter-animation {

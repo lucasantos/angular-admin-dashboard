@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -14,7 +14,15 @@ import { MenuItems } from '../../models/menu-item';
 export class MenuItem {
   item = input.required<MenuItems>()
 
-  collapsed = input(false);
+  collapsed = input.required<boolean>();
+
+  routeHistory = input('');
+
+  level = computed(() => this.routeHistory().split('/').length - 1);
+
+  identation = computed(() =>
+    this.collapsed() ? '16px' : `${16 + this.level() * 16}px`
+  );
 
   nestedMenuOpen = signal(false);
 
@@ -24,4 +32,8 @@ export class MenuItem {
     }
     this.nestedMenuOpen.set(!this.nestedMenuOpen());
   }
+
+  logRoutes = effect(() => {
+    console.log('Current route history:', this.routeHistory(), this.level());
+  });
 }
