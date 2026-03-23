@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CustomSidenav } from "./components/custom-sidenav/custom-sidenav";
 import { MatTooltip } from "@angular/material/tooltip";
+import { menuItems } from './menu-items';
+
 
 @Component({
   selector: 'app-root',
@@ -21,4 +23,7 @@ export class App {
   collapsed = signal(false);
 
   sidenavWidth = computed(() => this.collapsed() ? '65px' : '250px');
+
+  // Centralized menu items from single source of truth
+  protected readonly menuItems = menuItems;
 }

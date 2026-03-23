@@ -7,7 +7,7 @@
 </div>
 
 <mat-nav-list>
-  @for (item of menuItems(); track item.label) {
+  @for (item of items(); track item.label) {
     <app-menu-item [item]="item" [collapsed]="sideNavCollapsed()" />
   } @empty {
     <!-- This block is displayed when no menu items are available.

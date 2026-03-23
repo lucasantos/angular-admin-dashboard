@@ -1,4 +1,45 @@
-import { Routes } from '@angular/router';
+import { Route, Routes } from '@angular/router';
+import { Type } from '@angular/core';
+import { MenuItems } from './models/menu-item';
+import { menuItems } from './menu-items';
+
+const itemToRoute = (i: MenuItems): Route | null => {
+  const path = i.route ? i.route.replace(/^\//, '') : '';
+
+  if (!i.component && !i.subItems) {
+    // Skip routes that only exist in menu (e.g., logout-outline action entry)
+    return null;
+  }
+
+  const route: Route = {
+    path,
+    data: {
+      label: i.label,
+      icon: i.icon,
+      class: i.class,
+    },
+  };
+
+  if (i.component) {
+    if (typeof i.component === 'function') {
+      // Menu item provides a lazy loader
+      route.loadComponent = i.component as () => Promise<Type<unknown>>;
+    } else {
+      // Menu item provides a direct component Type
+      route.loadComponent = () => Promise.resolve(i.component as Type<unknown>);
+    }
+  }
+
+  if (i.subItems) {
+    const children = i.subItems.map((s) => itemToRoute(s)).filter(Boolean) as Route[];
+    if (children.length) {
+      route.children = children;
+    }
+  }
+
+  return route;
+};
+
 
 export const routes: Routes = [
   {
@@ -6,78 +47,7 @@ export const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
-  {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
-  },
-  {
-    path: 'content',
-    loadComponent: () =>
-      import('./pages/content/content').then((m) => m.Content),
-    children: [
-      {
-        path: 'articles',
-        loadComponent: () =>
-          import('./pages/content/articles/articles').then((m) => m.Articles),
-        children: [
-          {
-            path: 'tech',
-            loadComponent: () =>
-              import('./pages/content/articles/tech/tech').then((m) => m.Tech),
-          },
-          {
-            path: 'health',
-            loadComponent: () =>
-              import('./pages/content/articles/health/health').then((m) => m.Health),
-          },
-          {
-            path: 'travel',
-            loadComponent: () =>
-              import('./pages/content/articles/travel/travel').then((m) => m.Travel),
-          }
-        ]
-      },
-      {
-        path: 'videos',
-        loadComponent: () =>
-          import('./pages/content/videos/videos').then((m) => m.Videos),
-      },
-      {
-        path: 'podcasts',
-        loadComponent: () =>
-          import('./pages/content/podcasts/podcasts').then((m) => m.Podcasts),
-      },
-      {
-        path: 'images',
-        loadComponent: () =>
-          import('./pages/content/images/images').then((m) => m.Images),
-      },
-      {
-        path: 'documents',
-        loadComponent: () =>
-          import('./pages/content/documents/documents').then((m) => m.Documents),
-      }
-    ],
-  },
-  {
-    path: 'analytics',
-    loadComponent: () =>
-      import('./pages/analytics/analytics').then((m) => m.Analytics),
-  },
-  {
-    path: 'comments',
-    loadComponent: () =>
-      import('./pages/comments/comments').then((m) => m.Comments),
-  },
-  {
-    path: 'settings',
-    loadComponent: () =>
-      import('./pages/settings/settings').then((m) => m.Settings),
-  },
-  {
-    path: 'feedback',
-    loadComponent: () =>
-      import('./pages/feedback/feedback').then((m) => m.Feedback),
-  }
+  ...menuItems
+    .map((i) => itemToRoute(i))
+    .filter((r): r is Route => r !== null),
 ];

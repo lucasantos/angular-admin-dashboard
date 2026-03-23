@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-videos',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './videos.html',
   styleUrl: './videos.scss',
 })
