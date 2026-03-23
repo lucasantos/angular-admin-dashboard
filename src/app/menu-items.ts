@@ -14,7 +14,7 @@ export const menuItems: MenuItems[] = [
     component: () => import('./pages/content/content').then((m) => m.Content),
     subItems: [
       {
-        label: 'Articles 123',
+        label: 'Articles',
         icon: 'article',
         route: '/articles',
         component: () => import('./pages/content/articles/articles').then((m) => m.Articles),

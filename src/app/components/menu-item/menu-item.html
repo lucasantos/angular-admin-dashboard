@@ -32,13 +32,15 @@
 
 <!-- @* Nested menu items *@ -->
 @if (nestedMenuOpen()) {
-  <div class="sub-menu">
-    @for (subItem of item().subItems; track subItem.route) {
+  <div class="sub-menu" animate.enter="expand-animation" animate.leave="contract-animation">
+    <div>
+      @for (subItem of item().subItems; track subItem.route) {
       <app-menu-item
         [item]="subItem"
         [collapsed]="collapsed()"
         [routeHistory]="routeHistory() + '/' + item().route"
       />
     }
+    </div>
   </div>
 }
