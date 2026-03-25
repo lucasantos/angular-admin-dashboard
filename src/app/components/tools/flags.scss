@@ -1,0 +1,121 @@
+// Flag Icons with CSS Gradients and Spin Animation
+
+@keyframes spin-360 {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.125rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    animation: spin-360 0.6s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    transform: scale(1.1);
+  }
+
+  // 🇺🇸 US Flag - Blue canton with red and white stripes
+  &--us {
+    background: linear-gradient(
+      to bottom,
+      #b22234 0%,
+      #b22234 30.77%,
+      white 30.77%,
+      white 61.54%,
+      #b22234 61.54%,
+      #b22234 100%
+    );
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 38%;
+      height: 100%;
+      background: #3c3b6b;
+      background-image: radial-gradient(circle, white 0.12rem, transparent 0.12rem);
+      background-size: 0.3rem 0.3rem;
+      background-position: 0.04rem 0.04rem;
+      z-index: 1;
+    }
+  }
+
+  // 🇪🇸 Spain Flag - Red, Yellow, Red with proper proportions
+  &--es {
+    background: linear-gradient(
+      to bottom,
+      #c60b1e 0%,
+      #c60b1e 25%,
+      #ffc400 25%,
+      #ffc400 75%,
+      #c60b1e 75%,
+      #c60b1e 100%
+    );
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.4rem;
+      height: 0.55rem;
+      opacity: 0.25;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(198, 11, 30, 0.5),
+        rgba(198, 11, 30, 0.5) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      z-index: 2;
+    }
+  }
+
+  // 🇧🇷 Brazil Flag - Green base with yellow diamond and blue circle
+  &--br {
+    background: #009c3b;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.97rem;
+      height: 0.60rem;
+      background: #fce123;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.21rem;
+      height: 0.21rem;
+      border: 0.08rem solid #002776;
+      border-radius: 50%;
+      background: #002776;
+      z-index: 2;
+    }
+  }
+}

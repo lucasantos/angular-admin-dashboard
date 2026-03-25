@@ -1,0 +1,83 @@
+<!-- For all buttons with icons, the default font is material-icons-outlined, when the user hovers the mouse over them, the font should be material-icons. -->
+<!-- Theme button - light/dark mode and user system mode -->
+<button mat-icon-button [matMenuTriggerFor]="themeMenu" matTooltip="Switch style mode" aria-label="Theme menu">
+  <mat-icon>palette</mat-icon>
+</button>
+<mat-menu #themeMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>light_mode</mat-icon>
+    <span>Light mode</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>dark_mode</mat-icon>
+    <span>Dark mode</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>auto_mode</mat-icon>
+    <span>System mode</span>
+  </button>
+</mat-menu>
+
+<!-- Translation Button with flag icons for English, Spanish and Brazilian Portuguese -->
+<button mat-icon-button [matMenuTriggerFor]="translationMenu" matTooltip="Switch language"
+  aria-label="Translation menu">
+  <mat-icon>language</mat-icon>
+</button>
+<mat-menu #translationMenu="matMenu">
+  <button mat-menu-item class="language-selector-item">
+    <span class="flag flag--us" title="English"></span>
+    <span>English</span>
+  </button>
+  <button mat-menu-item class="language-selector-item">
+    <span class="flag flag--es" title="Español"></span>
+    <span>Spanish</span>
+  </button>
+  <button mat-menu-item class="language-selector-item">
+    <span class="flag flag--br" title="Português (Brasil)"></span>
+    <span>Portuguese</span>
+  </button>
+</mat-menu>
+
+<!-- Help Button -->
+<button mat-icon-button [matMenuTriggerFor]="helpMenu" matTooltip="Help" aria-label="Help menu">
+  <mat-icon>help</mat-icon>
+</button>
+<mat-menu #helpMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>question_answer</mat-icon>
+    <span>FAQ</span>
+  </button>
+</mat-menu>
+
+<!-- Notifications Button with badge -->
+<button mat-icon-button aria-label="Notifications button" matTooltip="View notifications" matTooltipPosition="below">
+  <mat-icon matBadge="5" aria-hidden="false">notifications</mat-icon>
+  <span class="cdk-visually-hidden">
+    System messages to the user, such as alerts, updates, or reminders. The badge indicates the number of unread
+    notifications.
+  </span>
+</button>
+
+<!-- Profile Button -->
+<button mat-icon-button [matMenuTriggerFor]="profileMenu" matTooltip="Account menu" aria-label="Account menu">
+  <mat-icon>account_circle</mat-icon>
+</button>
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>My Profile</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>feedback</mat-icon>
+    <span>Feedback</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

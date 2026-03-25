@@ -2,9 +2,39 @@
 
 :root {}
 
-mat-toolbar {
+.mat-toolbar {
   position: relative;
-  z-index: 5;
+  z-index: 9 !important;
+  box-shadow: var(--mat-sys-level2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .toolbar-center {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .branding {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
   .logo {
     height: 40px;

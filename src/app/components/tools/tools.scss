@@ -1,0 +1,45 @@
+@use './flags.scss';
+
+// Language selector menu item styling
+.language-selector-item {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.325rem 1rem !important; // closer to mat-menu-item vertical spacing
+  gap: 0.75rem;
+
+  .flag {
+    flex: 0 0 auto;
+    margin-right: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.125rem;
+    transform: translateY(0.02rem); // micro vertical nudge to match icon
+  }
+
+  span {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 0.05rem 0 0 0;
+  }
+}
+
+// mat-icon {
+//   font-family: 'Material Symbols Outlined', sans-serif !important;
+//   transition: all 0.2s ease;
+
+//   &:hover {
+//     font-family: 'Material Icons', sans-serif !important;
+//     color: var(--mat-sys-primary);
+//     transform: scale(1.1);
+//   }
+// }

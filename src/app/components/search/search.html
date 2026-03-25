@@ -1,0 +1,31 @@
+<form class="search-container" (ngSubmit)="onSearch()">
+  <div class="search-box">
+    <!-- Search Icon -->
+    <mat-icon class="search-icon">search</mat-icon>
+
+    <!-- Input Field -->
+    <input
+      #searchInput
+      type="text"
+      class="search-input"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      name="search"
+      (focus)="isFocused.set(true)"
+      (blur)="isFocused.set(false)"
+    />
+
+    <!-- Clear Button -->
+     @if (searchQuery) {
+      <button
+        type="button"
+        class="clear-btn"
+        (click)="clearSearch()"
+        title="Clear search"
+        aria-label="Clear search field"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+     }
+  </div>
+</form>
