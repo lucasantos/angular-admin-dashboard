@@ -23,6 +23,7 @@
         <app-custom-sidenav [collapsed]="collapsed()" [menuItems]="menuItems" />
     </mat-sidenav>
     <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+        <app-breadcrumb></app-breadcrumb>
         <router-outlet />
     </mat-sidenav-content>
 </mat-sidenav-container>

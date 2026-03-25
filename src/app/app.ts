@@ -10,6 +10,7 @@ import { MatTooltip } from "@angular/material/tooltip";
 import { menuItems } from './menu-items';
 import { Search } from "./components/search/search";
 import { Tools } from "./components/tools/tools";
+import { Breadcrumb } from "./components/breadcrumb/breadcrumb";
 
 
 @Component({
@@ -25,7 +26,8 @@ import { Tools } from "./components/tools/tools";
     RouterLinkWithHref,
     MatTooltip,
     Search,
-    Tools
+    Tools,
+    Breadcrumb
 ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
