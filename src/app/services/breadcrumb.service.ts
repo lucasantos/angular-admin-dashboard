@@ -1,86 +1,70 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, distinctUntilChanged } from 'rxjs/operators';
-
-export interface BreadcrumbItem {
-  label: string;
-  url: string;
-  icon?: string;
-}
+import { filter } from 'rxjs/operators';
+import { BreadcrumbItem } from '../models/breadcrumb';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreadcrumbService {
-  private breadcrumbsSubject = new BehaviorSubject<BreadcrumbItem[]>([
+  // ✅ Use a signal instead of BehaviorSubject
+  private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([
     { label: 'Dashboard', url: '/dashboard', icon: 'dashboard' },
   ]);
 
-  breadcrumbs$: Observable<BreadcrumbItem[]> = this.breadcrumbsSubject.asObservable().pipe(
-    distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+  // Expose as readonly signal
+  readonly breadcrumbs = this.breadcrumbsSignal.asReadonly();
+
+  // ✅ Computed signal: filter out unwanted routes + format labels
+  readonly filteredBreadcrumbs = computed(() =>
+    this.breadcrumbs()
+      .filter((item) => !['/login', '/logout', '/error', '/404'].includes(item.url))
+      .map((item) => ({
+        ...item,
+        label: item.label.replaceAll('_', ' ').toUpperCase(),
+      })),
   );
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
   ) {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const breadcrumbs = this.buildBreadcrumbs(this.activatedRoute.root);
-        this.breadcrumbsSubject.next(breadcrumbs);
-      });
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      const breadcrumbs = this.buildBreadcrumbs(this.activatedRoute.root);
+      this.breadcrumbsSignal.set(breadcrumbs);
+    });
   }
 
-  /**
-   * Build breadcrumb trail by traversing the activated route tree
-   */
   private buildBreadcrumbs(
     route: ActivatedRoute,
     url: string = '',
-    breadcrumbs: BreadcrumbItem[] = []
+    breadcrumbs: BreadcrumbItem[] = [],
   ): BreadcrumbItem[] {
     const ROUTE_DATA_BREADCRUMB = 'label';
     const ROUTE_DATA_ICON = 'icon';
 
-    // Get the child routes
     const children: ActivatedRoute[] = route.children;
-
-    // Return if there are no more children
     if (children.length === 0) {
       return breadcrumbs;
     }
 
-    // Iterate over child routes
     for (const child of children) {
-      // Verify primary route
       if (child.outlet !== 'primary') {
         continue;
       }
 
-      // Get the route URL segment
       const routeURL: string = child.snapshot.url.map((segment) => segment.path).join('/');
-
-      // Append route URL to URL
       if (routeURL !== '') {
         url += `/${routeURL}`;
       }
 
-      // Only add breadcrumb if data.label exists
       const label = child.snapshot.data[ROUTE_DATA_BREADCRUMB];
       const icon = child.snapshot.data[ROUTE_DATA_ICON];
 
       if (label) {
-        const breadcrumb: BreadcrumbItem = {
-          label,
-          url,
-          icon,
-        };
-        breadcrumbs.push(breadcrumb);
+        breadcrumbs.push({ label, url, icon });
       }
 
-      // Recursive
       return this.buildBreadcrumbs(child, url, breadcrumbs);
     }
 

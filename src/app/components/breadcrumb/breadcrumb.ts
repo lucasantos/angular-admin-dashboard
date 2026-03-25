@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { BreadcrumbService, BreadcrumbItem } from '../../services/breadcrumb.service';
-import { Observable } from 'rxjs';
+import { BreadcrumbService } from '../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -12,9 +11,9 @@ import { Observable } from 'rxjs';
   styleUrl: './breadcrumb.scss',
 })
 export class Breadcrumb {
-  breadcrumbs$: Observable<BreadcrumbItem[]>;
+  constructor(private readonly breadcrumbService: BreadcrumbService) {}
 
-  constructor(breadcrumbService: BreadcrumbService) {
-    this.breadcrumbs$ = breadcrumbService.breadcrumbs$;
+  get breadcrumbs() {
+    return this.breadcrumbService.filteredBreadcrumbs;
   }
 }
