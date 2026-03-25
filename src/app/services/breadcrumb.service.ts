@@ -1,23 +1,21 @@
-import { Injectable, signal, computed } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, startWith } from 'rxjs/operators';
 import { BreadcrumbItem } from '../models/breadcrumb';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreadcrumbService {
-  // ✅ Use a signal instead of BehaviorSubject
-  private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([
-    { label: 'Dashboard', url: '/dashboard', icon: 'dashboard' },
-  ]);
+  private readonly router = inject(Router);
 
-  // Expose as readonly signal
-  readonly breadcrumbs = this.breadcrumbsSignal.asReadonly();
+  // 1. Initialize as empty to prevent stale data
+  private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);
 
   // ✅ Computed signal: filter out unwanted routes + format labels
   readonly filteredBreadcrumbs = computed(() =>
-    this.breadcrumbs()
+    this.breadcrumbsSignal()
       .filter((item) => !['/login', '/logout', '/error', '/404'].includes(item.url))
       .map((item) => ({
         ...item,
@@ -25,49 +23,52 @@ export class BreadcrumbService {
       })),
   );
 
-  constructor(
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-  ) {
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      const breadcrumbs = this.buildBreadcrumbs(this.activatedRoute.root);
-      this.breadcrumbsSignal.set(breadcrumbs);
-    });
+  constructor() {
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        // 2. startWith(null) triggers the logic immediately on app load/refresh
+        startWith(null),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        // 3. Always walk the tree from the global router state snapshot
+        const rootSnapshot = this.router.routerState.snapshot.root;
+        const breadcrumbs: BreadcrumbItem[] = [];
+        this.buildBreadcrumbs(rootSnapshot, '', breadcrumbs);
+        this.breadcrumbsSignal.set(breadcrumbs);
+      });
   }
 
   private buildBreadcrumbs(
-    route: ActivatedRoute,
+    route: any, // Using the snapshot route
     url: string = '',
     breadcrumbs: BreadcrumbItem[] = [],
-  ): BreadcrumbItem[] {
-    const ROUTE_DATA_BREADCRUMB = 'label';
-    const ROUTE_DATA_ICON = 'icon';
+  ): void {
+    const children = route.children;
 
-    const children: ActivatedRoute[] = route.children;
-    if (children.length === 0) {
-      return breadcrumbs;
-    }
+    if (children.length === 0) return;
 
     for (const child of children) {
-      if (child.outlet !== 'primary') {
-        continue;
+      // Only care about the primary outlet
+      if (child.outlet === 'primary') {
+        // Join the URL segments for this specific level
+        const routeURL: string = child.url.map((segment: any) => segment.path).join('/');
+
+        if (routeURL !== '') {
+          url += `/${routeURL}`;
+        }
+
+        const label = child.data['label'];
+        const icon = child.data['icon'];
+
+        if (label) {
+          breadcrumbs.push({ label, url: url || '/', icon });
+        }
+
+        // Continue walking down the tree
+        return this.buildBreadcrumbs(child, url, breadcrumbs);
       }
-
-      const routeURL: string = child.snapshot.url.map((segment) => segment.path).join('/');
-      if (routeURL !== '') {
-        url += `/${routeURL}`;
-      }
-
-      const label = child.snapshot.data[ROUTE_DATA_BREADCRUMB];
-      const icon = child.snapshot.data[ROUTE_DATA_ICON];
-
-      if (label) {
-        breadcrumbs.push({ label, url, icon });
-      }
-
-      return this.buildBreadcrumbs(child, url, breadcrumbs);
     }
-
-    return breadcrumbs;
   }
 }
