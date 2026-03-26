@@ -10,17 +10,41 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class BreadcrumbService {
   private readonly router = inject(Router);
 
+  private readonly dynamicLabels = signal<Map<string, string>>(new Map());
+
+  // Method for components to call
+  setDynamicLabel(url: string, label: string) {
+    this.dynamicLabels.update((map) => {
+      const newMap = new Map(map);
+      newMap.set(url, label);
+      return newMap;
+    });
+  }
+
   // 1. Initialize as empty to prevent stale data
   private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);
 
   // ✅ Computed signal: filter out unwanted routes + format labels
+  // readonly filteredBreadcrumbs = computed(() =>
+  //   this.breadcrumbsSignal()
+  //     .filter((item) => !['/login', '/logout', '/error', '/404'].includes(item.url))
+  //     .map((item) => ({
+  //       ...item,
+  //       label: item.label.replaceAll('_', ' ').toUpperCase(),
+  //     })),
+  // );
+
+  // Update the computed signal to check the registry first
   readonly filteredBreadcrumbs = computed(() =>
-    this.breadcrumbsSignal()
-      .filter((item) => !['/login', '/logout', '/error', '/404'].includes(item.url))
-      .map((item) => ({
+    this.breadcrumbsSignal().map((item) => {
+      const dynamicLabel = this.dynamicLabels().get(item.url);
+      const finalLabel = dynamicLabel || item.label; // Registry takes priority
+
+      return {
         ...item,
-        label: item.label.replaceAll('_', ' ').toUpperCase(),
-      })),
+        label: finalLabel.replaceAll('_', ' ').toUpperCase(),
+      };
+    })
   );
 
   constructor() {
