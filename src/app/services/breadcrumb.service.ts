@@ -73,7 +73,9 @@ export class BreadcrumbService {
           url += `/${routeURL}`;
         }
 
-        const label = child.data['label'];
+        // 1. Check if the resolver put data into 'resolvedLabel'
+        // 2. Fallback to the static 'label' from the MenuItems
+        const label = child.data['resolvedLabel'] || child.data['label'];
         const icon = child.data['icon'];
 
         if (label) {

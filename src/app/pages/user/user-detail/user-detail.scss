@@ -1,0 +1,21 @@
+.status-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+
+  &.active {
+    background-color: #4caf50;
+  }
+
+  &.inactive {
+    background-color: #f44336;
+  }
+}
+
+.table-container {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+}

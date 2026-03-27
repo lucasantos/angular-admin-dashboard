@@ -7,4 +7,5 @@ export type MenuItems = {
   route?: string;
   subItems?: MenuItems[];
   component?: Type<unknown> | (() => Promise<Type<unknown>>);
+  resolve?: { [key: string]: any };
 };

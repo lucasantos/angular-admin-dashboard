@@ -18,15 +18,20 @@ const itemToRoute = (i: MenuItems): Route | null => {
       icon: i.icon,
       class: i.class,
     },
+    resolve: i.resolve,
   };
 
   if (i.component) {
-    if (typeof i.component === 'function') {
-      // Menu item provides a lazy loader
+    // Check if it's a lazy-loading function:
+    // It's a function AND it's not a class (classes start with the 'class' keyword in string form)
+    const isLazyLoader =
+      typeof i.component === 'function' && !i.component.toString().startsWith('class');
+
+    if (isLazyLoader) {
       route.loadComponent = i.component as () => Promise<Type<unknown>>;
     } else {
-      // Menu item provides a direct component Type
-      route.loadComponent = () => Promise.resolve(i.component as Type<unknown>);
+      // It's a direct Component Class (like UserShell)
+      route.component = i.component as Type<unknown>;
     }
   }
 

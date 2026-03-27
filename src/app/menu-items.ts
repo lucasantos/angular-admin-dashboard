@@ -1,4 +1,6 @@
 import { MenuItems } from "./models/menu-item";
+import { UserShell } from "./pages/user/users/user-shell";
+import { userBreadcrumbResolver } from "./services/user-breadcrumb-resolver";
 
 export const menuItems: MenuItems[] = [
   {
@@ -127,6 +129,27 @@ export const menuItems: MenuItems[] = [
     icon: 'feedback',
     route: '/feedback',
     component: () => import('./pages/feedback/feedback').then((m) => m.Feedback),
+  },
+  {
+    label: 'Users',
+    icon: 'people',
+    route: '/users',
+    component: UserShell,
+    subItems: [
+      {
+        label: 'Users List',
+        icon: 'list',
+        route: '',
+        component: () => import('./pages/user/users/users').then((m) => m.Users),
+      },
+      {
+        label: 'User Detail',
+        icon: 'person',
+        route: '/user/:id',
+        component: () => import('./pages/user/user-detail/user-detail').then((m) => m.UserDetail),
+        resolve: { resolvedLabel: userBreadcrumbResolver },
+      },
+    ],
   },
   { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];

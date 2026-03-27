@@ -1,0 +1,42 @@
+<div class="page-container">
+  @if (user(); as u) {
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="user-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>{{ u.name }}</mat-card-title>
+      <mat-card-subtitle>{{ u.email }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">ID:</span>
+          <span class="value">{{ u.id }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Role:</span>
+          <mat-chip-set>
+            <mat-chip>{{ u.role }}</mat-chip>
+          </mat-chip-set>
+        </div>
+        <div class="info-item">
+          <span class="label">Status:</span>
+          <span class="status-indicator" [class]="u.status.toLowerCase()">
+            {{ u.status }}
+          </span>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button color="primary">EDIT PROFILE</button>
+    </mat-card-actions>
+  </mat-card>
+  } @else {
+  <div class="loading-state">
+    <p>Loading user profile...</p>
+  </div>
+  }
+</div>
