@@ -1,19 +1,45 @@
 <nav class="breadcrumb-container" aria-label="Breadcrumb">
   <ol class="breadcrumb-list">
-    @for (item of breadcrumbs(); track item.url; let last = $last) {
+
+    @if (firstItem(); as item) {
     <li class="breadcrumb-item">
       <a [routerLink]="item.url" class="breadcrumb-link">
-        @if (item.icon) {
-        <mat-icon class="breadcrumb-icon">{{ item.icon }}</mat-icon>
-        }
+        <mat-icon class="breadcrumb-icon">home</mat-icon>
         <span class="breadcrumb-label">{{ item.label }}</span>
       </a>
-      @if (!last) {
-      <span class="breadcrumb-separator">
-        <mat-icon>chevron_right</mat-icon>
-      </span>
-      }
+      <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
     </li>
     }
+
+    @if (needsToCollapse()) {
+    <li class="breadcrumb-item">
+      <button mat-icon-button [matMenuTriggerFor]="breadcrumbMenu" class="breadcrumb-more">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <mat-menu #breadcrumbMenu="matMenu">
+        @for (hidden of hiddenItems(); track hidden.url) {
+        <a mat-menu-item [routerLink]="hidden.url">
+          @if (hidden.icon) { <mat-icon>{{ hidden.icon }}</mat-icon> }
+          <span>{{ hidden.label }}</span>
+        </a>
+        }
+      </mat-menu>
+      <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+    </li>
+    } @else {
+    @for (item of hiddenItems(); track item.url) {
+      <li class="breadcrumb-item">
+        <a [routerLink]="item.url" class="breadcrumb-link">{{ item.label }}</a>
+        <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+      </li>
+      }
+    }
+
+    @if (lastItem(); as last) {
+    <li class="breadcrumb-item active" aria-current="page">
+      <span class="breadcrumb-label">{{ last.label }}</span>
+    </li>
+    }
+
   </ol>
 </nav>

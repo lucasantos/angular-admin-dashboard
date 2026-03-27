@@ -12,6 +12,9 @@ export class BreadcrumbService {
 
   private readonly dynamicLabels = signal<Map<string, string>>(new Map());
 
+  // 1. Initialize as empty to prevent stale data
+  private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);
+
   // Method for components to call
   setDynamicLabel(url: string, label: string) {
     this.dynamicLabels.update((map) => {
@@ -20,19 +23,6 @@ export class BreadcrumbService {
       return newMap;
     });
   }
-
-  // 1. Initialize as empty to prevent stale data
-  private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);
-
-  // ✅ Computed signal: filter out unwanted routes + format labels
-  // readonly filteredBreadcrumbs = computed(() =>
-  //   this.breadcrumbsSignal()
-  //     .filter((item) => !['/login', '/logout', '/error', '/404'].includes(item.url))
-  //     .map((item) => ({
-  //       ...item,
-  //       label: item.label.replaceAll('_', ' ').toUpperCase(),
-  //     })),
-  // );
 
   // Update the computed signal to check the registry first
   readonly filteredBreadcrumbs = computed(() =>
@@ -44,7 +34,7 @@ export class BreadcrumbService {
         ...item,
         label: finalLabel.replaceAll('_', ' ').toUpperCase(),
       };
-    })
+    }),
   );
 
   constructor() {
