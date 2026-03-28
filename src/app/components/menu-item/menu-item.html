@@ -1,34 +1,36 @@
-<a
-  mat-list-item
-  class="menu-item"
-  [class]="item().class ? item().class : ''"
-  [routerLink]="routeHistory() + '/' + item().route"
-  (click)="toggleNested()"
-  routerLinkActive="selected-menu-item"
-  #rla="routerLinkActive"
-  [activated]="rla.isActive"
-  [style.--mat-list-list-item-leading-icon-start-space]="identation()"
-  [title]="!collapsed() ? item().label : ''"
-  [matTooltip]="collapsed() ? item().label : ''"
-  matTooltipPosition="right"
-  >
+@if (!item().hidden) {
+  <a
+    mat-list-item
+    class="menu-item"
+    [class]="item().class ? item().class : ''"
+    [routerLink]="routeHistory() + '/' + item().route"
+    (click)="toggleNested()"
+    routerLinkActive="selected-menu-item"
+    #rla="routerLinkActive"
+    [activated]="rla.isActive"
+    [style.--mat-list-list-item-leading-icon-start-space]="identation()"
+    [title]="!collapsed() ? item().label : ''"
+    [matTooltip]="collapsed() ? item().label : ''"
+    matTooltipPosition="right"
+    >
 
-  <mat-icon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" matListItemIcon>
-    {{ item().icon }}
-  </mat-icon>
+    <mat-icon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" matListItemIcon>
+      {{ item().icon }}
+    </mat-icon>
 
-  @if (!collapsed()) {
-  <span matListItemTitle>{{ item().label }}</span>
-  } @if(item().subItems) {
-    <span matListItemMeta>
-      @if(nestedMenuOpen()) {
-        <mat-icon>expand_less</mat-icon>
-      } @else {
-        <mat-icon>expand_more</mat-icon>
-      }
-    </span>
-  }
-</a>
+    @if (!collapsed()) {
+    <span matListItemTitle>{{ item().label }}</span>
+    } @if(item().subItems) {
+      <span matListItemMeta>
+        @if(nestedMenuOpen()) {
+          <mat-icon>expand_less</mat-icon>
+        } @else {
+          <mat-icon>expand_more</mat-icon>
+        }
+      </span>
+    }
+  </a>
+}
 
 <!-- @* Nested menu items *@ -->
 @if (nestedMenuOpen()) {

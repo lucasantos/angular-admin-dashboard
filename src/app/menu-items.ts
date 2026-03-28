@@ -146,6 +146,7 @@ export const menuItems: MenuItems[] = [
         label: 'User Detail',
         icon: 'person',
         route: '/user/:id',
+        hidden: true, // This route won't appear in the menu
         component: () => import('./pages/user/user-detail/user-detail').then((m) => m.UserDetail),
         resolve: { resolvedLabel: userBreadcrumbResolver },
       },
