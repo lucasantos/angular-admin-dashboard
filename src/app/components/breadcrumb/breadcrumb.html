@@ -2,13 +2,21 @@
   <ol class="breadcrumb-list">
 
     @if (firstItem(); as item) {
-    <li class="breadcrumb-item">
-      <a [routerLink]="item.url" class="breadcrumb-link">
-        <mat-icon class="breadcrumb-icon">home</mat-icon>
-        <span class="breadcrumb-label">{{ item.label }}</span>
-      </a>
-      <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
-    </li>
+      @if (item.url !== '/dashboard' && item.url !== '/') {
+        <li class="breadcrumb-item home-anchor">
+          <a routerLink="/dashboard" class="breadcrumb-link" title="Return to homepage">
+            <mat-icon class="breadcrumb-icon">home</mat-icon>
+          </a>
+          <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+        </li>
+      }
+      <li class="breadcrumb-item">
+        <a [routerLink]="item.url" class="breadcrumb-link">
+          <!-- <mat-icon class="breadcrumb-icon">home</mat-icon> -->
+          <span class="breadcrumb-label">{{ item.label }}</span>
+        </a>
+        <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+      </li>
     }
 
     @if (needsToCollapse()) {
