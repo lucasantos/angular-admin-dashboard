@@ -302,8 +302,10 @@ export type MenuItems = {
   icon: string;                                           // Required: Material icon name
   class?: string;                                         // Optional: CSS class (e.g., 'logout')
   route?: string;                                         // Optional: Route path (must start with /)
+  hidden?: boolean;                                       // Optional: Hide dynamic rotes from menu
   subItems?: MenuItems[];                                 // Optional: Child menu items
   component?: Type<unknown> | (() => Promise<Type<unknown>>); // Optional: Component class or loader
+  resolve?: { [key: string]: any };                       // Optional: dynamic resolver
 };
 ```
 
