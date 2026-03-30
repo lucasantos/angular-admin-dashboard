@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,7 @@ import { menuItems } from './menu-items';
 import { Search } from "./components/search/search";
 import { Tools } from "./components/tools/tools";
 import { Breadcrumb } from "./components/breadcrumb/breadcrumb";
+import { ThemeService } from './services/theme.service';
 
 
 @Component({
@@ -27,14 +28,17 @@ import { Breadcrumb } from "./components/breadcrumb/breadcrumb";
     MatTooltip,
     Search,
     Tools,
-    Breadcrumb
-],
+    Breadcrumb,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('Dashboard');
   protected readonly logo = 'icons/icon-72x72.png';
+
+  // Injecting it here initializes the theme from localStorage immediately
+  private readonly themeService = inject(ThemeService);
 
   collapsed = signal(false);
 
