@@ -2,14 +2,25 @@
 
 :root {}
 
-.mat-toolbar {
+mat-toolbar {
   position: relative;
   z-index: 9 !important;
-  box-shadow: var(--mat-sys-level2);
+  @include mat.elevation(3);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
+
+  mat-icon {
+    // This ensures that the icon color is always correct based on the theme, even if the toolbar's background color changes
+    color: var(--mat-sys-on-primary);
+    transition: all 0.2s ease;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+  }
 
   .toolbar-left {
     display: flex;
@@ -50,7 +61,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.12));
   border-radius: 0px;
 }
 

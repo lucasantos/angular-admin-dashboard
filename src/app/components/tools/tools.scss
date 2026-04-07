@@ -1,5 +1,15 @@
 @use './flags.scss';
 
+mat-icon {
+  color: var(--mat-sys-on-primary);
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+
 // Language selector menu item styling
 .language-selector-item {
   display: flex !important;
@@ -32,17 +42,6 @@
     padding: 0.05rem 0 0 0;
   }
 }
-
-// mat-icon {
-//   font-family: 'Material Symbols Outlined', sans-serif !important;
-//   transition: all 0.2s ease;
-
-//   &:hover {
-//     font-family: 'Material Icons', sans-serif !important;
-//     color: var(--mat-sys-primary);
-//     transform: scale(1.1);
-//   }
-// }
 
 .active-theme {
   color: var(--mat-sys-primary) !important;

@@ -1,6 +1,6 @@
 .breadcrumb-container {
   padding: 0.2rem 0.75rem;
-  background-color: var(--mat-sys-surface, #fff);
+  background-color: var(--mat-sys-surface);
   border-bottom: 1px solid var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.12));
   margin: 0;
   line-height: 1.2;
@@ -102,3 +102,18 @@
     width: 1.1rem;
   }
 }
+
+// When the theme changes to the dark mode, we want to ensure the breadcrumb colors adapt accordingly
+html.dark-mode {
+  .breadcrumb-container {
+    background-color: var(--mat-sys-surface) !important;
+    border-bottom: 1px solid var(--mat-sys-outline-variant, rgba(255, 255, 255, 0.12));
+  }
+}
+
+// @media (prefers-color-scheme: dark) {
+//   .breadcrumb-container {
+//     background-color: var(--mat-sys-surface) !important;
+//     border-bottom: 1px solid var(--mat-sys-outline-variant, rgba(255, 255, 255, 0.12));
+//   }
+// }
