@@ -1,0 +1,42 @@
+<!-- Theme button - light/dark mode and user system mode -->
+<button mat-icon-button [matMenuTriggerFor]="themeMenu" matTooltip="Switch style mode" aria-label="Theme menu">
+  <mat-icon>palette</mat-icon>
+</button>
+
+<mat-menu #themeMenu="matMenu" class="theme-selection-menu">
+  <button mat-menu-item (click)="setTheme('light')">
+    <mat-icon [class.active-theme]="themeService.mode() === 'light'">light_mode</mat-icon>
+    <span>Light Mode</span>
+  </button>
+
+  <button mat-menu-item (click)="setTheme('dark')">
+    <mat-icon [class.active-theme]="themeService.mode() === 'dark'">dark_mode</mat-icon>
+    <span>Dark Mode</span>
+  </button>
+
+  <button mat-menu-item (click)="setTheme('system')">
+    <mat-icon [class.active-theme]="themeService.mode() === 'system'">auto_mode</mat-icon>
+    <span>System Preference</span>
+  </button>
+
+  <mat-divider></mat-divider>
+
+  <div class="custom-section-header">Custom Brand Identity</div>
+
+  <div class="color-grid">
+    @for (color of presets; track color) {
+    <button class="color-option" [style.background-color]="color" [matTooltip]="'Apply ' + color"
+      (click)="setCustomColor(color)"
+      [class.is-selected]="themeService.mode() === 'custom' && themeService.customColor() === color">
+      @if (themeService.mode() === 'custom' && themeService.customColor() === color) {
+      <mat-icon>check</mat-icon>
+      }
+    </button>
+    }
+
+    <div class="picker-wrapper" matTooltip="Choose custom color">
+      <mat-icon>colorize</mat-icon>
+      <input type="color" [value]="themeService.customColor()" (input)="setCustomColor($any($event.target).value)">
+    </div>
+  </div>
+</mat-menu>
