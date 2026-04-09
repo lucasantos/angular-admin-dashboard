@@ -7,6 +7,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatDivider } from "@angular/material/divider";
 import { CommonModule } from '@angular/common';
 import { ThemeSelector } from "./theme-selector/theme-selector";
+import { LanguageSelector } from "./language-selector/language-selector";
 
 @Component({
   selector: 'app-tools',
@@ -18,7 +19,8 @@ import { ThemeSelector } from "./theme-selector/theme-selector";
     MatMenuModule,
     MatBadgeModule,
     MatDivider,
-    ThemeSelector
+    ThemeSelector,
+    LanguageSelector
 ],
   templateUrl: './tools.html',
   styleUrl: './tools.scss',
