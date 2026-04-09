@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ThemeSelector } from "./theme-selector/theme-selector";
 import { LanguageSelector } from "./language-selector/language-selector";
 import { HelpMenu } from "./help-menu/help-menu";
+import { NotificationCenter } from "./notification-center/notification-center";
 
 @Component({
   selector: 'app-tools',
@@ -22,7 +23,8 @@ import { HelpMenu } from "./help-menu/help-menu";
     MatDivider,
     ThemeSelector,
     LanguageSelector,
-    HelpMenu
+    HelpMenu,
+    NotificationCenter
 ],
   templateUrl: './tools.html',
   styleUrl: './tools.scss',

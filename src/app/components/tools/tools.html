@@ -5,14 +5,7 @@
 
 <app-help-menu />
 
-<!-- Notifications Button with badge -->
-<button mat-icon-button aria-label="Notifications button" matTooltip="View notifications" matTooltipPosition="below">
-  <mat-icon matBadge="5" aria-hidden="false">notifications</mat-icon>
-  <span class="cdk-visually-hidden">
-    System messages to the user, such as alerts, updates, or reminders. The badge indicates the number of unread
-    notifications.
-  </span>
-</button>
+<app-notification-center />
 
 <!-- Profile Button -->
 <button mat-icon-button [matMenuTriggerFor]="profileMenu" matTooltip="Account menu" aria-label="Account menu">
