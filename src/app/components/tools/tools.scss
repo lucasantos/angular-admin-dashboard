@@ -1,9 +1,0 @@
-mat-icon {
-  color: var(--mat-sys-on-primary);
-  transition: all 0.2s ease;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
-}
