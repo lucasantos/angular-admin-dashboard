@@ -4,7 +4,21 @@
   <mat-icon>language</mat-icon>
 </button>
 
-<mat-menu #translationMenu="matMenu">
+<mat-menu #translationMenu="matMenu" class="language-menu">
+  @for (lang of langService.languages; track lang.code) {
+  <button mat-menu-item class="language-selector-item" (click)="changeLanguage(lang.code)">
+    <span class="flag" [class]="lang.flagClass" [title]="lang.label"></span>
+    <span [class.active-lang]="langService.currentLanguage() === lang.code">
+      {{ lang.label }}
+    </span>
+    @if (langService.currentLanguage() === lang.code) {
+    <mat-icon class="check-icon">check</mat-icon>
+    }
+  </button>
+  }
+</mat-menu>
+
+<!-- <mat-menu #translationMenu="matMenu">
   <button mat-menu-item class="language-selector-item">
     <span class="flag flag--us" title="English"></span>
     <span>English</span>
@@ -17,4 +31,4 @@
     <span class="flag flag--br" title="Português (Brasil)"></span>
     <span>Portuguese</span>
   </button>
-</mat-menu>
+</mat-menu> -->

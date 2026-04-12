@@ -41,4 +41,17 @@ mat-icon {
     letter-spacing: 0.5px;
     padding: 0.05rem 0 0 0;
   }
+
+  .active-lang {
+    font-weight: 600;
+    color: var(--mat-sys-primary);
+  }
+
+  .check-icon {
+    margin-left: auto;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: var(--mat-sys-primary);
+  }
 }
