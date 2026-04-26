@@ -152,5 +152,12 @@ export const menuItems: MenuItems[] = [
       },
     ],
   },
+  {
+    label: 'Faq',
+    icon: 'question_answer',
+    route: '/faq',
+    hidden: true, // This route won't appear in the main menu but can be accessed via the Help menu
+    component: () => import('./components/faq/faq').then((m) => m.Faq),
+  },
   { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];
