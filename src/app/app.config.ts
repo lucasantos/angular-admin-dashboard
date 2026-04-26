@@ -7,6 +7,8 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { menuItems } from './menu-items';
 import { validateMenuItemsConfig } from './utils/route-validator';
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@jsverse/transloco';
 
 // Validate menu/route configuration at dev time
 if (isDevMode()) {
@@ -23,5 +25,16 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000',
     }),
     provideHttpClient(withFetch()),
+    // provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'es', 'pt-BR'],
+        defaultLang: 'en',
+        // Remove this option if your application doesn't support changing language in runtime.
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
   ],
 };

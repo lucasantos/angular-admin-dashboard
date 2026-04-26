@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 export type LanguageCode = 'en' | 'es' | 'pt';
 
@@ -13,6 +14,7 @@ interface Language {
   providedIn: 'root',
 })
 export class LanguageService {
+  private readonly translocoService = inject(TranslocoService);
   private readonly platformId = inject(PLATFORM_ID);
 
   readonly languages: Language[] = [
@@ -27,8 +29,12 @@ export class LanguageService {
   constructor() {
     // Persist language choice
     effect(() => {
+      const lang = this.currentLanguage();
+      // Inform the i18n engine about the language change
+      this.translocoService.setActiveLang(lang);
+
       if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem('app-language', this.currentLanguage());
+        localStorage.setItem('app-language', lang);
       }
     });
   }

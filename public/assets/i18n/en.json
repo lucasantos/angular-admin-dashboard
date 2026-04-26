@@ -1,0 +1,9 @@
+{
+  "toolbar": {
+    "theme": "Switch style mode",
+    "language": "Switch language",
+    "help": "Help",
+    "notifications": "View notifications",
+    "account": "Account menu"
+  }
+}
