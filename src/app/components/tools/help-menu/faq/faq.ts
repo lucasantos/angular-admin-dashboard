@@ -4,7 +4,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FaqService } from '../../services/faq.service';
+import { FaqService } from '../../../../services/faq.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -22,7 +22,7 @@ export class Faq {
   // Filtered FAQs computed automatically when data or search changes
   filteredFaqs = computed(() => {
     const query = this.searchQuery().toLowerCase();
-    return this.faqService.faqs().filter(f => 
+    return this.faqService.faqs().filter(f =>
       f.question.toLowerCase().includes(query) || f.answer.toLowerCase().includes(query)
     );
   });

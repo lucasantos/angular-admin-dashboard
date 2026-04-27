@@ -1,3 +1,4 @@
+import { Support } from "./components/tools/help-menu/support/support";
 import { MenuItems } from "./models/menu-item";
 import { UserShell } from "./pages/user/users/user-shell";
 import { userBreadcrumbResolver } from "./services/user-breadcrumb-resolver";
@@ -146,7 +147,7 @@ export const menuItems: MenuItems[] = [
         label: 'User Detail',
         icon: 'person',
         route: '/user/:id',
-        hidden: true, // This route won't appear in the menu
+        hidden: true, // This route won't appear in the menu but can be accessed programmatically or via links
         component: () => import('./pages/user/user-detail/user-detail').then((m) => m.UserDetail),
         resolve: { resolvedLabel: userBreadcrumbResolver },
       },
@@ -157,7 +158,14 @@ export const menuItems: MenuItems[] = [
     icon: 'question_answer',
     route: '/faq',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Help menu
-    component: () => import('./components/faq/faq').then((m) => m.Faq),
+    component: () => import('./components/tools/help-menu/faq/faq').then((m) => m.Faq),
+  },
+  {
+    label: 'Support',
+    icon: 'support',
+    route: '/support',
+    hidden: true, // This route won't appear in the main menu but can be accessed via the Help menu
+    component: () => import('./components/tools/help-menu/support/support').then((m) => m.Support),
   },
   { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];
