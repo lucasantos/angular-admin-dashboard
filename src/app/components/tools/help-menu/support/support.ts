@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { QuillModule } from 'ngx-quill';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { SupportService } from '../../../../services/support.service';
 import { SupportTicket } from '../../../../models/support-ticket';
 
@@ -29,6 +30,7 @@ import { SupportTicket } from '../../../../models/support-ticket';
     MatDividerModule,
     MatSnackBarModule,
     QuillModule,
+    MatPaginatorModule,
   ],
   templateUrl: './support.html',
   styleUrl: './support.scss',
@@ -37,6 +39,9 @@ export class Support {
   private readonly fb = inject(FormBuilder);
   private readonly snackBar = inject(MatSnackBar);
   protected readonly supportService = inject(SupportService);
+  readonly statusFilter = signal<'all' | 'open' | 'pending' | 'closed'>('all');
+  readonly pageIndex = signal(0);
+  readonly pageSize = signal(10);
 
   // View state signals
   selectedTicket = signal<SupportTicket | null>(null);
@@ -77,5 +82,39 @@ export class Support {
       this.supportService.addReply(ticket.id, this.replyControl.value!);
       this.replyControl.reset();
     }
+  }
+
+  // Filter and pagination logic
+  // Computed: First filter by status, then paginate
+  readonly filteredTickets = computed(() => {
+    const allTickets = this.supportService.tickets();
+    const filter = this.statusFilter();
+
+    // 1. Filter
+    const filtered = filter === 'all' ? allTickets : allTickets.filter((t) => t.status === filter);
+
+    // 2. Paginate
+    const start = this.pageIndex() * this.pageSize();
+    const end = start + this.pageSize();
+
+    return filtered.slice(start, end);
+  });
+
+  // Total count for the paginator (based on the filtered result)
+  readonly totalFilteredCount = computed(() => {
+    const filter = this.statusFilter();
+    return filter === 'all'
+      ? this.supportService.tickets().length
+      : this.supportService.tickets().filter((t) => t.status === filter).length;
+  });
+
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex.set(e.pageIndex);
+    this.pageSize.set(e.pageSize);
+  }
+
+  handleFilterChange(newFilter: any) {
+    this.statusFilter.set(newFilter || 'all');
+    this.pageIndex.set(0); // Reset to first page when filter changes
   }
 }

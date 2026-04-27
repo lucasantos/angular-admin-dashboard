@@ -97,6 +97,78 @@ export class SupportService {
         },
       ],
     },
+    {
+      id: 'TK-737',
+      subject: 'Incorrect data in reports',
+      category: 'Technical',
+      priority: 'high',
+      description: '<p>The sales report is showing incorrect totals for last month.</p>',
+      status: 'open',
+      attachments: ['sales_report.pdf'],
+      createdAt: new Date(),
+      messages: [
+        {
+          id: '1',
+          sender: 'agent',
+          text: 'We are looking into the data discrepancy in the sales report.',
+          timestamp: new Date(),
+        },
+      ],
+    },
+    {
+      id: 'TK-736',
+      subject: 'Suggestion: Add more chart types',
+      category: 'Feature Request',
+      priority: 'low',
+      description: '<p>It would be nice to have more chart types available for data visualization.</p>',
+      status: 'pending',
+      attachments: [],
+      createdAt: new Date(),
+      messages: [
+        {
+          id: '1',
+          sender: 'agent',
+          text: 'Thank you for the suggestion! We will consider adding more chart types in future updates.',
+          timestamp: new Date(),
+        },
+      ],
+    },
+    {
+      id: 'TK-735',
+      subject: 'Problem with email notifications',
+      category: 'Technical',
+      priority: 'medium',
+      description: '<p>I am not receiving email notifications for new tickets.</p>',
+      status: 'open',
+      attachments: [],
+      createdAt: new Date(),
+      messages: [
+        {
+          id: '1',
+          sender: 'agent',
+          text: 'We are investigating the email notification issue.',
+          timestamp: new Date(),
+        },
+      ],
+    },
+    {
+      id: 'TK-734',
+      subject: 'Request for user guide',
+      category: 'General Inquiry',
+      priority: 'low',
+      description: '<p>Is there a user guide available for the dashboard?</p>',
+      status: 'closed',
+      attachments: [],
+      createdAt: new Date(),
+      messages: [
+        {
+          id: '1',
+          sender: 'agent',
+          text: 'Yes, you can find the user guide in our help center.',
+          timestamp: new Date(),
+        },
+      ],
+    },
   ]);
 
   createTicket(data: any, fileNames: string[]) {

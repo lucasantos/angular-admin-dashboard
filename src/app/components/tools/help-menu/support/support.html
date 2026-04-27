@@ -48,19 +48,47 @@
     <mat-tab label="My Tickets">
       <div class="tab-content">
         @if (!selectedTicket()) {
+
+          <div class="filter-header">
+            <span class="mat-body-strong">Filter by Status:</span>
+            <mat-chip-listbox [value]="statusFilter()" (change)="handleFilterChange($event.value)">
+              <mat-chip-option value="all">All</mat-chip-option>
+              <mat-chip-option value="open">Open</mat-chip-option>
+              <mat-chip-option value="pending">Pending</mat-chip-option>
+              <mat-chip-option value="closed">Closed</mat-chip-option>
+            </mat-chip-listbox>
+          </div>
+
         <div class="ticket-list-container">
-          @for (ticket of supportService.tickets(); track ticket.id; let last = $last) {
+          @for (ticket of filteredTickets(); track ticket.id; let last = $last) {
           <div class="ticket-item" (click)="selectedTicket.set(ticket)">
             <div class="ticket-info">
               <span class="ticket-id">{{ ticket.id }}</span>
-              <h3 class="mat-title-small">{{ ticket.subject }}</h3>
+              <div class="subject-wrapper">
+                <h3 class="mat-title-small">{{ ticket.subject }}</h3>
+                <span class="mat-body-small opacity-70">{{ ticket.createdAt | date:'shortDate' }}</span>
+              </div>
               <span class="status-tag" [attr.data-status]="ticket.status">{{ ticket.status }}</span>
             </div>
             <mat-icon>chevron_right</mat-icon>
           </div>
           @if (!last) { <mat-divider></mat-divider> }
+          } @empty {
+          <div class="empty-state">
+            <mat-icon>search_off</mat-icon>
+            <p>No tickets found for this filter.</p>
+          </div>
           }
         </div>
+
+        <mat-paginator
+          [length]="totalFilteredCount()"
+          [pageSize]="pageSize()"
+          [pageIndex]="pageIndex()"
+          [pageSizeOptions]="[5, 10, 25]"
+          (page)="handlePageEvent($event)"
+          aria-label="Select page of tickets">
+        </mat-paginator>
         } @else {
         <div class="detail-container">
           <button mat-button (click)="selectedTicket.set(null)">
