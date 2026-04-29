@@ -19,7 +19,7 @@ export class PushNotificationService {
     // Listen for incoming clicks on notifications
     this.swPush.notificationClicks.subscribe(({ notification }) => {
       console.log('Notification clicked:', notification);
-      // Logic to navigate to the specific ticket can go here
+      // TO DO - Logic to navigate to the specific ticket can go here
     });
   }
 

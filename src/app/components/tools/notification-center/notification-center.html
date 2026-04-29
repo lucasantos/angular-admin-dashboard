@@ -29,7 +29,8 @@
     <div class="notification-item" [class.unread]="!item.isRead">
       <div class="type-indicator" [attr.data-type]="item.type"></div>
 
-      <div class="item-body" (click)="notificationService.markAsRead(item.id)">
+
+      <div class="item-body" (click)="openDetail(item)">
         <div class="item-title mat-body-strong">{{ item.title }}</div>
         <div class="item-msg mat-body-small">{{ item.message }}</div>
         <div class="item-time mat-body-small">{{ item.timestamp | date:'shortTime' }}</div>

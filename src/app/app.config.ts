@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideQuillConfig } from 'ngx-quill/config';
 
 import { routes } from './app.routes';
@@ -17,7 +17,7 @@ if (isDevMode()) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(withEventReplay()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
@@ -27,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideQuillConfig({
       modules: {
         toolbar: [
+          [{ header: [1, 2, 3, false] }], // dropdown with heading options
           ['bold', 'italic', 'underline'], // toggled buttons
           [{ list: 'ordered' }, { list: 'bullet' }],
           ['link', 'clean'], // remove formatting button

@@ -1,7 +1,11 @@
 <div class="support-wrapper">
-  <mat-tab-group animationDuration="200ms">
+  <mat-tab-group [selectedIndex]="selectedTabIndex()" (selectedIndexChange)="selectedTabIndex.set($event)" animationDuration="200ms">
 
     <mat-tab label="Create New Ticket">
+      <h2>Create New Support Ticket</h2>
+      <p>Fill out the form below to create a new support ticket.</p>
+      <p>Input the maximum information possible to help us assist you better.</p>
+
       <form [formGroup]="ticketForm" (ngSubmit)="submitTicket()" class="tab-content create-form">
         <div class="form-row">
           <mat-form-field appearance="outline" class="flex-2">
@@ -91,12 +95,12 @@
         </mat-paginator>
         } @else {
         <div class="detail-container">
-          <button mat-button (click)="selectedTicket.set(null)">
+          <button mat-button (click)="backToList()">
             <mat-icon>arrow_back</mat-icon> Back to Tickets
           </button>
 
           <div class="ticket-header">
-            <h2 class="mat-headline-small">{{ selectedTicket()?.subject }}</h2>
+            <h2 class="mat-headline-small">{{ selectedTicket()?.subject }} <small>({{ selectedTicket()?.id }})</small></h2>
             <div class="original-desc content-card" [innerHTML]="selectedTicket()?.description"></div>
           </div>
 

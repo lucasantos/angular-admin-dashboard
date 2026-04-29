@@ -7,6 +7,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { NotificationService } from '../../../services/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AppNotification } from '../../../models/app-notification';
+import { MessageDetail } from './message-detail/message-detail';
 
 @Component({
   selector: 'app-notification-center',
@@ -24,6 +28,8 @@ import { NotificationService } from '../../../services/notification.service';
 })
 export class NotificationCenter {
   protected readonly notificationService = inject(NotificationService);
+  private readonly dialog = inject(MatDialog);
+  private readonly router = inject(Router);
 
   handleAction(event: MouseEvent, action: () => void) {
     event.stopPropagation(); // Prevents the menu from closing when clicking internal buttons
@@ -44,5 +50,28 @@ export class NotificationCenter {
 
   clearAll() {
     this.notificationService.clearAll();
+  }
+
+  openDetail(notification: AppNotification) {
+    this.notificationService.markAsRead(notification.id);
+
+    const dialogRef = this.dialog.open(MessageDetail, {
+      width: '500px',
+      data: notification,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // console.log('Dialog result:', result); // Debug check
+      // console.log('Target Ticket ID:', notification.ticketId); // Debug check
+
+      if (result === 'view_ticket' && notification.ticketId) {
+        // Use absolute path and ensure query params are sent
+        this.router.navigate(['/support'], {
+          queryParams: { id: notification.ticketId },
+          replaceUrl: false, // Allows the user to use the browser "Back" button
+        });
+      }
+    });
   }
 }

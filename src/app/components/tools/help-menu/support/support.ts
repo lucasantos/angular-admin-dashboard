@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +14,7 @@ import { QuillModule } from 'ngx-quill';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { SupportService } from '../../../../services/support.service';
 import { SupportTicket } from '../../../../models/support-ticket';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-support',
@@ -38,14 +39,46 @@ import { SupportTicket } from '../../../../models/support-ticket';
 export class Support {
   private readonly fb = inject(FormBuilder);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   protected readonly supportService = inject(SupportService);
   readonly statusFilter = signal<'all' | 'open' | 'pending' | 'closed'>('all');
   readonly pageIndex = signal(0);
   readonly pageSize = signal(10);
 
+  // Track which tab is active (0 = New Ticket, 1 = My Tickets)
+  selectedTabIndex = signal(0);
+
   // View state signals
   selectedTicket = signal<SupportTicket | null>(null);
   tempFiles = signal<File[]>([]);
+
+  // Angular will automatically populate this from the ?id=... query param
+  @Input() set id(ticketId: string | undefined) {
+    if (ticketId) {
+      this.autoSelectTicket(ticketId);
+    }
+  }
+
+  private autoSelectTicket(id: string) {
+    const ticket = this.supportService.tickets().find((t) => t.id === id);
+    if (ticket) {
+      this.selectedTabIndex.set(1); // Switch to "My Tickets" tab
+      this.selectedTicket.set(ticket); // Open the detail view
+    }
+  }
+
+  // IMPORTANT: Clean up the URL when the user goes back to the list
+  backToList() {
+    this.selectedTicket.set(null);
+    // This removes the ?id=... from the browser bar
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { id: null },
+      queryParamsHandling: 'merge',
+      replaceUrl: true, // Cleaner browser history
+    });
+  }
 
   // Forms
   ticketForm = this.fb.nonNullable.group({
