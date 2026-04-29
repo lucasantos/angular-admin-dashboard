@@ -62,15 +62,8 @@ export class NotificationCenter {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      // console.log('Dialog result:', result); // Debug check
-      // console.log('Target Ticket ID:', notification.ticketId); // Debug check
-
-      if (result === 'view_ticket' && notification.ticketId) {
-        // Use absolute path and ensure query params are sent
-        this.router.navigate(['/support'], {
-          queryParams: { id: notification.ticketId },
-          replaceUrl: false, // Allows the user to use the browser "Back" button
-        });
+      if (result === 'execute_action' && notification.action) {
+        this.notificationService.handleAction(notification.action);
       }
     });
   }

@@ -27,7 +27,7 @@
   <div class="notification-list" (click)="$event.stopPropagation()">
     @for (item of notificationService.notifications(); track item.id) {
     <div class="notification-item" [class.unread]="!item.isRead">
-      <div class="type-indicator" [attr.data-type]="item.type"></div>
+      <div class="type-indicator" [attr.data-category]="item.category"></div>
 
 
       <div class="item-body" (click)="openDetail(item)">

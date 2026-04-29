@@ -1,108 +1,52 @@
-import { Injectable, signal, computed } from '@angular/core';
-import { AppNotification } from '../models/app-notification';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { AppNotification, NotificationAction } from '../models/app-notification';
+import { Router } from '@angular/router';
+import { MOCK_NOTIFICATIONS } from '../mocks/notifications.mock';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
-  // Mock initial data
-  private readonly initialNotifications: AppNotification[] = [
-    {
-      id: '1',
-      ticketId: 'TK-742',
-      title: 'New Ticket Reply',
-      message: 'Support agent replied to your ticket TK-742.',
-      type: 'info',
-      timestamp: new Date(),
-      isRead: false,
-    },
-    {
-      id: '2',
-      ticketId: 'TK-741',
-      title: 'System Update',
-      message: 'The dashboard will undergo maintenance tonight at 00:00.',
-      type: 'warning',
-      timestamp: new Date(Date.now() - 3600000),
-      isRead: false,
-    },
-    {
-      id: '3',
-      ticketId: 'TK-740',
-      title: 'New Feature Released',
-      message: 'Check out the new analytics dashboard in your account.',
-      type: 'success',
-      timestamp: new Date(Date.now() - 7200000),
-      isRead: true,
-    },
-    {
-      id: '4',
-      ticketId: 'TK-739',
-      title: 'Password Expiring Soon',
-      message: 'Your password will expire in 5 days. Please update it.',
-      type: 'error',
-      timestamp: new Date(Date.now() - 10800000),
-      isRead: true,
-    },
-    {
-      id: '5',
-      ticketId: 'TK-738',
-      title: 'New Comment on Ticket',
-      message: 'A customer commented on ticket TK-738.',
-      type: 'info',
-      timestamp: new Date(Date.now() - 14400000),
-      isRead: false,
-    },
-    {
-      id: '6',
-      ticketId: 'TK-737',
-      title: 'Scheduled Downtime',
-      message: 'The dashboard will be unavailable on Saturday from 1 AM to 3 AM.',
-      type: 'warning',
-      timestamp: new Date(Date.now() - 18000000),
-      isRead: false,
-    },
-    {
-      id: '7',
-      ticketId: 'TK-736',
-      title: 'New Integration Available',
-      message: 'Integrate with Slack to receive notifications directly in your channels.',
-      type: 'success',
-      timestamp: new Date(Date.now() - 21600000),
-      isRead: true,
-    },
-    {
-      id: '8',
-      ticketId: 'TK-735',
-      title: 'Security Alert',
-      message: 'Unusual login activity detected on your account.',
-      type: 'error',
-      timestamp: new Date(Date.now() - 25200000),
-      isRead: true,
-    },
-    {
-      id: '9',
-      ticketId: 'TK-734',
-      title: 'New Ticket Assigned',
-      message: 'You have been assigned to ticket TK-734.',
-      type: 'info',
-      timestamp: new Date(Date.now() - 28800000),
-      isRead: false,
-    },
-    {
-      id: '10',
-      ticketId: 'TK-733',
-      title: 'Feature Deprecation Notice',
-      message: 'The old reporting module will be deprecated next month.',
-      type: 'warning',
-      timestamp: new Date(Date.now() - 32400000),
-      isRead: false,
-    },
-  ];
+  private readonly router = inject(Router);
+  readonly notifications = signal<AppNotification[]>([]);
 
-  readonly notifications = signal<AppNotification[]>(this.initialNotifications);
+  constructor() {
+    // Populate the signal with our mock data on initialization
+    const initialData = MOCK_NOTIFICATIONS.map((n, index) => ({
+      ...n,
+      id: `mock-id-${index}`,
+      isRead: false,
+      timestamp: new Date(Date.now() - index * 3600000), // Spaced out by hours
+    }));
+
+    this.notifications.set(initialData);
+  }
 
   // Computed signal for the badge count (only unread)
   readonly unreadCount = computed(() => this.notifications().filter((n) => !n.isRead).length);
+
+  /**
+   * Any service (Support, Billing, System) calls this to push an alert.
+   */
+  dispatch(notification: Omit<AppNotification, 'id' | 'isRead' | 'timestamp'>) {
+    const newEntry: AppNotification = {
+      ...notification,
+      id: crypto.randomUUID(),
+      isRead: false,
+      timestamp: new Date(),
+    };
+    this.notifications.update((list) => [newEntry, ...list]);
+  }
+
+  /**
+   * Centralized logic to handle the "Action" button click
+   */
+  handleAction(action: NotificationAction) {
+    this.router.navigate([action.route], {
+      queryParams: action.params,
+      queryParamsHandling: 'merge',
+    });
+  }
 
   markAsRead(id: string) {
     this.notifications.update((list) =>

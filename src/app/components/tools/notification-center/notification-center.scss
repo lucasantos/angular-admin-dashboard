@@ -60,19 +60,23 @@ mat-icon {
     width: 4px;
     border-radius: 2px;
 
-    &[data-type="info"] {
+    &[data-category="support"] {
       background: var(--mat-sys-primary);
     }
 
-    &[data-type="warning"] {
-      background: #FFB300;
+    &[data-category="system"] {
+      background: #FFC107;
     }
 
-    &[data-type="success"] {
+    &[data-category="feedback"] {
+      background: dodgerblue;
+    }
+
+    &[data-category="feature"] {
       background: #4caf50;
     }
 
-    &[data-type="error"] {
+    &[data-category="payments"] {
       background: #f44336;
     }
   }
