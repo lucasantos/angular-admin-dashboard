@@ -181,5 +181,15 @@ export const menuItems: MenuItems[] = [
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
     component: () => import('./components/tools/account-menu/settings/settings').then((m) => m.Settings),
   },
+  {
+    label: 'Security & Privacy',
+    icon: 'security',
+    route: '/security-privacy',
+    hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
+    component: () =>
+      import('./components/tools/account-menu/security-privacy/security-privacy').then(
+        (m) => m.SecurityPrivacy,
+      ),
+  },
   { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];

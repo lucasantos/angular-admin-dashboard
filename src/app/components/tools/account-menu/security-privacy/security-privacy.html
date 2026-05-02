@@ -1,0 +1,109 @@
+<div class="security-container">
+  <header class="section-header">
+    <h1 class="mat-headline-medium">Security & Privacy</h1>
+    <p class="mat-body-large opacity-70">Manage your data protection and account safety protocols.</p>
+  </header>
+
+  <div class="security-grid">
+    <mat-card appearance="outlined" class="compliance-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">gavel</mat-icon>
+        <mat-card-title>Privacy Policy & Awareness</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="mt-20">
+        <div class="policy-text-box">
+          <p class="mat-body-small">
+            Our system prioritizes your data sovereignty. We use end-to-end encryption for all sensitive
+            support tickets and personal identifiers. By checking the boxes below, you acknowledge
+            that you have read our 2026 Data Privacy Update.
+          </p>
+        </div>
+
+        <form [formGroup]="securityForm" class="checkbox-group">
+          <mat-checkbox formControlName="awareOfTerms" color="primary">
+            I confirm that I am aware of the security protocols and privacy terms.
+          </mat-checkbox>
+
+          <mat-checkbox formControlName="allowDataProcessing">
+            Allow anonymized data processing to improve AI features.
+          </mat-checkbox>
+
+          <mat-checkbox formControlName="publicProfile">
+            Make my profile visible to other team members.
+          </mat-checkbox>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-flat-button color="primary"
+                [disabled]="!securityForm.get('awareOfTerms')?.value"
+                (click)="confirmAwareness()">
+          Confirm Acknowledgement
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">verified_user</mat-icon>
+        <mat-card-title>Two-Factor Authentication (2FA)</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="mt-20">
+        <div class="setting-item">
+          <div class="label-group">
+            <span class="mat-body-strong">Secure Login</span>
+            <span class="mat-body-small opacity-70">Add an extra layer of security to your account.</span>
+          </div>
+          <mat-slide-toggle [checked]="is2FAEnabled()" (change)="is2FAEnabled.set($event.checked)">
+          </mat-slide-toggle>
+        </div>
+
+        @if (is2FAEnabled()) {
+          <div class="status-badge success">
+            <mat-icon>check_circle</mat-icon> 2FA is Active via Authenticator App
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="sessions-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">devices</mat-icon>
+        <mat-card-title>Active Sessions</mat-card-title>
+        <mat-card-subtitle>Where you're currently logged in</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-list>
+          @for (session of sessions(); track session.device; let i = $index) {
+            <mat-list-item>
+              <mat-icon matListItemIcon>{{ session.icon }}</mat-icon>
+              <div matListItemTitle>{{ session.device }}</div>
+              <div matListItemLine>{{ session.location }} @if(session.active){ <b class="text-primary">• Current</b> }</div>
+              <button mat-icon-button matListItemMeta (click)="revokeSession(i)" matTooltip="Logout from device">
+                <mat-icon color="warn">logout</mat-icon>
+              </button>
+            </mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="danger-zone">
+      <mat-card-header>
+        <mat-card-title>Data Management</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="mt-10">
+        <div class="danger-item">
+          <div>
+            <div class="mat-body-strong">Download Personal Data</div>
+            <div class="mat-body-small">Get a JSON export of all your tickets and settings.</div>
+          </div>
+          <button mat-stroked-button>Export Data</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
