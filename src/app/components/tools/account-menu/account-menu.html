@@ -1,4 +1,3 @@
-<!-- Profile section -->
 <button mat-button [matMenuTriggerFor]="profileMenu" matTooltip="Account menu" aria-label="Account menu" class="profile-trigger">
   <div class="avatar-container">
     @if (userService.currentUser()?.avatarUrl) {
@@ -22,7 +21,7 @@
 
   <mat-divider></mat-divider>
 
-  <button mat-menu-item>
+  <button mat-menu-item routerLink="/profile">
     <mat-icon>person_outline</mat-icon>
     <span>My Profile</span>
   </button>

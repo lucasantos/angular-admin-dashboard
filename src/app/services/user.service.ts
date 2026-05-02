@@ -14,8 +14,10 @@ export class UserService {
     id: '999',
     name: 'John Doe',
     email: 'john.doe@techcorp.com',
+    phone: '+55 11 98533-1042',
     avatarUrl: '/assets/images/avatars/avatar-placeholder.png',
     // avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex',
+    bio: 'Senior Developer and AI enthusiast.',
     role: 'Admin',
     status: 'Active',
     lastLogin: new Date(),
@@ -91,5 +93,11 @@ export class UserService {
    */
   getUsers(): Observable<User[]> {
     return of(this.mockUsers).pipe(delay(800));
+  }
+
+  updateProfile(newData: Partial<User>) {
+    this.currentUser.update((user) => (user ? { ...user, ...newData } : null));
+    // Mocked API call to save changes
+    // In a real app, you'd call an API here
   }
 }

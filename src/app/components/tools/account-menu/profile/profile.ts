@@ -1,0 +1,96 @@
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { UserService } from '../../../../services/user.service';
+import { MatDivider } from "@angular/material/divider";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+
+@Component({
+  selector: 'app-profile',
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatDivider,
+    MatButtonToggleModule,
+  ],
+  templateUrl: './profile.html',
+  styleUrl: './profile.scss',
+})
+export class Profile {
+  private readonly fb = inject(FormBuilder);
+  protected readonly userService = inject(UserService);
+  private readonly snackBar = inject(MatSnackBar);
+
+  // Signal to toggle between avatar URL and file upload modes
+  avatarMode = signal<'url' | 'upload'>('url');
+
+  // Signals for UI state
+  hidePassword = signal(true);
+  isEditing = signal(false);
+
+  // Form for Personal Data
+  profileForm = this.fb.group({
+    name: [this.userService.currentUser()?.name, [Validators.required]],
+    email: [this.userService.currentUser()?.email, [Validators.required, Validators.email]],
+    phone: [this.userService.currentUser()?.phone, [Validators.pattern(/^\+?[0-9\s\-()]+$/)]],
+    avatarUrl: [this.userService.currentUser()?.avatarUrl],
+    bio: [this.userService.currentUser()?.bio],
+  });
+
+  // Form for Password Update
+  passwordForm = this.fb.group({
+    currentPassword: ['', [Validators.required]],
+    newPassword: ['', [Validators.required, Validators.minLength(8)]],
+    confirmPassword: ['', [Validators.required]],
+  });
+
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        // Update the form and the preview immediately
+        this.profileForm.patchValue({ avatarUrl: base64String });
+        this.profileForm.get('avatarUrl')?.markAsDirty();
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  saveProfile() {
+    if (this.profileForm.valid) {
+      this.userService.updateProfile(this.profileForm.value as any);
+      this.snackBar.open('Profile updated successfully!', 'Close', {
+        duration: 3000,
+      });
+      this.isEditing.set(false);
+    }
+  }
+
+  updatePassword() {
+    if (this.passwordForm.valid) {
+      // TO DO: Add logic to verify newPassword === confirmPassword
+      if (this.passwordForm.value.newPassword !== this.passwordForm.value.confirmPassword) {
+        this.snackBar.open('New password and confirmation do not match!', 'Close', {
+          duration: 3000,
+        });
+        return;
+      }
+      this.snackBar.open('Password changed successfully!', 'Close', {
+        duration: 3000,
+      });
+      this.passwordForm.reset();
+    }
+  }
+}

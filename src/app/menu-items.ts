@@ -167,5 +167,12 @@ export const menuItems: MenuItems[] = [
     hidden: true, // This route won't appear in the main menu but can be accessed via the Help menu
     component: () => import('./components/tools/help-menu/support/support').then((m) => m.Support),
   },
+  {
+    label: 'Profile',
+    icon: 'person',
+    route: '/profile',
+    hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
+    component: () => import('./components/tools/account-menu/profile/profile').then((m) => m.Profile),
+  },
   { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];
