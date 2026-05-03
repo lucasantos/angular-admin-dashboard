@@ -191,5 +191,13 @@ export const menuItems: MenuItems[] = [
         (m) => m.SecurityPrivacy,
       ),
   },
+  {
+    label: 'Feedback',
+    icon: 'feedback',
+    route: '/account-feedback',
+    hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
+    component: () =>
+      import('./components/tools/account-menu/feedback/feedback').then((m) => m.Feedback),
+  },
   { label: 'Logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];

@@ -1,0 +1,120 @@
+<div class="feedback-container">
+  <div class="feedback-header">
+    <div class="title-group">
+      <h1 class="mat-headline-medium">Feedback Center</h1>
+      <p class="mat-body-medium opacity-70">Tell us what's on your mind. We're listening!</p>
+    </div>
+
+    <button mat-flat-button [color]="showForm() ? 'warn' : 'primary'" (click)="showForm.set(!showForm())">
+      <mat-icon>{{ showForm() ? 'expand_less' : 'add' }}</mat-icon>
+      {{ showForm() ? 'Close Form' : 'Send Feedback' }}
+    </button>
+  </div>
+
+  @if (showForm()) {
+  <mat-card appearance="outlined" class="feedback-editor-card">
+    <mat-card-content>
+      <form [formGroup]="feedbackForm" class="modern-form">
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option value="ui_ux">UI/UX Design</mat-option>
+              <mat-option value="feature_request">Feature Request</mat-option>
+              <mat-option value="bug_report">Bug Report</mat-option>
+              <mat-option value="performance">Performance</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Where in the system?</mat-label>
+            <input matInput formControlName="section" placeholder="e.g. Dashboard Sidebar">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Subject</mat-label>
+          <input matInput formControlName="subject" placeholder="Summary of your feedback">
+        </mat-form-field>
+
+        <div class="editor-container">
+          <label class="editor-label">Your Message</label>
+          <quill-editor formControlName="message" placeholder="Tell us more details...">
+          </quill-editor>
+        </div>
+
+        <div class="rating-wrapper">
+          <span class="mat-body-strong">Rate your experience:</span>
+          <div class="star-rating">
+            @for (star of [1,2,3,4,5]; track star) {
+            <button type="button" mat-icon-button (mouseenter)="hoverRating.set(star)" (mouseleave)="hoverRating.set(0)"
+              (click)="setRating(star)" [class.filled]="(hoverRating() || currentRating()) >= star">
+              <mat-icon>{{ (hoverRating() || currentRating()) >= star ? 'star' : 'star_outline' }}</mat-icon>
+            </button>
+            }
+            <span class="rating-text">
+            @if (currentRating() === 1) {
+              <small>Disappointing</small>
+            } @else if (currentRating() === 2) {
+              <small>Average</small>
+            } @else if (currentRating() === 3) {
+              <small>Good</small>
+            } @else if (currentRating() === 4) {
+              <small>Great</small>
+            } @else if (currentRating() === 5) {
+              <small>Amazing!</small>
+            }
+          </span>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button (click)="resetForm()">Discard</button>
+      <button mat-flat-button color="primary" [disabled]="feedbackForm.invalid || currentRating() === 0"
+        (click)="submit()">
+        Submit Feedback
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  }
+  @else {
+  <div class="history-wrapper">
+    <div class="history-title">
+      <h3 class="mat-title-medium">Recent Feedback</h3>
+      <span class="count">{{ feedbackService.feedbackHistory().length }} total</span>
+    </div>
+
+    <div class="scroll-area">
+      @if (feedbackService.feedbackHistory().length === 0) {
+      <div class="empty-state">
+        <mat-icon>history</mat-icon>
+        <p>You haven't submitted any feedback yet.</p>
+      </div>
+      }
+
+      <div class="feedback-list">
+        @for (item of feedbackService.feedbackHistory(); track item.id) {
+        <div class="feedback-item-card" (click)="openDetail(item)">
+          <div class="item-header">
+            <span class="category-tag">{{ item.category | uppercase }}</span>
+            <span class="date">{{ item.timestamp | date:'shortDate' }}</span>
+          </div>
+          <div class="item-body">
+            <strong>{{ item.subject }}</strong>
+            <div class="rating-mini">
+              @for (s of [1,2,3,4,5]; track s) {
+              <mat-icon [class.active]="item.rating >= s">star</mat-icon>
+              }
+            </div>
+          </div>
+          <mat-icon class="arrow">chevron_right</mat-icon>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
+</div>

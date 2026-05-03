@@ -1,0 +1,30 @@
+.feedback-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.status-tag {
+  font-weight: bold;
+  color: var(--mat-sys-primary);
+}
+
+.rating-box {
+  color: #ffd700;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+  }
+}
+
+.feedback-content {
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.my-16 {
+  margin: 16px 0;
+}
