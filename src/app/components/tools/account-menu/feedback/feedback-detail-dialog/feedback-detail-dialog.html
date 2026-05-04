@@ -1,22 +1,27 @@
 <h2 mat-dialog-title>
-  <mat-icon color="primary">feedback</mat-icon>
+  <mat-icon color="primary" class="mr-8">feedback</mat-icon>
   {{ data.subject }}
 </h2>
-
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content>
   <div class="feedback-meta">
-    <span class="status-tag">{{ data.status }}</span>
+    <span class="status-tag" [attr.data-status]="data.status">{{
+      data.status
+      }}</span>
     <span class="date">{{ data.timestamp | date: "medium" }}</span>
   </div>
+
   <div class="rating-box">
     @for (s of [1, 2, 3, 4, 5]; track s) {
-    <mat-icon [class.filled]="data.rating >= s">star</mat-icon>
+    <mat-icon [class.filled]="data.rating >= s">
+      {{ data.rating >= s ? "star" : "star_outline" }}
+    </mat-icon>
     }
   </div>
-  <mat-divider class="my-16"></mat-divider>
-  <div class="feedback-content" [innerHTML]="data.message"></div>
-</mat-dialog-content>
 
+  <mat-divider class="my-16"></mat-divider>
+
+  <div class="feedback-content quill-content" [innerHTML]="data.message"></div>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

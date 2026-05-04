@@ -71,21 +71,39 @@ export class Feedback {
     this.currentRating.set(val);
   }
 
+  // submit() {
+  //   if (this.feedbackForm.valid && this.currentRating() > 0) {
+  //     this.feedbackService.submitFeedback({
+  //       ...(this.feedbackForm.value as any),
+  //       rating: this.currentRating(),
+  //     });
+
+  //     this.snackBar.open('Feedback submitted. Thank you!', 'OK', {
+  //       duration: 3000,
+  //     });
+  //     this.resetForm();
+  //   } else if (this.currentRating() === 0) {
+  //     this.snackBar.open('Please provide a star rating.', 'OK', {
+  //       duration: 3000,
+  //     });
+  //   }
+  // }
+
   submit() {
     if (this.feedbackForm.valid && this.currentRating() > 0) {
-      this.feedbackService.submitFeedback({
-        ...(this.feedbackForm.value as any),
-        rating: this.currentRating(),
-      });
+      // We explicitly take the signal value and the form value
+      const newEntry = {
+        category: this.feedbackForm.value.category,
+        section: this.feedbackForm.value.section,
+        subject: this.feedbackForm.value.subject,
+        message: this.feedbackForm.value.message,
+        rating: this.currentRating(), // Ensure the signal is read here
+      };
 
-      this.snackBar.open('Feedback submitted. Thank you!', 'OK', {
-        duration: 3000,
-      });
+      this.feedbackService.submitFeedback(newEntry as any);
+
+      this.snackBar.open('Feedback submitted!', 'OK', { duration: 3000 });
       this.resetForm();
-    } else if (this.currentRating() === 0) {
-      this.snackBar.open('Please provide a star rating.', 'OK', {
-        duration: 3000,
-      });
     }
   }
 
