@@ -175,7 +175,7 @@ export const menuItems: MenuItems[] = [
     component: () => import('./components/tools/account-menu/profile/profile').then((m) => m.Profile),
   },
   {
-    label: 'Settings',
+    label: 'Account Settings',
     icon: 'settings',
     route: '/account-settings',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
@@ -192,7 +192,7 @@ export const menuItems: MenuItems[] = [
       ),
   },
   {
-    label: 'Feedback',
+    label: 'Account Feedback',
     icon: 'feedback',
     route: '/account-feedback',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
