@@ -24,6 +24,7 @@
               <mat-option value="feature_request">Feature Request</mat-option>
               <mat-option value="bug_report">Bug Report</mat-option>
               <mat-option value="performance">Performance</mat-option>
+              <mat-option value="other">Other</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -114,15 +115,14 @@
         </div>
         }
       </div>
-
-      <app-pagination
-        [length]="feedbackService.feedbackHistory().length"
-        [pageSize]="pageSize()"
-        [pageIndex]="pageIndex()"
-        (page)="handlePageEvent($event)"
-      >
-      </app-pagination>
     </div>
+    <app-pagination
+      [length]="feedbackService.feedbackHistory().length"
+      [pageSize]="pageSize()"
+      [pageIndex]="pageIndex()"
+      (page)="handlePageEvent($event)"
+    >
+    </app-pagination>
   </div>
   }
 </div>

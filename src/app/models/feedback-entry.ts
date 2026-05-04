@@ -1,6 +1,6 @@
 export interface FeedbackEntry {
   id: string;
-  category: "ui_ux" | "feature_request" | "bug_report" | "other";
+  category: "ui_ux" | "feature_request" | "bug_report" | "performance" | "other";
   section: string;
   subject: string;
   message: string;

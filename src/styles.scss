@@ -70,6 +70,10 @@ body {
     container-background-color: var(--mat-sys-primary),
     container-text-color: var(--mat-sys-on-primary),
   ));
+  @include mat.dialog-overrides((
+    // container-color: var(--mat-sys-surface),
+    subhead-color: var(--mat-sys-primary),
+  ));
 }
 
 /* You can add global styles to this file, and also import other style files */

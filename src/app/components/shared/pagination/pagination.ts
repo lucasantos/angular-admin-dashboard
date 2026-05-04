@@ -4,10 +4,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { PageEvent } from '../../../models/page-event';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-pagination',
-  imports: [MatButtonModule, MatIconModule, MatSelectModule, MatFormFieldModule],
+  imports: [MatButtonModule, MatIconModule, MatSelectModule, MatFormFieldModule, MatTooltip, MatDivider],
   templateUrl: './pagination.html',
   styleUrl: './pagination.scss',
   encapsulation: ViewEncapsulation.None,

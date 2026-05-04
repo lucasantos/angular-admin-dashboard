@@ -2,7 +2,8 @@
   <mat-icon color="primary">feedback</mat-icon>
   {{ data.subject }}
 </h2>
-<mat-dialog-content>
+
+<mat-dialog-content class="mat-typography">
   <div class="feedback-meta">
     <span class="status-tag">{{ data.status }}</span>
     <span class="date">{{ data.timestamp | date: "medium" }}</span>
@@ -15,6 +16,7 @@
   <mat-divider class="my-16"></mat-divider>
   <div class="feedback-content" [innerHTML]="data.message"></div>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
