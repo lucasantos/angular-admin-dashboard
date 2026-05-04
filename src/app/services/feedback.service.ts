@@ -46,6 +46,46 @@ export class FeedbackService {
       timestamp: new Date(2026, 3, 25),
       status: 'Reviewed',
     },
+    {
+      id: 'FB-005',
+      category: 'ui_ux',
+      section: 'Navigation',
+      subject: 'Menu Overlap on Mobile',
+      message: 'The side menu overlaps content on smaller screens.',
+      rating: 3,
+      timestamp: new Date(2026, 3, 28),
+      status: 'Received',
+    },
+    {
+      id: 'FB-006',
+      category: 'feature_request',
+      section: 'User Management',
+      subject: 'Bulk User Actions',
+      message: 'Please add bulk actions for user management (e.g., delete, activate).',
+      rating: 4,
+      timestamp: new Date(2026, 3, 30),
+      status: 'Reviewed',
+    },
+    {
+      id: 'FB-007',
+      category: 'bug_report',
+      section: 'Reports',
+      subject: 'Incorrect Data in Sales Report',
+      message: 'The sales report is showing incorrect totals for the last month.',
+      rating: 1,
+      timestamp: new Date(2026, 4, 2),
+      status: 'Received',
+    },
+    {
+      id: 'FB-008',
+      category: 'other',
+      section: 'General',
+      subject: 'Feedback on Support',
+      message: 'The support team was very helpful and responsive. Thanks!',
+      rating: 5,
+      timestamp: new Date(2026, 4, 5),
+      status: 'Implemented',
+    }
   ]);
 
   submitFeedback(entry: Omit<FeedbackEntry, 'id' | 'timestamp' | 'status'>) {

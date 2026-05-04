@@ -96,7 +96,7 @@
       }
 
       <div class="feedback-list">
-        @for (item of feedbackService.feedbackHistory(); track item.id) {
+        @for (item of paginatedFeedback(); track item.id) {
         <div class="feedback-item-card" (click)="openDetail(item)">
           <div class="item-header">
             <span class="category-tag">{{ item.category | uppercase }}</span>
@@ -114,6 +114,14 @@
         </div>
         }
       </div>
+
+      <app-pagination
+        [length]="feedbackService.feedbackHistory().length"
+        [pageSize]="pageSize()"
+        [pageIndex]="pageIndex()"
+        (page)="handlePageEvent($event)"
+      >
+      </app-pagination>
     </div>
   </div>
   }

@@ -1,4 +1,4 @@
-import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
+import { Component, computed, inject, signal, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +14,8 @@ import { QuillModule } from 'ngx-quill';
 import { FeedbackDetailDialog } from './feedback-detail-dialog/feedback-detail-dialog';
 import { FeedbackEntry } from '../../../../models/feedback-entry';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Pagination } from '../../../shared/pagination/pagination';
+import { PageEvent } from '../../../../models/page-event';
 
 @Component({
   selector: 'app-feedback',
@@ -32,6 +34,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     DatePipe,
     QuillModule,
     UpperCasePipe,
+    Pagination,
   ],
   templateUrl: './feedback.html',
   styleUrl: './feedback.scss',
@@ -45,6 +48,9 @@ export class Feedback {
   showForm = signal(false);
   currentRating = signal(0);
   hoverRating = signal(0); // For visual feedback when hovering stars
+  // Pagination State
+  pageSize = signal(5);
+  pageIndex = signal(0);
 
   feedbackForm = this.fb.group({
     category: ['ui_ux', Validators.required],
@@ -87,5 +93,18 @@ export class Feedback {
     this.feedbackForm.reset({ category: 'ui_ux', section: '' });
     this.currentRating.set(0);
     this.showForm.set(false);
+  }
+
+  // Derived Signal: Filtered and Paginated List
+  paginatedFeedback = computed(() => {
+    const all = this.feedbackService.feedbackHistory();
+    const start = this.pageIndex() * this.pageSize();
+    const end = start + this.pageSize();
+    return all.slice(start, end);
+  });
+
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex.set(e.pageIndex);
+    this.pageSize.set(e.pageSize);
   }
 }
