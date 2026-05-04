@@ -8,6 +8,8 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { menuItems } from './menu-items';
 import { validateMenuItemsConfig } from './utils/route-validator';
+import { PaginatorIntlService } from './services/paginator-intl.service';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 // Validate menu/route configuration at dev time
 if (isDevMode()) {
@@ -36,5 +38,6 @@ export const appConfig: ApplicationConfig = {
       placeholder: 'Describe your issue in detail...',
       theme: 'snow',
     }),
+    { provide: MatPaginatorIntl, useClass: PaginatorIntlService }
   ],
 };

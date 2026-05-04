@@ -15,7 +15,7 @@ import { FeedbackDetailDialog } from './feedback-detail-dialog/feedback-detail-d
 import { FeedbackEntry } from '../../../../models/feedback-entry';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Pagination } from '../../../shared/pagination/pagination';
-import { PageEvent } from '../../../../models/page-event';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-feedback',

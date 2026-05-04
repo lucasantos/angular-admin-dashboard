@@ -1,42 +1,14 @@
 <mat-divider></mat-divider>
 
-<div class="app-pagination">
-  <div class="pagination-info mat-body-small">
-    {{ rangeLabel }}
-  </div>
-
-  <div class="pagination-controls">
-    <div class="size-selector">
-      <span class="mat-body-small">Items per page:</span>
-      <mat-form-field appearance="outline" class="dense-select">
-        <mat-select [value]="pageSize" (selectionChange)="onPageSizeChange($event.value)">
-          @for (option of pageSizeOptions; track option) {
-          <mat-option [value]="option">{{ option }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="button-group">
-      <button mat-icon-button [disabled]="pageIndex === 0" (click)="changePage(0)" matTooltip="First Page">
-        <mat-icon>first_page</mat-icon>
-      </button>
-      <button mat-icon-button [disabled]="pageIndex === 0" (click)="changePage(pageIndex - 1)" matTooltip="Previous">
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-
-      <span class="page-indicator mat-body-strong">
-        {{ pageIndex + 1 }} / {{ totalPages || 1 }}
-      </span>
-
-      <button mat-icon-button [disabled]="pageIndex >= totalPages - 1" (click)="changePage(pageIndex + 1)"
-        matTooltip="Next">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-      <button mat-icon-button [disabled]="pageIndex >= totalPages - 1" (click)="changePage(totalPages - 1)"
-        matTooltip="Last Page">
-        <mat-icon>last_page</mat-icon>
-      </button>
-    </div>
-  </div>
+<div class="paginator-wrapper">
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="true"
+    (page)="page.emit($event)"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </div>
