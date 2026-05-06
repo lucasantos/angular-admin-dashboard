@@ -2,6 +2,7 @@ import { Route, Routes } from '@angular/router';
 import { Type } from '@angular/core';
 import { MenuItems } from './models/menu-item';
 import { menuItems } from './menu-items';
+import { authGuard } from './guards/auth-guard';
 
 const itemToRoute = (i: MenuItems): Route | null => {
   const path = i.route ? i.route.replace(/^\//, '') : '';
@@ -47,12 +48,28 @@ const itemToRoute = (i: MenuItems): Route | null => {
 
 
 export const routes: Routes = [
+  // Public route for login
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login').then((m) => m.Login),
+  },
+  // Protected routes (everything inside here requires login) will be added here dynamically based on menuItems
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    loadComponent: () => import('./layouts/main-layout/main-layout').then((m) => m.MainLayout),
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      // Dynamic source of truth for routes is the menuItems array, which also drives the menu UI
+      ...menuItems
+        .map((i) => itemToRoute(i))
+        .filter((r): r is Route => r !== null),
+    ],
   },
-  ...menuItems
-    .map((i) => itemToRoute(i))
-    .filter((r): r is Route => r !== null),
+  // Global fallback
+  { path: '**', redirectTo: 'login' },
 ];

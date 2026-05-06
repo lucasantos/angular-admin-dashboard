@@ -1,4 +1,3 @@
-import { Support } from "./components/tools/help-menu/support/support";
 import { MenuItems } from "./models/menu-item";
 import { UserShell } from "./pages/user/users/user-shell";
 import { userBreadcrumbResolver } from "./services/user-breadcrumb-resolver";

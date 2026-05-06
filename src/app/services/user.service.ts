@@ -2,12 +2,14 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, of, delay, tap } from 'rxjs';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
 
   // Mock initial user state
   readonly currentUser = signal<User | null>({
@@ -36,7 +38,7 @@ export class UserService {
   logout() {
     console.log('Logging out...');
     this.currentUser.set(null);
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   // Mocked Database
