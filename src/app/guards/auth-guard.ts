@@ -1,10 +1,17 @@
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 export const authGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
+
+  // If we are prerendering the App Shell, allow it.
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
 
   if (authService.isAuthenticated()) {
     console.log(`Is user authenticated: ${authService.isAuthenticated()}.`);
@@ -14,4 +21,4 @@ export const authGuard: CanActivateFn = () => {
   console.log(`Is user authenticated: ${authService.isAuthenticated()}.`);
   router.navigate(['/login']);
   return false;
-};
+};;

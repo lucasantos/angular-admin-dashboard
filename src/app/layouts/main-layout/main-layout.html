@@ -1,4 +1,7 @@
 <mat-toolbar class="toolbar-container">
+  @if (!authService.isAuthenticated()) {
+    <mat-progress-bar mode="indeterminate" class="toolbar-loader"></mat-progress-bar>
+  }
   <div class="toolbar-left">
     <button mat-icon-button (click)="collapsed.set(!collapsed())"
       [matTooltip]="!collapsed() ? 'Collapse menu' : 'Expand menu'" matTooltipPosition="below">

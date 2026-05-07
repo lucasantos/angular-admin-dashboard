@@ -11,6 +11,8 @@ import { Search } from '../../components/search/search';
 import { Tools } from '../../components/tools/tools';
 import { menuItems } from '../../menu-items';
 import { ThemeService } from '../../services/theme.service';
+import { AuthService } from '../../services/auth.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-main-layout',
@@ -26,11 +28,13 @@ import { ThemeService } from '../../services/theme.service';
     Search,
     Tools,
     Breadcrumb,
+    MatProgressBarModule,
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
 export class MainLayout {
+  protected readonly authService = inject(AuthService);
   protected readonly title = signal('Dashboard');
   protected readonly logo = 'icons/icon-72x72.png';
 

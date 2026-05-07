@@ -74,6 +74,10 @@ body {
     // container-color: var(--mat-sys-surface),
     subhead-color: var(--mat-sys-primary),
   ));
+  @include mat.progress-bar-overrides((
+    active-indicator-color: var(--mat-sys-primary),
+    // track-color: var(--mat-sys-primary-container),
+  ));
 }
 
 /* You can add global styles to this file, and also import other style files */
