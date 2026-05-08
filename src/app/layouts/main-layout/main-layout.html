@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar-container">
-  @if (!authService.isAuthenticated()) {
+  @if (showProgressBar()) {
     <mat-progress-bar mode="indeterminate" class="toolbar-loader"></mat-progress-bar>
   }
   <div class="toolbar-left">

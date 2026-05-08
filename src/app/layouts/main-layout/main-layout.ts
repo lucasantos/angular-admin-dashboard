@@ -13,6 +13,7 @@ import { menuItems } from '../../menu-items';
 import { ThemeService } from '../../services/theme.service';
 import { AuthService } from '../../services/auth.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -35,6 +36,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 export class MainLayout {
   protected readonly authService = inject(AuthService);
+  private readonly loadingService = inject(LoadingService);
   protected readonly title = signal('Dashboard');
   protected readonly logo = 'icons/icon-72x72.png';
 
@@ -47,4 +49,9 @@ export class MainLayout {
 
   // Centralized menu items from single source of truth
   protected readonly menuItems = menuItems;
+
+  // Show progress bar if not authenticated (initial load) or if any HTTP request is in progress
+  protected readonly showProgressBar = computed(
+    () => !this.authService.isAuthenticated() || this.loadingService.isLoading(),
+  );
 }

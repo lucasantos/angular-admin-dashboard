@@ -5,11 +5,12 @@ import { provideQuillConfig } from 'ngx-quill/config';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { menuItems } from './menu-items';
 import { validateMenuItemsConfig } from './utils/route-validator';
 import { PaginatorIntlService } from './services/paginator-intl.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { loadingInterceptor } from './interceptors/loading-interceptor';
 
 // Validate menu/route configuration at dev time
 if (isDevMode()) {
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([loadingInterceptor])),
     provideQuillConfig({
       modules: {
         toolbar: [
@@ -38,6 +39,6 @@ export const appConfig: ApplicationConfig = {
       placeholder: 'Describe your issue in detail...',
       theme: 'snow',
     }),
-    { provide: MatPaginatorIntl, useClass: PaginatorIntlService }
+    { provide: MatPaginatorIntl, useClass: PaginatorIntlService },
   ],
 };
