@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from '../../../../services/user.service';
 import { MatDivider } from "@angular/material/divider";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,9 +27,10 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
-export class Profile {
+export class Profile implements OnInit {
   private readonly fb = inject(FormBuilder);
   protected readonly userService = inject(UserService);
+  protected readonly authService = inject(AuthService);
   private readonly snackBar = inject(MatSnackBar);
 
   // Signal to toggle between avatar URL and file upload modes
@@ -38,13 +40,27 @@ export class Profile {
   hidePassword = signal(true);
   isEditing = signal(false);
 
+  ngOnInit() {
+    const user = this.authService.currentUser();
+    if (user) {
+      this.profileForm.patchValue({
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        avatarUrl: user.avatarUrl,
+        bio: user.bio,
+        // tenantId: user.tenantId -> read-only
+      });
+    }
+  }
+
   // Form for Personal Data
   profileForm = this.fb.group({
-    name: [this.userService.currentUser()?.name, [Validators.required]],
-    email: [this.userService.currentUser()?.email, [Validators.required, Validators.email]],
-    phone: [this.userService.currentUser()?.phone, [Validators.pattern(/^\+?[0-9\s\-()]+$/)]],
-    avatarUrl: [this.userService.currentUser()?.avatarUrl],
-    bio: [this.userService.currentUser()?.bio],
+    name: [this.authService.currentUser()?.name, [Validators.required]],
+    email: [this.authService.currentUser()?.email, [Validators.required, Validators.email]],
+    phone: [this.authService.currentUser()?.phone, [Validators.pattern(/^\+?[0-9\s\-()]+$/)]],
+    avatarUrl: [this.authService.currentUser()?.avatarUrl],
+    bio: [this.authService.currentUser()?.bio],
   });
 
   // Form for Password Update

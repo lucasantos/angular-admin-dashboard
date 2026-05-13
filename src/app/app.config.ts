@@ -11,10 +11,18 @@ import { validateMenuItemsConfig } from './utils/route-validator';
 import { PaginatorIntlService } from './services/paginator-intl.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { loadingInterceptor } from './interceptors/loading-interceptor';
+import { AuthService } from './services/auth.service';
 
 // Validate menu/route configuration at dev time
 if (isDevMode()) {
   validateMenuItemsConfig(menuItems, false);
+}
+
+function initializeAuth(authService: AuthService) {
+  return () => {
+    authService.restoreSession();
+    return Promise.resolve();
+  };
 }
 
 export const appConfig: ApplicationConfig = {
@@ -40,5 +48,6 @@ export const appConfig: ApplicationConfig = {
       theme: 'snow',
     }),
     { provide: MatPaginatorIntl, useClass: PaginatorIntlService },
+    { provide: 'APP_INITIALIZER', useFactory: initializeAuth, deps: [AuthService], multi: true },
   ],
 };

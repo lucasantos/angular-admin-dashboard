@@ -1,6 +1,7 @@
 // models/user.ts
 export interface User {
   id: string;
+  tenantId: string; // Para multi-tenancy
   name: string;
   email: string;
   password?: string;
@@ -10,4 +11,5 @@ export interface User {
   role: 'Admin' | 'User' | 'Editor' | 'Viewer';
   status: 'Active' | 'Inactive' | 'Suspended';
   lastLogin?: Date;
+  token?: string; // Para simular autenticação JWT
 }

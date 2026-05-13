@@ -25,8 +25,11 @@
           </button>
         </mat-form-field>
 
-        <button mat-flat-button color="primary" class="login-btn" [disabled]="loginForm.invalid">
-          Sign In
+        <button mat-flat-button color="primary" class="login-btn" [disabled]="loginForm.invalid || isLoading()" type="submit">
+          @if (isLoading()) {
+          <mat-spinner diameter="20" style="margin-right: 8px;"></mat-spinner>
+          }
+          {{ isLoading() ? 'Autenticando...' : 'Sign In' }}
         </button>
       </form>
     </mat-card-content>

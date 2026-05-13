@@ -6,6 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +19,8 @@ import { AuthService } from '../../services/auth.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -23,7 +28,10 @@ import { AuthService } from '../../services/auth.service';
 export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly snackBar = inject(MatSnackBar);
 
+  isLoading = signal(false);
   hidePassword = signal(true);
 
   loginForm = this.fb.group({
@@ -33,7 +41,24 @@ export class Login {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!);
+      this.isLoading.set(true);
+      const { email, password } = this.loginForm.value;
+
+      this.authService.authenticate(email!, password!).subscribe({
+        next: () => {
+          this.snackBar.open('Login successful!', 'OK', {
+            duration: 3000,
+          });
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          this.isLoading.set(false);
+          this.snackBar.open(err.message || 'Error occurred while trying to login', 'Close', {
+            panelClass: ['error-snackbar'],
+            duration: 5000,
+          });
+        },
+      });
     }
   }
 }

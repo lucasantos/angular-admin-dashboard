@@ -8,7 +8,7 @@
     <mat-card appearance="outlined" class="profile-card">
       <mat-card-header>
         <div mat-card-avatar class="user-avatar">
-          <img [src]="userService.currentUser()?.avatarUrl" alt="Avatar">
+          <img [src]="authService.currentUser()?.avatarUrl" alt="Avatar">
         </div>
         <mat-card-title>Personal Information</mat-card-title>
         <mat-card-subtitle>Update your identity and avatar</mat-card-subtitle>

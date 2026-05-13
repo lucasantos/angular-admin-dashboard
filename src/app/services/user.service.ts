@@ -10,20 +10,7 @@ import { AuthService } from './auth.service';
 export class UserService {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
-
-  // Mock initial user state
-  readonly currentUser = signal<User | null>({
-    id: '999',
-    name: 'John Doe',
-    email: 'john.doe@techcorp.com',
-    phone: '+55 11 98533-1042',
-    avatarUrl: '/assets/images/avatars/avatar-placeholder.png',
-    // avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex',
-    bio: 'Senior Developer and AI enthusiast.',
-    role: 'Admin',
-    status: 'Active',
-    lastLogin: new Date(),
-  });
+  readonly currentUser = signal<User | null>(null);
 
   // Computed helper to get initials if avatar fails
   readonly initials = computed(() => {
@@ -37,7 +24,6 @@ export class UserService {
 
   logout() {
     console.log('Logging out...');
-    this.currentUser.set(null);
     this.authService.logout();
   }
 
@@ -45,6 +31,7 @@ export class UserService {
   private readonly mockUsers: User[] = [
     {
       id: '1',
+      tenantId: 'tenant-a',
       name: 'Alice Johnson',
       email: 'alice@example.com',
       role: 'Admin',
@@ -54,6 +41,7 @@ export class UserService {
     },
     {
       id: '123',
+      tenantId: 'tenant-b',
       name: 'John Doe',
       email: 'john.doe@techcorp.com',
       role: 'Editor',
@@ -63,6 +51,7 @@ export class UserService {
     },
     {
       id: '456',
+      tenantId: 'tenant-c',
       name: 'Jane Smith',
       email: 'jane.smith@design.io',
       role: 'Viewer',

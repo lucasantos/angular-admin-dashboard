@@ -1,8 +1,11 @@
 <div class="sidenav-header">
-  <img [width]="profilePicSize()" [height]="profilePicSize()" src="/assets/images/profile-pic.png" alt="Profile" class="profile-image">
+  <img [width]="profilePicSize()" [height]="profilePicSize()"
+    [src]="authService.currentUser()?.avatarUrl || '/assets/images/default-avatar.png'" alt="Profile"
+    class="profile-image">
+
   <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
-    <h2>John Doe</h2>
-    <p>IT Director</p>
+    <h2>{{ authService.currentUser()?.name || 'Loading...' }}</h2>
+    <p>{{ authService.currentUser()?.role }}</p>
   </div>
 </div>
 

@@ -1,22 +1,24 @@
 <button mat-button [matMenuTriggerFor]="profileMenu" matTooltip="Account menu" aria-label="Account menu" class="profile-trigger">
   <div class="avatar-container">
-    @if (userService.currentUser()?.avatarUrl) {
-    <img [src]="userService.currentUser()?.avatarUrl" alt="User Avatar">
+    @if (authService.currentUser()?.avatarUrl) {
+    <img [src]="authService.currentUser()?.avatarUrl" alt="User Avatar">
     } @else {
     <div class="initials-fallback">{{ userService.initials() }}</div>
     }
   </div>
-  <!-- <span class="user-name mat-body-medium">{{ userService.currentUser()?.name }}</span> -->
+  <!-- <span class="user-name mat-body-medium">{{ authService.currentUser()?.name }}</span> -->
   <!-- <mat-icon iconPositionEnd>expand_more</mat-icon> -->
 </button>
 
 <mat-menu #profileMenu="matMenu" class="modern-profile-menu">
   <div class="menu-header" (click)="$event.stopPropagation()">
     <div class="header-info">
-      <span class="mat-title-small">{{ userService.currentUser()?.name }}</span>
-      <span class="mat-body-small opacity-70">{{ userService.currentUser()?.email }}</span>
+      <span class="mat-title-small">{{ authService.currentUser()?.name }}</span>
+      <span class="mat-body-small opacity-70">{{ authService.currentUser()?.email }}</span>
     </div>
-    <span class="role-badge">{{ userService.currentUser()?.role }}</span>
+    <span class="role-badge" [attr.data-role]="authService.currentUser()?.role">
+      {{ authService.currentUser()?.role }}
+    </span>
   </div>
 
   <mat-divider></mat-divider>
@@ -41,9 +43,18 @@
     <span>Feedback</span>
   </button>
 
+  @if (authService.currentUser()?.role === 'Admin') {
   <mat-divider></mat-divider>
 
-  <button mat-menu-item class="logout-item" (click)="userService.logout()">
+  <button mat-menu-item routerLink="/admin/settings">
+    <mat-icon>admin_panel_settings</mat-icon>
+    <span>Admin Control Panel</span>
+  </button>
+  }
+
+  <mat-divider></mat-divider>
+
+  <button mat-menu-item class="logout-item" (click)="logout()">
     <mat-icon color="error">logout</mat-icon>
     <span class="text-error">Sign Out</span>
   </button>
