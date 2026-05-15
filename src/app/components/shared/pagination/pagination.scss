@@ -1,0 +1,11 @@
+.paginator-wrapper {
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface-container-low);
+}
+
+::ng-deep .mat-mdc-paginator {
+  background: transparent !important;
+}

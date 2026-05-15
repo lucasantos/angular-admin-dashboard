@@ -1,0 +1,130 @@
+<div class="profile-container">
+  <header class="section-header">
+    <h1 class="mat-headline-medium">My Profile</h1>
+    <p class="mat-body-large opacity-70">Manage your public identity and security.</p>
+  </header>
+
+  <div class="grid-layout">
+    <mat-card appearance="outlined" class="profile-card">
+      <mat-card-header>
+        <div mat-card-avatar class="user-avatar">
+          <img [src]="authService.currentUser()?.avatarUrl" alt="Avatar">
+        </div>
+        <mat-card-title>Personal Information</mat-card-title>
+        <mat-card-subtitle>Update your identity and avatar</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="avatar-edit-section">
+          <div class="large-avatar">
+            <img [src]="profileForm.get('avatarUrl')?.value || 'assets/default-avatar.png'" alt="Preview">
+            <div class="avatar-overlay">
+              <mat-icon>photo_camera</mat-icon>
+            </div>
+          </div>
+
+          <div class="avatar-controls">
+            <label class="mat-body-small">Avatar Source:</label>
+            <mat-button-toggle-group [value]="avatarMode()" (change)="avatarMode.set($event.value)">
+              <mat-button-toggle value="url">URL</mat-button-toggle>
+              <mat-button-toggle value="upload">Upload</mat-button-toggle>
+            </mat-button-toggle-group>
+
+            @if (avatarMode() === 'url') {
+            <mat-form-field appearance="outline" class="full-width mt-10">
+              <mat-label>Image URL</mat-label>
+              <input matInput [formControl]="$any(profileForm.get('avatarUrl'))" placeholder="https://...">
+              <mat-icon matSuffix>link</mat-icon>
+            </mat-form-field>
+            } @else {
+            <div class="upload-zone mt-10">
+              <button mat-stroked-button (click)="fileInput.click()">
+                <mat-icon>upload_file</mat-icon>
+                Choose Image File
+              </button>
+              <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+              <span class="mat-body-small opacity-70">PNG, JPG or GIF (Max 2MB)</span>
+            </div>
+            }
+          </div>
+        </div>
+
+        <mat-divider class="my-20"></mat-divider>
+
+        <form [formGroup]="profileForm" class="standard-form">
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input matInput formControlName="email" type="email">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phone">
+            <mat-icon matPrefix>phone</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Bio</mat-label>
+            <textarea matInput formControlName="bio" rows="3"></textarea>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-flat-button (click)="saveProfile()" [disabled]="profileForm.invalid || profileForm.pristine">
+          Save Changes
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="security-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">lock_reset</mat-icon>
+        <mat-card-title>Update Password</mat-card-title>
+        <mat-card-subtitle>Ensure your account stays secure</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="passwordForm" class="standard-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Current Password</mat-label>
+            <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="currentPassword">
+            <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>New Password</mat-label>
+            <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="newPassword">
+            <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm New Password</mat-label>
+            <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="confirmPassword">
+            <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-button color="warn" (click)="passwordForm.reset()">Clear</button>
+        <button mat-flat-button color="primary" (click)="updatePassword()" [disabled]="passwordForm.invalid">
+          Update Password
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

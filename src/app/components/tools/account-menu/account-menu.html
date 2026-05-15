@@ -1,24 +1,61 @@
-<!-- Profile section -->
-<button mat-icon-button [matMenuTriggerFor]="profileMenu" matTooltip="Account menu" aria-label="Account menu">
-  <mat-icon>account_circle</mat-icon>
+<button mat-button [matMenuTriggerFor]="profileMenu" matTooltip="Account menu" aria-label="Account menu" class="profile-trigger">
+  <div class="avatar-container">
+    @if (authService.currentUser()?.avatarUrl) {
+    <img [src]="authService.currentUser()?.avatarUrl" alt="User Avatar">
+    } @else {
+    <div class="initials-fallback">{{ userService.initials() }}</div>
+    }
+  </div>
+  <!-- <span class="user-name mat-body-medium">{{ authService.currentUser()?.name }}</span> -->
+  <!-- <mat-icon iconPositionEnd>expand_more</mat-icon> -->
 </button>
 
-<mat-menu #profileMenu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>person</mat-icon>
+<mat-menu #profileMenu="matMenu" class="modern-profile-menu">
+  <div class="menu-header" (click)="$event.stopPropagation()">
+    <div class="header-info">
+      <span class="mat-title-small">{{ authService.currentUser()?.name }}</span>
+      <span class="mat-body-small opacity-70">{{ authService.currentUser()?.email }}</span>
+    </div>
+    <span class="role-badge" [attr.data-role]="authService.currentUser()?.role">
+      {{ authService.currentUser()?.role }}
+    </span>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <button mat-menu-item routerLink="/profile">
+    <mat-icon>person_outline</mat-icon>
     <span>My Profile</span>
   </button>
-  <button mat-menu-item>
-    <mat-icon>settings</mat-icon>
-    <span>Settings</span>
+
+  <button mat-menu-item routerLink="/account-settings">
+    <mat-icon>settings_outline</mat-icon>
+    <span>Account Settings</span>
   </button>
-  <button mat-menu-item>
+
+  <button mat-menu-item routerLink="/security-privacy">
+    <mat-icon>shield_outline</mat-icon>
+    <span>Security & Privacy</span>
+  </button>
+
+  <button mat-menu-item routerLink="/account-feedback">
     <mat-icon>feedback</mat-icon>
     <span>Feedback</span>
   </button>
+
+  @if (authService.currentUser()?.role === 'Admin') {
   <mat-divider></mat-divider>
-  <button mat-menu-item>
-    <mat-icon>logout</mat-icon>
-    <span>Logout</span>
+
+  <button mat-menu-item routerLink="/admin/settings">
+    <mat-icon>admin_panel_settings</mat-icon>
+    <span>Admin Control Panel</span>
+  </button>
+  }
+
+  <mat-divider></mat-divider>
+
+  <button mat-menu-item class="logout-item" (click)="logout()">
+    <mat-icon color="error">logout</mat-icon>
+    <span class="text-error">Sign Out</span>
   </button>
 </mat-menu>

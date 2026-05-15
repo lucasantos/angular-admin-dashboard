@@ -1,0 +1,32 @@
+<div class="faq-container">
+  <header class="faq-header">
+    <h1 class="mat-headline-medium">Frequently Asked Questions</h1>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search for help...</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)">
+    </mat-form-field>
+  </header>
+
+  <mat-accordion multi class="faq-accordion">
+    @for (item of filteredFaqs(); track item.id) {
+    <mat-expansion-panel class="faq-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="q-icon">help_outline</mat-icon>
+          {{ item.question }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ item.category }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p class="answer-text">{{ item.answer }}</p>
+    </mat-expansion-panel>
+    } @empty {
+    <div class="no-results">
+      <mat-icon>search_off</mat-icon>
+      <p>No matches found for "{{ searchQuery() }}"</p>
+    </div>
+    }
+  </mat-accordion>
+</div>

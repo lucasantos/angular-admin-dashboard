@@ -1,0 +1,19 @@
+<h2 mat-dialog-title [attr.data-category]="data.category">
+  <mat-icon>{{ getIcon() }}</mat-icon>
+  {{ data.title }}
+</h2>
+
+<mat-dialog-content class="mat-typography">
+  <p class="time-stamp">{{ data.timestamp | date: "medium" }}</p>
+  <div class="message-body" [innerHTML]="data.message"></div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+
+  @if (data.action) {
+  <button mat-flat-button color="primary" [mat-dialog-close]="'execute_action'">
+    {{ data.action.label }}
+  </button>
+  }
+</mat-dialog-actions>

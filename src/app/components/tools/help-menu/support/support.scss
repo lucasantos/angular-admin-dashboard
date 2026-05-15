@@ -1,0 +1,194 @@
+.support-wrapper {
+  max-width: 800px;
+  margin: 24px auto;
+  background: var(--mat-sys-surface-container-low);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--mat-sys-outline-variant);
+}
+
+.tab-content {
+  padding: 24px;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+
+  .flex-2 {
+    flex: 2;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+}
+
+// Quill Editor Theming
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  ::ng-deep .custom-quill {
+    .ql-toolbar {
+      background: var(--mat-sys-surface-container-high);
+      border-color: var(--mat-sys-outline-variant) !important;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .ql-container {
+      border-color: var(--mat-sys-outline-variant) !important;
+      border-radius: 0 0 8px 8px;
+      min-height: 150px;
+      background: var(--mat-sys-surface);
+      color: var(--mat-sys-on-surface);
+    }
+  }
+}
+
+// Ticket List
+.ticket-item {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-high);
+  }
+
+  .ticket-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .ticket-id {
+      font-weight: bold;
+      color: var(--mat-sys-primary);
+    }
+
+    h3 {
+      margin: 0;
+    }
+  }
+}
+
+// Interaction Thread
+.interaction-thread {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .message-bubble {
+    max-width: 80%;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--mat-sys-surface-container-highest);
+    align-self: flex-start;
+
+    &.agent-msg {
+      align-self: flex-end;
+      background: var(--mat-sys-primary-container);
+      color: var(--mat-sys-on-primary-container);
+    }
+
+    .bubble-meta {
+      font-size: 11px;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.content-card {
+  padding: 16px;
+  background: var(--mat-sys-surface);
+  border-radius: 8px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  margin-top: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+// Filtering and pagination
+.filter-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 0 8px;
+
+  span {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.ticket-list-container {
+  min-height: 400px; // Maintain structure while paginating
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-info {
+  .subject-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Material 3 Paginator Theming */
+mat-paginator {
+  background: transparent !important;
+  margin-top: 16px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  color: var(--mat-sys-on-surface);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 64px;
+  color: var(--mat-sys-on-surface-variant);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+}
+
+.status-tag {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &[data-status="open"] {
+    background: var(--mat-sys-tertiary-container);
+    color: var(--mat-sys-on-tertiary-container);
+  }
+
+  &[data-status="pending"] {
+    background: var(--mat-sys-warning-container);
+    color: var(--mat-sys-on-warning-container);
+  }
+
+  &[data-status="closed"] {
+    background: var(--mat-sys-surface-variant);
+    color: var(--mat-sys-on-surface-variant);
+  }
+}

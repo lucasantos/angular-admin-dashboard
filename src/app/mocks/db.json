@@ -1,0 +1,693 @@
+{
+  "tenants": [
+    {
+      "id": "tenant-a",
+      "name": "Corporate Alpha"
+    },
+    {
+      "id": "tenant-b",
+      "name": "Retail Beta"
+    },
+    {
+      "id": "tenant-c",
+      "name": "Healthcare Gamma"
+    },
+    {
+      "id": "tenant-d",
+      "name": "Education Delta"
+    },
+    {
+      "id": "tenant-e",
+      "name": "Finance Epsilon"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "tenantId": "tenant-a",
+      "name": "Lucas Santos",
+      "email": "lucas@lucasantos.com",
+      "password": "password123",
+      "phone": "+55 11 98533-1042",
+      "avatarUrl": "/assets/images/avatars/avatar-placeholder.png",
+      "bio": "Admin user for Corporate Alpha",
+      "role": "Admin",
+      "status": "active",
+      "lastLogin": "2026-06-01T12:34:56Z",
+      "token": "mock-jwt-token-alpha-admin"
+    },
+    {
+      "id": "2",
+      "tenantId": "tenant-b",
+      "name": "Viewer User",
+      "email": "viewer@beta.com",
+      "password": "password123",
+      "phone": "555-5678",
+      "avatarUrl": "https://i.pravatar.cc/150?img=2",
+      "bio": "Viewer user for Retail Beta",
+      "role": "Viewer",
+      "status": "active",
+      "lastLogin": "2026-06-01T12:34:56Z",
+      "token": "mock-jwt-token-beta-viewer"
+    },
+    {
+      "id": "3",
+      "tenantId": "tenant-c",
+      "name": "Editor User",
+      "email": "editor@gamma.com",
+      "password": "password123",
+      "phone": "555-5678",
+      "avatarUrl": "https://i.pravatar.cc/150?img=3",
+      "bio": "Editor user for Healthcare Gamma",
+      "role": "Editor",
+      "status": "active",
+      "lastLogin": "2026-06-01T12:34:56Z",
+      "token": "mock-jwt-token-gamma-editor"
+    },
+    {
+      "id": "4",
+      "tenantId": "tenant-d",
+      "name": "Admin User",
+      "email": "admin@delta.com",
+      "password": "password123",
+      "phone": "555-5678",
+      "avatarUrl": "https://i.pravatar.cc/150?img=4",
+      "bio": "Admin user for Education Delta",
+      "role": "Admin",
+      "status": "active",
+      "lastLogin": "2026-06-01T12:34:56Z",
+      "token": "mock-jwt-token-delta-admin"
+    }
+  ],
+  "appNotifications": [
+    {
+      "id": "n1",
+      "category": "support",
+      "priority": "high",
+      "title": "Support Ticket Created",
+      "message": "Your support ticket has been created.",
+      "timestamp": "2026-05-01T10:00:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n2",
+      "category": "system",
+      "priority": "medium",
+      "title": "System Update",
+      "message": "System will be updated tonight.",
+      "timestamp": "2026-05-02T12:00:00Z",
+      "isRead": true
+    },
+    {
+      "id": "n3",
+      "category": "feedback",
+      "priority": "low",
+      "title": "Feedback Received",
+      "message": "Thank you for your feedback!",
+      "timestamp": "2026-05-03T09:30:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n4",
+      "category": "feature",
+      "priority": "high",
+      "title": "New Feature Released",
+      "message": "A new feature is now available.",
+      "timestamp": "2026-05-04T14:15:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n5",
+      "category": "payments",
+      "priority": "medium",
+      "title": "Payment Processed",
+      "message": "Your payment was successful.",
+      "timestamp": "2026-05-05T11:45:00Z",
+      "isRead": true
+    },
+    {
+      "id": "n6",
+      "category": "support",
+      "priority": "low",
+      "title": "Support Ticket Closed",
+      "message": "Your ticket has been closed.",
+      "timestamp": "2026-05-06T16:20:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n7",
+      "category": "system",
+      "priority": "high",
+      "title": "Critical Alert",
+      "message": "Immediate action required.",
+      "timestamp": "2026-05-07T08:10:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n8",
+      "category": "feedback",
+      "priority": "medium",
+      "title": "Feedback Reviewed",
+      "message": "Your feedback has been reviewed.",
+      "timestamp": "2026-05-08T13:00:00Z",
+      "isRead": true
+    },
+    {
+      "id": "n9",
+      "category": "feature",
+      "priority": "low",
+      "title": "Feature Request Received",
+      "message": "We received your feature request.",
+      "timestamp": "2026-05-09T15:30:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n10",
+      "category": "payments",
+      "priority": "high",
+      "title": "Payment Failed",
+      "message": "There was an issue with your payment.",
+      "timestamp": "2026-05-10T17:00:00Z",
+      "isRead": false
+    },
+    {
+      "id": "n11",
+      "category": "support",
+      "priority": "medium",
+      "title": "Support Escalated",
+      "message": "Your ticket was escalated.",
+      "timestamp": "2026-05-11T18:00:00Z",
+      "isRead": true
+    },
+    {
+      "id": "n12",
+      "category": "system",
+      "priority": "low",
+      "title": "Maintenance Notice",
+      "message": "Scheduled maintenance upcoming.",
+      "timestamp": "2026-05-12T19:00:00Z",
+      "isRead": false
+    }
+  ],
+  "faqItems": [
+    {
+      "id": "1",
+      "question": "How to reset my password?",
+      "answer": "Go to settings and click reset password.",
+      "category": "Account"
+    },
+    {
+      "id": "2",
+      "question": "How to contact support?",
+      "answer": "Use the support page to open a ticket.",
+      "category": "Support"
+    },
+    {
+      "id": "3",
+      "question": "How to change my email?",
+      "answer": "Edit your profile to change email.",
+      "category": "Account"
+    },
+    {
+      "id": "4",
+      "question": "How to upgrade my plan?",
+      "answer": "Visit the billing section.",
+      "category": "Billing"
+    },
+    {
+      "id": "5",
+      "question": "How to delete my account?",
+      "answer": "Contact support to delete your account.",
+      "category": "Account"
+    },
+    {
+      "id": "6",
+      "question": "How to enable notifications?",
+      "answer": "Go to settings > notifications.",
+      "category": "Notifications"
+    },
+    {
+      "id": "7",
+      "question": "How to invite users?",
+      "answer": "Use the invite feature in users section.",
+      "category": "Users"
+    },
+    {
+      "id": "8",
+      "question": "How to export data?",
+      "answer": "Use the export button in dashboard.",
+      "category": "Data"
+    },
+    {
+      "id": "9",
+      "question": "How to view analytics?",
+      "answer": "Go to analytics page.",
+      "category": "Analytics"
+    },
+    {
+      "id": "10",
+      "question": "How to submit feedback?",
+      "answer": "Use the feedback form.",
+      "category": "Feedback"
+    },
+    {
+      "id": "11",
+      "question": "How to manage roles?",
+      "answer": "Go to users > roles.",
+      "category": "Users"
+    },
+    {
+      "id": "12",
+      "question": "How to access API?",
+      "answer": "API access is in developer settings.",
+      "category": "API"
+    }
+  ],
+  "feedbackEntries": [
+    {
+      "id": "f1",
+      "category": "ui_ux",
+      "section": "Dashboard",
+      "subject": "Sidebar too small",
+      "message": "The sidebar is too narrow on mobile.",
+      "rating": 3,
+      "timestamp": "2026-05-01T10:00:00Z",
+      "status": "Received"
+    },
+    {
+      "id": "f2",
+      "category": "feature_request",
+      "section": "Analytics",
+      "subject": "Add export",
+      "message": "Please add export to CSV.",
+      "rating": 5,
+      "timestamp": "2026-05-02T11:00:00Z",
+      "status": "Reviewed"
+    },
+    {
+      "id": "f3",
+      "category": "bug_report",
+      "section": "Login",
+      "subject": "Login fails",
+      "message": "Login fails with correct credentials.",
+      "rating": 2,
+      "timestamp": "2026-05-03T12:00:00Z",
+      "status": "Received"
+    },
+    {
+      "id": "f4",
+      "category": "performance",
+      "section": "Dashboard",
+      "subject": "Slow load",
+      "message": "Dashboard loads slowly.",
+      "rating": 3,
+      "timestamp": "2026-05-04T13:00:00Z",
+      "status": "Reviewed"
+    },
+    {
+      "id": "f5",
+      "category": "other",
+      "section": "Settings",
+      "subject": "Dark mode",
+      "message": "Add dark mode option.",
+      "rating": 4,
+      "timestamp": "2026-05-05T14:00:00Z",
+      "status": "Implemented"
+    },
+    {
+      "id": "f6",
+      "category": "ui_ux",
+      "section": "Profile",
+      "subject": "Avatar upload",
+      "message": "Avatar upload not working.",
+      "rating": 2,
+      "timestamp": "2026-05-06T15:00:00Z",
+      "status": "Received"
+    },
+    {
+      "id": "f7",
+      "category": "feature_request",
+      "section": "Notifications",
+      "subject": "Push notifications",
+      "message": "Add push notifications.",
+      "rating": 5,
+      "timestamp": "2026-05-07T16:00:00Z",
+      "status": "Reviewed"
+    },
+    {
+      "id": "f8",
+      "category": "bug_report",
+      "section": "Settings",
+      "subject": "Save error",
+      "message": "Error saving settings.",
+      "rating": 1,
+      "timestamp": "2026-05-08T17:00:00Z",
+      "status": "Received"
+    },
+    {
+      "id": "f9",
+      "category": "performance",
+      "section": "Analytics",
+      "subject": "Chart lag",
+      "message": "Charts lag on update.",
+      "rating": 3,
+      "timestamp": "2026-05-09T18:00:00Z",
+      "status": "Reviewed"
+    },
+    {
+      "id": "f10",
+      "category": "other",
+      "section": "Dashboard",
+      "subject": "Custom widgets",
+      "message": "Allow custom widgets.",
+      "rating": 4,
+      "timestamp": "2026-05-10T19:00:00Z",
+      "status": "Implemented"
+    },
+    {
+      "id": "f11",
+      "category": "ui_ux",
+      "section": "Login",
+      "subject": "Button color",
+      "message": "Login button color is hard to see.",
+      "rating": 2,
+      "timestamp": "2026-05-11T20:00:00Z",
+      "status": "Received"
+    },
+    {
+      "id": "f12",
+      "category": "feature_request",
+      "section": "Profile",
+      "subject": "Profile fields",
+      "message": "Add more profile fields.",
+      "rating": 5,
+      "timestamp": "2026-05-12T21:00:00Z",
+      "status": "Reviewed"
+    }
+  ],
+  "supportTickets": [
+    {
+      "id": "t1",
+      "subject": "Login Issue",
+      "category": "Authentication",
+      "priority": "high",
+      "description": "Cannot login to account.",
+      "attachments": [],
+      "status": "open",
+      "createdAt": "2026-05-01T10:00:00Z",
+      "messages": [
+        {
+          "id": "m1",
+          "sender": "user",
+          "text": "I can't login.",
+          "timestamp": "2026-05-01T10:01:00Z"
+        },
+        {
+          "id": "m2",
+          "sender": "agent",
+          "text": "We're looking into it.",
+          "timestamp": "2026-05-01T10:02:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "subject": "Feature Request",
+      "category": "Feature",
+      "priority": "medium",
+      "description": "Request for new dashboard widget.",
+      "attachments": [],
+      "status": "pending",
+      "createdAt": "2026-05-02T11:00:00Z",
+      "messages": [
+        {
+          "id": "m3",
+          "sender": "user",
+          "text": "Can you add a widget?",
+          "timestamp": "2026-05-02T11:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "subject": "Bug Report",
+      "category": "Bug",
+      "priority": "low",
+      "description": "Found a bug in analytics.",
+      "attachments": [],
+      "status": "open",
+      "createdAt": "2026-05-03T12:00:00Z",
+      "messages": [
+        {
+          "id": "m4",
+          "sender": "user",
+          "text": "Analytics not updating.",
+          "timestamp": "2026-05-03T12:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "subject": "Payment Issue",
+      "category": "Payments",
+      "priority": "high",
+      "description": "Payment failed.",
+      "attachments": [],
+      "status": "closed",
+      "createdAt": "2026-05-04T13:00:00Z",
+      "messages": [
+        {
+          "id": "m5",
+          "sender": "user",
+          "text": "Payment not processed.",
+          "timestamp": "2026-05-04T13:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t5",
+      "subject": "Account Deletion",
+      "category": "Account",
+      "priority": "medium",
+      "description": "Request to delete account.",
+      "attachments": [],
+      "status": "pending",
+      "createdAt": "2026-05-05T14:00:00Z",
+      "messages": [
+        {
+          "id": "m6",
+          "sender": "user",
+          "text": "Please delete my account.",
+          "timestamp": "2026-05-05T14:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t6",
+      "subject": "Notification Issue",
+      "category": "Notifications",
+      "priority": "low",
+      "description": "Not receiving notifications.",
+      "attachments": [],
+      "status": "open",
+      "createdAt": "2026-05-06T15:00:00Z",
+      "messages": [
+        {
+          "id": "m7",
+          "sender": "user",
+          "text": "No notifications received.",
+          "timestamp": "2026-05-06T15:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t7",
+      "subject": "Data Export",
+      "category": "Data",
+      "priority": "high",
+      "description": "Export not working.",
+      "attachments": [],
+      "status": "closed",
+      "createdAt": "2026-05-07T16:00:00Z",
+      "messages": [
+        {
+          "id": "m8",
+          "sender": "user",
+          "text": "Can't export data.",
+          "timestamp": "2026-05-07T16:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t8",
+      "subject": "Analytics Issue",
+      "category": "Analytics",
+      "priority": "medium",
+      "description": "Analytics page error.",
+      "attachments": [],
+      "status": "pending",
+      "createdAt": "2026-05-08T17:00:00Z",
+      "messages": [
+        {
+          "id": "m9",
+          "sender": "user",
+          "text": "Page not loading.",
+          "timestamp": "2026-05-08T17:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t9",
+      "subject": "Feedback",
+      "category": "Feedback",
+      "priority": "low",
+      "description": "Feedback not saved.",
+      "attachments": [],
+      "status": "open",
+      "createdAt": "2026-05-09T18:00:00Z",
+      "messages": [
+        {
+          "id": "m10",
+          "sender": "user",
+          "text": "Feedback form error.",
+          "timestamp": "2026-05-09T18:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t10",
+      "subject": "Role Management",
+      "category": "Users",
+      "priority": "high",
+      "description": "Cannot assign roles.",
+      "attachments": [],
+      "status": "closed",
+      "createdAt": "2026-05-10T19:00:00Z",
+      "messages": [
+        {
+          "id": "m11",
+          "sender": "user",
+          "text": "Role assignment fails.",
+          "timestamp": "2026-05-10T19:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t11",
+      "subject": "API Access",
+      "category": "API",
+      "priority": "medium",
+      "description": "API key not working.",
+      "attachments": [],
+      "status": "pending",
+      "createdAt": "2026-05-11T20:00:00Z",
+      "messages": [
+        {
+          "id": "m12",
+          "sender": "user",
+          "text": "API key invalid.",
+          "timestamp": "2026-05-11T20:01:00Z"
+        }
+      ]
+    },
+    {
+      "id": "t12",
+      "subject": "Settings Issue",
+      "category": "Settings",
+      "priority": "low",
+      "description": "Settings not saving.",
+      "attachments": [],
+      "status": "open",
+      "createdAt": "2026-05-12T21:00:00Z",
+      "messages": [
+        {
+          "id": "m13",
+          "sender": "user",
+          "text": "Settings error.",
+          "timestamp": "2026-05-12T21:01:00Z"
+        }
+      ]
+    }
+  ],
+  "ticketMessages": [
+    {
+      "id": "m1",
+      "sender": "user",
+      "text": "I can't login.",
+      "timestamp": "2026-05-01T10:01:00Z"
+    },
+    {
+      "id": "m2",
+      "sender": "agent",
+      "text": "We're looking into it.",
+      "timestamp": "2026-05-01T10:02:00Z"
+    },
+    {
+      "id": "m3",
+      "sender": "user",
+      "text": "Can you add a widget?",
+      "timestamp": "2026-05-02T11:01:00Z"
+    },
+    {
+      "id": "m4",
+      "sender": "user",
+      "text": "Analytics not updating.",
+      "timestamp": "2026-05-03T12:01:00Z"
+    },
+    {
+      "id": "m5",
+      "sender": "user",
+      "text": "Payment not processed.",
+      "timestamp": "2026-05-04T13:01:00Z"
+    },
+    {
+      "id": "m6",
+      "sender": "user",
+      "text": "Please delete my account.",
+      "timestamp": "2026-05-05T14:01:00Z"
+    },
+    {
+      "id": "m7",
+      "sender": "user",
+      "text": "No notifications received.",
+      "timestamp": "2026-05-06T15:01:00Z"
+    },
+    {
+      "id": "m8",
+      "sender": "user",
+      "text": "Can't export data.",
+      "timestamp": "2026-05-07T16:01:00Z"
+    },
+    {
+      "id": "m9",
+      "sender": "user",
+      "text": "Page not loading.",
+      "timestamp": "2026-05-08T17:01:00Z"
+    },
+    {
+      "id": "m10",
+      "sender": "user",
+      "text": "Feedback form error.",
+      "timestamp": "2026-05-09T18:01:00Z"
+    },
+    {
+      "id": "m11",
+      "sender": "user",
+      "text": "Role assignment fails.",
+      "timestamp": "2026-05-10T19:01:00Z"
+    },
+    {
+      "id": "m12",
+      "sender": "user",
+      "text": "API key invalid.",
+      "timestamp": "2026-05-11T20:01:00Z"
+    },
+    {
+      "id": "m13",
+      "sender": "user",
+      "text": "Settings error.",
+      "timestamp": "2026-05-12T21:01:00Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,39 @@
+.mr-8 {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.feedback-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.status-tag {
+  font-weight: bold;
+  color: var(--mat-sys-primary);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.rating-box {
+  display: flex;
+  color: #ccc;
+
+  /* Default empty star color */
+  mat-icon.filled {
+    color: #ffb300;
+  }
+
+  /* Actual gold color */
+}
+
+.quill-content {
+  line-height: 1.6;
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.my-16 {
+  margin: 16px 0;
+}

@@ -1,0 +1,100 @@
+<div class="settings-container">
+  <header class="section-header">
+    <h1 class="mat-headline-medium">Account Settings</h1>
+    <p class="mat-body-large opacity-70">Customize your workspace and communication preferences.</p>
+  </header>
+
+  <div class="settings-grid">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">palette</mat-icon>
+        <mat-card-title>Appearance & Branding</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="mt-20">
+        <div class="setting-item">
+          <span class="mat-body-strong">Display Mode</span>
+          <mat-button-toggle-group [value]="themeService.mode()" (change)="themeService.mode.set($event.value)">
+            <mat-button-toggle value="light" matTooltip="Light mode"><mat-icon>light_mode</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="dark" matTooltip="Dark mode"><mat-icon>dark_mode</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="system" matTooltip="System mode"><mat-icon>auto_mode</mat-icon></mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="brand-section">
+          <span class="mat-body-strong">Custom Brand Identity</span>
+          <div class="color-grid">
+            @for (color of presets; track color) {
+            <button class="color-option" [style.background-color]="color" (click)="setCustomColor(color)"
+              [class.is-selected]="themeService.mode() === 'custom' && themeService.customColor() === color">
+              @if (themeService.mode() === 'custom' && themeService.customColor() === color) {
+              <mat-icon>check</mat-icon>
+              }
+            </button>
+            }
+            <div class="picker-wrapper" matTooltip="Choose custom color">
+              <mat-icon>colorize</mat-icon>
+              <input type="color" [value]="themeService.customColor()"
+                (input)="setCustomColor($any($event.target).value)">
+            </div>
+          </div>
+        </div>
+
+        <mat-divider class="my-20"></mat-divider>
+
+        <div class="setting-item">
+          <span class="mat-body-strong">System Language</span>
+          <mat-form-field appearance="outline" class="dense-field">
+            <mat-select [value]="settingsService.language()"
+              (selectionChange)="settingsService.language.set($event.value)">
+              <mat-option value="en">English (US)</mat-option>
+              <mat-option value="es">Español</mat-option>
+              <mat-option value="pt-br">Português (Brasil)</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" [formGroup]="notifForm">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">hub</mat-icon>
+        <mat-card-title>Communication Channels</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="mt-20">
+        <div class="toggle-list">
+          <div class="toggle-item">
+            <div class="label-group">
+              <span>Push Notifications</span>
+              <small>Real-time alerts in your browser</small>
+            </div>
+            <mat-slide-toggle formControlName="push"></mat-slide-toggle>
+          </div>
+          <div class="toggle-item">
+            <div class="label-group">
+              <span>Email Updates</span>
+              <span>Summaries and reports</span>
+            </div>
+            <mat-slide-toggle formControlName="email"></mat-slide-toggle>
+          </div>
+          <div class="toggle-item">
+            <div class="label-group">
+              <span>SMS & WhatsApp</span>
+              <span>Urgent system security alerts</span>
+            </div>
+            <div class="multi-toggle">
+              <mat-icon [color]="notifForm.get('sms')?.value ? 'primary' : ''">sms</mat-icon>
+              <mat-slide-toggle formControlName="sms"></mat-slide-toggle>
+              <mat-icon [color]="notifForm.get('whatsapp')?.value ? 'primary' : ''">chat</mat-icon>
+              <mat-slide-toggle formControlName="whatsapp"></mat-slide-toggle>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button color="primary">Update Preferences</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

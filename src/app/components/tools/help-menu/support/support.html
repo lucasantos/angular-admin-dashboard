@@ -1,0 +1,130 @@
+<div class="support-wrapper">
+  <mat-tab-group [selectedIndex]="selectedTabIndex()" (selectedIndexChange)="selectedTabIndex.set($event)" animationDuration="200ms">
+
+    <mat-tab label="Create New Ticket">
+      <h2>Create New Support Ticket</h2>
+      <p>Fill out the form below to create a new support ticket.</p>
+      <p>Input the maximum information possible to help us assist you better.</p>
+
+      <form [formGroup]="ticketForm" (ngSubmit)="submitTicket()" class="tab-content create-form">
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="flex-2">
+            <mat-label>Subject</mat-label>
+            <input matInput formControlName="subject" placeholder="Issue summary">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority">
+              <mat-option value="low">Low</mat-option>
+              <mat-option value="medium">Medium</mat-option>
+              <mat-option value="high">High</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="editor-container">
+          <label class="mat-body-strong">Detailed Description</label>
+          <quill-editor formControlName="description" class="custom-quill"></quill-editor>
+        </div>
+
+        <div class="upload-zone">
+          <button type="button" mat-stroked-button (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon> Add Attachments
+          </button>
+          <input #fileInput type="file" hidden multiple (change)="onFileChange($event)">
+
+          <mat-chip-set class="mt-1">
+            @for (file of tempFiles(); track file.name; let i = $index) {
+            <mat-chip-row (removed)="removeFile(i)">
+              {{ file.name }}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            }
+          </mat-chip-set>
+        </div>
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="ticketForm.invalid">
+          Submit Ticket
+        </button>
+      </form>
+    </mat-tab>
+
+    <mat-tab label="My Tickets">
+      <div class="tab-content">
+        @if (!selectedTicket()) {
+
+          <div class="filter-header">
+            <span class="mat-body-strong">Filter by Status:</span>
+            <mat-chip-listbox [value]="statusFilter()" (change)="handleFilterChange($event.value)">
+              <mat-chip-option value="all">All</mat-chip-option>
+              <mat-chip-option value="open">Open</mat-chip-option>
+              <mat-chip-option value="pending">Pending</mat-chip-option>
+              <mat-chip-option value="closed">Closed</mat-chip-option>
+            </mat-chip-listbox>
+          </div>
+
+        <div class="ticket-list-container">
+          @for (ticket of filteredTickets(); track ticket.id; let last = $last) {
+          <div class="ticket-item" (click)="selectedTicket.set(ticket)">
+            <div class="ticket-info">
+              <span class="ticket-id">{{ ticket.id }}</span>
+              <div class="subject-wrapper">
+                <h3 class="mat-title-small">{{ ticket.subject }}</h3>
+                <span class="mat-body-small opacity-70">{{ ticket.createdAt | date:'shortDate' }}</span>
+              </div>
+              <span class="status-tag" [attr.data-status]="ticket.status">{{ ticket.status }}</span>
+            </div>
+            <mat-icon>chevron_right</mat-icon>
+          </div>
+          @if (!last) { <mat-divider></mat-divider> }
+          } @empty {
+          <div class="empty-state">
+            <mat-icon>search_off</mat-icon>
+            <p>No tickets found for this filter.</p>
+          </div>
+          }
+        </div>
+
+        <mat-paginator
+          [length]="totalFilteredCount()"
+          [pageSize]="pageSize()"
+          [pageIndex]="pageIndex()"
+          [pageSizeOptions]="[5, 10, 25]"
+          (page)="handlePageEvent($event)"
+          aria-label="Select page of tickets">
+        </mat-paginator>
+        } @else {
+        <div class="detail-container">
+          <button mat-button (click)="backToList()">
+            <mat-icon>arrow_back</mat-icon> Back to Tickets
+          </button>
+
+          <div class="ticket-header">
+            <h2 class="mat-headline-small">{{ selectedTicket()?.subject }} <small>({{ selectedTicket()?.id }})</small></h2>
+            <div class="original-desc content-card" [innerHTML]="selectedTicket()?.description"></div>
+          </div>
+
+          <div class="interaction-thread">
+            @for (msg of selectedTicket()?.messages; track msg.id) {
+            <div class="message-bubble" [class.agent-msg]="msg.sender === 'agent'">
+              <div class="bubble-meta">{{ msg.sender }} • {{ msg.timestamp | date:'short' }}</div>
+              <div class="bubble-text">{{ msg.text }}</div>
+            </div>
+            }
+          </div>
+
+          <div class="reply-box">
+            <mat-form-field appearance="outline" class="full-width">
+              <textarea matInput [formControl]="replyControl" placeholder="Write a reply..."></textarea>
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="sendReply()" [disabled]="replyControl.invalid">
+              Send Message
+            </button>
+          </div>
+        </div>
+        }
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

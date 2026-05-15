@@ -1,4 +1,9 @@
 @use '@angular/material'as mat;
+@use 'quill/dist/quill.core.css' as *; /* Core styles for Quill, required for both themes */
+@use 'quill/dist/quill.snow.css' as *; /* Snow theme for Quill Editor */
+/* This is the professional "Snow" theme */
+@use 'quill/dist/quill.bubble.css' as *; /* Bubble theme for Quill Editor */
+/* This is the more minimal "Bubble" theme */
 
 // 1. Core setup
 @include mat.core();
@@ -65,6 +70,26 @@ body {
     container-background-color: var(--mat-sys-primary),
     container-text-color: var(--mat-sys-on-primary),
   ));
+  @include mat.dialog-overrides((
+    // container-color: var(--mat-sys-surface),
+    subhead-color: var(--mat-sys-primary),
+  ));
+  @include mat.progress-bar-overrides((
+    active-indicator-color: var(--mat-sys-primary),
+    // track-color: var(--mat-sys-primary-container),
+  ));
 }
 
 /* You can add global styles to this file, and also import other style files */
+
+/* Fix for Material 3: Ensure the editor text color respects the theme */
+.ql-container {
+  font-family: inherit !important;
+  font-size: 1rem !important;
+}
+
+.ql-editor.ql-blank::before {
+  color: var(--mat-sys-on-surface-variant) !important;
+  font-style: normal;
+  opacity: 0.6;
+}

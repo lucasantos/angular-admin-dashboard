@@ -1,8 +1,58 @@
 <!-- Notifications Button with badge -->
-<button mat-icon-button aria-label="Notifications button" matTooltip="View notifications" matTooltipPosition="below">
-  <mat-icon matBadge="5" aria-hidden="false">notifications</mat-icon>
+<button mat-icon-button [matMenuTriggerFor]="notificationMenu" aria-label="Notifications button" matTooltip="View notifications" matTooltipPosition="below">
+  <mat-icon
+    [matBadge]="notificationService.unreadCount()"
+    [matBadgeHidden]="notificationService.unreadCount() === 0"
+    matBadgeColor="warn"
+    aria-hidden="false"
+  >
+    notifications
+  </mat-icon>
   <span class="cdk-visually-hidden">
     System messages to the user, such as alerts, updates, or reminders. The badge indicates the number of unread
     notifications.
   </span>
 </button>
+
+<mat-menu #notificationMenu="matMenu" class="notification-menu">
+  <div class="menu-header" (click)="$event.stopPropagation()">
+    <span class="mat-title-medium">Notifications</span>
+    <button mat-button color="primary" (click)="notificationService.markAllAsRead()">
+      Mark all as read
+    </button>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="notification-list" (click)="$event.stopPropagation()">
+    @for (item of notificationService.notifications(); track item.id) {
+    <div class="notification-item" [class.unread]="!item.isRead">
+      <div class="type-indicator" [attr.data-category]="item.category"></div>
+
+
+      <div class="item-body" (click)="openDetail(item)">
+        <div class="item-title mat-body-strong">{{ item.title }}</div>
+        <div class="item-msg mat-body-small">{{ item.message }}</div>
+        <div class="item-time mat-body-small">{{ item.timestamp | date:'shortTime' }}</div>
+      </div>
+
+      <button mat-icon-button class="delete-btn" (click)="handleAction($event, () => notificationService.remove(item.id))">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    } @empty {
+    <div class="empty-state">
+      <mat-icon>notifications_none</mat-icon>
+      <p>No new notifications</p>
+    </div>
+    }
+  </div>
+
+  @if (notificationService.notifications().length > 0) {
+  <mat-divider></mat-divider>
+  <button mat-menu-item class="clear-all-btn" (click)="notificationService.clearAll()">
+    <mat-icon>delete_sweep</mat-icon>
+    <span>Clear all notifications</span>
+  </button>
+  }
+</mat-menu>
