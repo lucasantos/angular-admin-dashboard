@@ -1,9 +1,242 @@
 {
+  "menu": {
+    "dashboard": "Dashboard",
+    "content": "Content",
+    "articles": "Articles",
+    "tech": "Tech",
+    "ai": "AI",
+    "cloud": "Cloud",
+    "mobile": "Mobile",
+    "health": "Health",
+    "travel": "Travel",
+    "videos": "Videos",
+    "tutorials": "Tutorials",
+    "interviews": "Interviews",
+    "podcasts": "Podcasts",
+    "images": "Images",
+    "documents": "Documents",
+    "analytics": "Analytics",
+    "comments": "Comments",
+    "settings": "Settings",
+    "feedback": "Feedback",
+    "users": "Users",
+    "usersList": "Users List",
+    "userDetail": "User Detail",
+    "faq": "FAQ",
+    "support": "Support",
+    "profile": "Profile",
+    "accountSettings": "Account Settings",
+    "securityPrivacy": "Security & Privacy",
+    "accountFeedback": "Account Feedback"
+  },
   "toolbar": {
     "theme": "Switch style mode",
     "language": "Switch language",
     "help": "Help",
     "notifications": "View notifications",
-    "account": "Account menu"
+    "account": "Account menu",
+    "collapseMenu": "Collapse menu",
+    "expandMenu": "Expand menu",
+    "search": "Search..."
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your admin dashboard",
+      "email": "Email Address",
+      "email_placeholder": "your.email@example.com",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "signIn": "Sign In",
+      "authenticating": "Authenticating...",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create one here"
+    }
+  },
+  "settings": {
+    "title": "Account Settings",
+    "subtitle": "Customize your workspace and communication preferences",
+    "appearance": {
+      "title": "Appearance & Branding",
+      "displayMode": "Display Mode",
+      "light": "Light Mode",
+      "dark": "Dark Mode",
+      "system": "System Preference",
+      "customBrand": "Custom Brand Identity",
+      "chooseCustomColor": "Choose custom color"
+    },
+    "language": {
+      "title": "System Language",
+      "label": "Select your preferred language"
+    },
+    "communication": {
+      "title": "Communication Channels",
+      "pushNotifications": "Push Notifications",
+      "pushDescription": "Real-time alerts in your browser",
+      "emailUpdates": "Email Updates",
+      "emailDescription": "Summaries and reports",
+      "smsWhatsapp": "SMS & WhatsApp",
+      "smsDescription": "Urgent system security alerts",
+      "updatePreferences": "Update Preferences"
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your public identity and security",
+    "personalInformation": {
+      "title": "Personal Information",
+      "subtitle": "Update your identity and avatar",
+      "avatarSource": "Avatar Source",
+      "url": "URL",
+      "upload": "Upload",
+      "imageUrl": "Image URL",
+      "chooseImageFile": "Choose Image File",
+      "acceptedFormats": "PNG, JPG or GIF (Max 2MB)",
+      "fullName": "Full Name",
+      "emailAddress": "Email Address",
+      "phoneNumber": "Phone Number",
+      "bio": "Bio",
+      "saveChanges": "Save Changes"
+    },
+    "updatePassword": {
+      "title": "Update Password",
+      "subtitle": "Ensure your account stays secure",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "clear": "Clear",
+      "updatePassword": "Update Password"
+    }
+  },
+  "feedback": {
+    "title": "Feedback Center",
+    "subtitle": "Tell us what's on your mind. We're listening!",
+    "sendFeedback": "Send Feedback",
+    "closeForm": "Close Form",
+    "category": "Category",
+    "categories": {
+      "ui_ux": "UI/UX Design",
+      "feature_request": "Feature Request",
+      "bug_report": "Bug Report",
+      "performance": "Performance",
+      "other": "Other"
+    },
+    "section": "Where in the system?",
+    "sectionPlaceholder": "e.g. Dashboard Sidebar",
+    "subject": "Subject",
+    "subjectPlaceholder": "Summary of your feedback",
+    "message": "Your Message",
+    "messagePlaceholder": "Tell us more details...",
+    "rateExperience": "Rate your experience",
+    "ratings": {
+      "disappointing": "Disappointing",
+      "average": "Average",
+      "good": "Good",
+      "great": "Great",
+      "amazing": "Amazing!"
+    },
+    "discard": "Discard",
+    "submit": "Submit Feedback",
+    "recentFeedback": "Recent Feedback",
+    "total": "total",
+    "noFeedback": "You haven't submitted any feedback yet",
+    "feedbackSubmitted": "Thank you! Your feedback has been submitted successfully."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "searchPlaceholder": "Search for help...",
+    "noResults": "No matches found for"
+  },
+  "help": {
+    "title": "Help",
+    "faq": "FAQ",
+    "supportTicket": "Support Ticket"
+  },
+  "support": {
+    "title": "Support Tickets",
+    "subtitle": "Need help? We're here for you",
+    "createTicket": "Create New Ticket",
+    "ticketTitle": "Ticket Title",
+    "description": "Description",
+    "priority": "Priority",
+    "status": "Status",
+    "submit": "Submit Ticket"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System Preference",
+    "customBrand": "Custom Brand Identity",
+    "applyColor": "Apply"
+  },
+  "languages": {
+    "english": "English",
+    "spanish": "Spanish",
+    "portuguese": "Portuguese (Brazil)"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "submit": "Submit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "apply": "Apply",
+    "confirm": "Confirm",
+    "discard": "Discard",
+    "clear": "Clear",
+    "reset": "Reset",
+    "search": "Search"
+  },
+  "labels": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "zipCode": "ZIP Code",
+    "date": "Date",
+    "time": "Time",
+    "status": "Status",
+    "action": "Action"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "emptyState": "No data available",
+    "success": "Operation completed successfully",
+    "error": "An error occurred",
+    "warning": "Warning",
+    "info": "Information",
+    "confirm": "Are you sure?",
+    "saved": "Saved successfully",
+    "deleted": "Deleted successfully",
+    "updated": "Updated successfully",
+    "created": "Created successfully",
+    "invalidInput": "Please check your input",
+    "required": "This field is required"
+  },
+  "pagination": {
+    "itemsPerPage": "Items per page",
+    "of": "of",
+    "first": "First",
+    "last": "Last",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "search": {
+    "clear": "Clear search",
+    "noResults": "No results found",
+    "searchResults": "Search results"
   }
 }

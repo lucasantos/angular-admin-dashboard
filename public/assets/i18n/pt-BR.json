@@ -1,9 +1,242 @@
 {
+  "menu": {
+    "dashboard": "Painel de Controle",
+    "content": "Conteúdo",
+    "articles": "Artigos",
+    "tech": "Tecnologia",
+    "ai": "Inteligência Artificial",
+    "cloud": "Nuvem",
+    "mobile": "Celular",
+    "health": "Saúde",
+    "travel": "Viagens",
+    "videos": "Vídeos",
+    "tutorials": "Tutoriais",
+    "interviews": "Entrevistas",
+    "podcasts": "Podcasts",
+    "images": "Imagens",
+    "documents": "Documentos",
+    "analytics": "Análise",
+    "comments": "Comentários",
+    "settings": "Configurações",
+    "feedback": "Feedback",
+    "users": "Usuários",
+    "usersList": "Lista de Usuários",
+    "userDetail": "Detalhes do Usuário",
+    "faq": "Perguntas Frequentes",
+    "support": "Suporte",
+    "profile": "Perfil",
+    "accountSettings": "Configurações da Conta",
+    "securityPrivacy": "Segurança e Privacidade",
+    "accountFeedback": "Feedback da Conta"
+  },
   "toolbar": {
-    "theme": "Alterar tema",
+    "theme": "Alternar modo de estilo",
     "language": "Alterar idioma",
     "help": "Ajuda",
     "notifications": "Ver notificações",
-    "account": "Menu da conta"
+    "account": "Menu da conta",
+    "collapseMenu": "Recolher menu",
+    "expandMenu": "Expandir menu",
+    "search": "Pesquisar..."
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de Volta",
+      "subtitle": "Entre no seu painel de administração",
+      "email": "Endereço de E-mail",
+      "email_placeholder": "seu.email@exemplo.com",
+      "password": "Senha",
+      "rememberMe": "Lembre-se de mim",
+      "signIn": "Fazer Login",
+      "authenticating": "Autenticando...",
+      "forgotPassword": "Esqueceu sua senha?",
+      "noAccount": "Não tem uma conta?",
+      "createAccount": "Crie uma aqui"
+    }
+  },
+  "settings": {
+    "title": "Configurações da Conta",
+    "subtitle": "Personalize seu espaço de trabalho e preferências de comunicação",
+    "appearance": {
+      "title": "Aparência e Marca",
+      "displayMode": "Modo de Exibição",
+      "light": "Modo Claro",
+      "dark": "Modo Escuro",
+      "system": "Preferência do Sistema",
+      "customBrand": "Identidade de Marca Personalizada",
+      "chooseCustomColor": "Escolher cor personalizada"
+    },
+    "language": {
+      "title": "Idioma do Sistema",
+      "label": "Selecione seu idioma preferido"
+    },
+    "communication": {
+      "title": "Canais de Comunicação",
+      "pushNotifications": "Notificações Push",
+      "pushDescription": "Alertas em tempo real no seu navegador",
+      "emailUpdates": "Atualizações por E-mail",
+      "emailDescription": "Resumos e relatórios",
+      "smsWhatsapp": "SMS e WhatsApp",
+      "smsDescription": "Alertas de segurança urgentes do sistema",
+      "updatePreferences": "Atualizar Preferências"
+    }
+  },
+  "profile": {
+    "title": "Meu Perfil",
+    "subtitle": "Gerencie sua identidade pública e segurança",
+    "personalInformation": {
+      "title": "Informações Pessoais",
+      "subtitle": "Atualize sua identidade e avatar",
+      "avatarSource": "Origem do Avatar",
+      "url": "URL",
+      "upload": "Enviar",
+      "imageUrl": "URL da Imagem",
+      "chooseImageFile": "Escolher Arquivo de Imagem",
+      "acceptedFormats": "PNG, JPG ou GIF (Máx 2MB)",
+      "fullName": "Nome Completo",
+      "emailAddress": "Endereço de E-mail",
+      "phoneNumber": "Número de Telefone",
+      "bio": "Biografia",
+      "saveChanges": "Salvar Alterações"
+    },
+    "updatePassword": {
+      "title": "Atualizar Senha",
+      "subtitle": "Garanta que sua conta permaneça segura",
+      "currentPassword": "Senha Atual",
+      "newPassword": "Nova Senha",
+      "confirmPassword": "Confirmar Nova Senha",
+      "clear": "Limpar",
+      "updatePassword": "Atualizar Senha"
+    }
+  },
+  "feedback": {
+    "title": "Centro de Feedback",
+    "subtitle": "Diga-nos o que está em sua mente. Estamos ouvindo!",
+    "sendFeedback": "Enviar Feedback",
+    "closeForm": "Fechar Formulário",
+    "category": "Categoria",
+    "categories": {
+      "ui_ux": "Design UI/UX",
+      "feature_request": "Solicitação de Recurso",
+      "bug_report": "Relatório de Bug",
+      "performance": "Desempenho",
+      "other": "Outro"
+    },
+    "section": "Onde no sistema?",
+    "sectionPlaceholder": "ex: Barra lateral do Painel",
+    "subject": "Assunto",
+    "subjectPlaceholder": "Resumo do seu feedback",
+    "message": "Sua Mensagem",
+    "messagePlaceholder": "Conte-nos mais detalhes...",
+    "rateExperience": "Avalie sua experiência",
+    "ratings": {
+      "disappointing": "Desapontante",
+      "average": "Média",
+      "good": "Bom",
+      "great": "Ótimo",
+      "amazing": "Incrível!"
+    },
+    "discard": "Descartar",
+    "submit": "Enviar Feedback",
+    "recentFeedback": "Feedback Recente",
+    "total": "total",
+    "noFeedback": "Você ainda não enviou nenhum feedback",
+    "feedbackSubmitted": "Obrigado! Seu feedback foi enviado com sucesso."
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "searchPlaceholder": "Procure ajuda...",
+    "noResults": "Nenhum resultado encontrado para"
+  },
+  "help": {
+    "title": "Ajuda",
+    "faq": "Perguntas Frequentes",
+    "supportTicket": "Ticket de Suporte"
+  },
+  "support": {
+    "title": "Tickets de Suporte",
+    "subtitle": "Precisa de ajuda? Estamos aqui para você",
+    "createTicket": "Criar Novo Ticket",
+    "ticketTitle": "Título do Ticket",
+    "description": "Descrição",
+    "priority": "Prioridade",
+    "status": "Status",
+    "submit": "Enviar Ticket"
+  },
+  "theme": {
+    "light": "Modo Claro",
+    "dark": "Modo Escuro",
+    "system": "Preferência do Sistema",
+    "customBrand": "Identidade de Marca Personalizada",
+    "applyColor": "Aplicar"
+  },
+  "languages": {
+    "english": "Inglês",
+    "spanish": "Espanhol",
+    "portuguese": "Português (Brasil)"
+  },
+  "buttons": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "add": "Adicionar",
+    "remove": "Remover",
+    "submit": "Enviar",
+    "close": "Fechar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "apply": "Aplicar",
+    "confirm": "Confirmar",
+    "discard": "Descartar",
+    "clear": "Limpar",
+    "reset": "Redefinir",
+    "search": "Pesquisar"
+  },
+  "labels": {
+    "email": "E-mail",
+    "password": "Senha",
+    "name": "Nome",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "phone": "Telefone",
+    "address": "Endereço",
+    "city": "Cidade",
+    "country": "País",
+    "zipCode": "CEP",
+    "date": "Data",
+    "time": "Hora",
+    "status": "Status",
+    "action": "Ação"
+  },
+  "messages": {
+    "loading": "Carregando...",
+    "noResults": "Nenhum resultado encontrado",
+    "emptyState": "Nenhum dado disponível",
+    "success": "Operação concluída com sucesso",
+    "error": "Ocorreu um erro",
+    "warning": "Aviso",
+    "info": "Informação",
+    "confirm": "Você tem certeza?",
+    "saved": "Salvo com sucesso",
+    "deleted": "Excluído com sucesso",
+    "updated": "Atualizado com sucesso",
+    "created": "Criado com sucesso",
+    "invalidInput": "Por favor, verifique sua entrada",
+    "required": "Este campo é obrigatório"
+  },
+  "pagination": {
+    "itemsPerPage": "Itens por página",
+    "of": "de",
+    "first": "Primeiro",
+    "last": "Último",
+    "previous": "Anterior",
+    "next": "Próximo"
+  },
+  "search": {
+    "clear": "Limpar pesquisa",
+    "noResults": "Nenhum resultado encontrado",
+    "searchResults": "Resultados da pesquisa"
   }
 }
