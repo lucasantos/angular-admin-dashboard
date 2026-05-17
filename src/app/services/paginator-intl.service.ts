@@ -1,12 +1,12 @@
 import { effect, inject, Injectable } from '@angular/core';
-import { SettingsService } from './settings.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaginatorIntlService extends MatPaginatorIntl {
-  private readonly settingsService = inject(SettingsService);
+  private readonly languageService = inject(LanguageService);
 
   // Define translations
   private readonly translations: any = {
@@ -26,7 +26,7 @@ export class PaginatorIntlService extends MatPaginatorIntl {
       last: 'Última página',
       of: 'de',
     },
-    'pt-br': {
+    'pt-BR': {
       itemsPerPage: 'Itens por página:',
       next: 'Próxima página',
       prev: 'Página anterior',
@@ -40,14 +40,14 @@ export class PaginatorIntlService extends MatPaginatorIntl {
     super();
 
     // We use an effect to listen to language changes globally.
-    // When settingsService.language() changes, this block runs automatically.
+    // When languageService.language() changes, this block runs automatically.
     effect(() => {
       this.updateLabels();
     });
   }
 
   private updateLabels() {
-    const lang = this.settingsService.language();
+    const lang = this.languageService.currentLanguage();
     const t = this.translations[lang] || this.translations['en'];
 
     // These properties are inherited from MatPaginatorIntl
