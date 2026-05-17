@@ -7,7 +7,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   private readonly http = inject(HttpClient);
 
   getTranslation(lang: string) {
+    // In SSR, Angular will handle absolute path resolution if configured.
     return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
-    // return this.http.get<Translation>(`${environment.baseUrl}/i18n/${lang}.json`);
   }
 }
