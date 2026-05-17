@@ -1,7 +1,6 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode, provideAppInitializer, inject } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideQuillConfig } from 'ngx-quill/config';
-
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
@@ -15,7 +14,6 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { loadingInterceptor } from './interceptors/loading-interceptor';
 import { AuthService } from './services/auth.service';
 
-// Validate menu/route configuration at dev time
 if (isDevMode()) {
   validateMenuItemsConfig(menuItems, false);
 }
@@ -41,7 +39,6 @@ export const appConfig: ApplicationConfig = {
       config: {
         availableLangs: ['en', 'es', 'pt-BR'],
         defaultLang: 'en',
-        // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
@@ -50,16 +47,19 @@ export const appConfig: ApplicationConfig = {
     provideQuillConfig({
       modules: {
         toolbar: [
-          [{ header: [1, 2, 3, false] }], // dropdown with heading options
-          ['bold', 'italic', 'underline'], // toggled buttons
+          [{ header: [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline'],
           [{ list: 'ordered' }, { list: 'bullet' }],
-          ['link', 'clean'], // remove formatting button
+          ['link', 'clean'],
         ],
       },
       placeholder: 'Describe your issue in detail...',
       theme: 'snow',
     }),
     { provide: MatPaginatorIntl, useClass: PaginatorIntlService },
-    { provide: 'APP_INITIALIZER', useFactory: initializeAuth, deps: [AuthService], multi: true },
+    provideAppInitializer(() => {
+      const authService = inject(AuthService);
+      authService.restoreSession();
+    }),
   ],
 };
