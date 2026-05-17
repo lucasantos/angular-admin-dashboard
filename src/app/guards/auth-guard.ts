@@ -1,10 +1,16 @@
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 export const authGuard: CanActivateFn = (route) => {
   const authService = inject(AuthService);
   const router = inject(Router);
+  const platformId = inject(PLATFORM_ID);
+
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
 
   if (!authService.isAuthenticated()) {
     router.navigate(['/login']);
@@ -14,7 +20,6 @@ export const authGuard: CanActivateFn = (route) => {
   const requiredRoles = route.data['roles'] as string[];
   const userRole = authService.currentUser()?.role;
 
-  // If the route requires specific roles and the user does not have them, redirect to dashboard or an 'Access Denied' page
   if (requiredRoles && !requiredRoles.includes(userRole!)) {
     router.navigate(['/dashboard']);
     return false;

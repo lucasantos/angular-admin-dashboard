@@ -1,8 +1,8 @@
+import { effect, inject, Injectable, PLATFORM_ID, REQUEST, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 
-export type LanguageCode = 'en' | 'es' | 'pt';
+export type LanguageCode = 'en' | 'es' | 'pt-BR';
 
 interface Language {
   code: LanguageCode;
@@ -17,38 +17,65 @@ export class LanguageService {
   private readonly translocoService = inject(TranslocoService);
   private readonly platformId = inject(PLATFORM_ID);
 
+  private readonly request = inject(REQUEST, { optional: true }) as any;
+
   readonly languages: Language[] = [
     { code: 'en', label: 'English', flagClass: 'flag--us' },
     { code: 'es', label: 'Spanish', flagClass: 'flag--es' },
-    { code: 'pt', label: 'Portuguese', flagClass: 'flag--br' },
+    { code: 'pt-BR', label: 'Portuguese', flagClass: 'flag--br' },
   ];
 
-  // Signal for the current language, initialized from localStorage
   readonly currentLanguage = signal<LanguageCode>(this.getInitialLanguage());
 
   constructor() {
-    // Persist language choice
+    this.translocoService.setActiveLang(this.currentLanguage());
+
     effect(() => {
       const lang = this.currentLanguage();
-      // Inform the i18n engine about the language change
       this.translocoService.setActiveLang(lang);
 
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('app-language', lang);
+        document.cookie = `app-language=${lang};path=/;max-age=31536000;SameSite=Lax`;
       }
     });
   }
 
   setLanguage(code: LanguageCode) {
     this.currentLanguage.set(code);
-    // Note: Here you would also call translocoService.setActiveLang(code)
-    // or translateService.use(code) once you add an i18n library.
   }
 
   private getInitialLanguage(): LanguageCode {
-    if (isPlatformBrowser(this.platformId)) {
-      return (localStorage.getItem('app-language') as LanguageCode) || 'en';
+    if (!isPlatformBrowser(this.platformId)) {
+      const cookieHeader = this.request?.headers?.cookie || '';
+      const serverCookie = cookieHeader
+        .split('; ')
+        .find((row: string) => row.startsWith('app-language='))
+        ?.split('=')[1] as LanguageCode;
+
+      if (serverCookie && this.languages.find((l) => l.code === serverCookie)) {
+        return serverCookie;
+      }
+      return 'en';
     }
-    return 'en';
+
+    const cookieValue = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('app-language='))
+      ?.split('=')[1] as LanguageCode;
+
+    if (cookieValue && this.languages.find((l) => l.code === cookieValue)) {
+      return cookieValue;
+    }
+
+    const saved = localStorage.getItem('app-language') as LanguageCode;
+    if (saved && this.languages.find((l) => l.code === saved)) return saved;
+
+    const browserLang = navigator.language.split('-')[0];
+    if (browserLang === 'pt') return 'pt-BR';
+
+    return this.languages.find((l) => l.code === browserLang)
+      ? (browserLang as LanguageCode)
+      : 'en';
   }
 }

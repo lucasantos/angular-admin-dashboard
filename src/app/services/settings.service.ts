@@ -1,22 +1,23 @@
 import { effect, Injectable, signal } from '@angular/core';
 
-export type AppLanguage = 'en' | 'es' | 'pt-br';
-
 @Injectable({
   providedIn: 'root',
 })
 export class SettingsService {
-  // Localization state
-  readonly language = signal<AppLanguage>(
-    (localStorage.getItem('preferred-lang') as AppLanguage) || 'en',
-  );
+  readonly notifications = signal({
+    push: true,
+    email: true,
+    urgent: false,
+  });
 
   constructor() {
-    // Automatically persist changes to LocalStorage
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('app-settings');
+      if (saved) this.notifications.set(JSON.parse(saved));
+    }
+
     effect(() => {
-      localStorage.setItem('preferred-lang', this.language());
-      // Logic to trigger translation engine (e.g., Transloco) would go here
-      console.log(`Language switched to: ${this.language()}`);
+      localStorage.setItem('app-settings', JSON.stringify(this.notifications()));
     });
   }
 }
