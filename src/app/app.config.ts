@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode, provideAppInitializer, inject } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, TitleStrategy, withComponentInputBinding } from '@angular/router';
 import { provideQuillConfig } from 'ngx-quill/config';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -13,6 +13,7 @@ import { PaginatorIntlService } from './services/paginator-intl.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { loadingInterceptor } from './interceptors/loading-interceptor';
 import { AuthService } from './services/auth.service';
+import { I18nTitleStrategy } from './strategies/i18n-title.strategy';
 
 if (isDevMode()) {
   validateMenuItemsConfig(menuItems, false);
@@ -61,5 +62,6 @@ export const appConfig: ApplicationConfig = {
       const authService = inject(AuthService);
       authService.restoreSession();
     }),
+    { provide: TitleStrategy, useClass: I18nTitleStrategy },
   ],
 };

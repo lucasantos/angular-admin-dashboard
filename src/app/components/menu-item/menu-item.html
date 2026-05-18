@@ -9,8 +9,8 @@
     #rla="routerLinkActive"
     [activated]="rla.isActive"
     [style.--mat-list-list-item-leading-icon-start-space]="identation()"
-    [title]="!collapsed() ? item().label : ''"
-    [matTooltip]="collapsed() ? item().label : ''"
+    [title]="!collapsed() ? (item().label | transloco) : ''"
+    [matTooltip]="collapsed() ? (item().label | transloco) : ''"
     matTooltipPosition="right"
     >
 
@@ -19,7 +19,7 @@
     </mat-icon>
 
     @if (!collapsed()) {
-    <span matListItemTitle>{{ item().label }}</span>
+    <span matListItemTitle>{{ item().label | transloco }}</span>
     } @if(item().subItems) {
       <span matListItemMeta>
         @if(nestedMenuOpen()) {

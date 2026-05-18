@@ -52,6 +52,9 @@
       "forgotPassword": "Forgot your password?",
       "noAccount": "Don't have an account?",
       "createAccount": "Create one here"
+    },
+    "logout": {
+      "logout": "Logout"
     }
   },
   "settings": {

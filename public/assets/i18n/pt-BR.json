@@ -52,6 +52,9 @@
       "forgotPassword": "Esqueceu sua senha?",
       "noAccount": "Não tem uma conta?",
       "createAccount": "Crie uma aqui"
+    },
+    "logout": {
+      "logout": "Sair"
     }
   },
   "settings": {

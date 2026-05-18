@@ -4,10 +4,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { MenuItems } from '../../models/menu-item';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-menu-item',
-  imports: [MatListModule, RouterModule, MatIconModule, MatTooltipModule],
+  imports: [MatListModule, RouterModule, MatIconModule, MatTooltipModule, TranslocoModule],
   templateUrl: './menu-item.html',
   styleUrl: './menu-item.scss',
 })
