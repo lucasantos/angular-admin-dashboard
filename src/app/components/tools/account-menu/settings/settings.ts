@@ -10,6 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SettingsService } from '../../../../services/settings.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ThemeService } from '../../../../services/theme.service';
+import { LanguageService } from '../../../../services/language.service';
 
 @Component({
   selector: 'app-settings',
@@ -30,6 +31,7 @@ import { ThemeService } from '../../../../services/theme.service';
 export class Settings {
   private readonly fb = inject(FormBuilder);
   protected themeService = inject(ThemeService);
+  protected languageService = inject(LanguageService);
   protected settingsService = inject(SettingsService);
 
   // Presets for theme colors (could be expanded to include more options or user-defined colors)

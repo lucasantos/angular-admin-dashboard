@@ -45,11 +45,13 @@
         <div class="setting-item">
           <span class="mat-body-strong">System Language</span>
           <mat-form-field appearance="outline" class="dense-field">
-            <mat-select [value]="settingsService.language()"
-              (selectionChange)="settingsService.language.set($event.value)">
-              <mat-option value="en">English (US)</mat-option>
-              <mat-option value="es">Español</mat-option>
-              <mat-option value="pt-br">Português (Brasil)</mat-option>
+            <mat-select [value]="languageService.currentLanguage()" (selectionChange)="languageService.setLanguage($event.value)">
+
+              @for (lang of languageService.languages; track lang.code) {
+              <mat-option [value]="lang.code">
+                {{ lang.label }}
+              </mat-option>
+              }
             </mat-select>
           </mat-form-field>
         </div>
