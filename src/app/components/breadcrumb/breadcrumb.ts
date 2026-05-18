@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [CommonModule, RouterModule, MatIconModule, MatMenuModule],
+  imports: [CommonModule, RouterModule, MatIconModule, MatMenuModule, TranslocoModule],
   templateUrl: './breadcrumb.html',
   styleUrl: './breadcrumb.scss',
 })
@@ -15,10 +16,8 @@ export class Breadcrumb {
   private readonly breadcrumbService = inject(BreadcrumbService);
   protected readonly allBreadcrumbs = this.breadcrumbService.filteredBreadcrumbs;
 
-  // Configuration for UI
   readonly MAX_VISIBLE = 4;
 
-  // Derived signals for the UI
   readonly needsToCollapse = computed(() => this.allBreadcrumbs().length > this.MAX_VISIBLE);
 
   readonly firstItem = computed(() => this.allBreadcrumbs()[0]);

@@ -7,10 +7,9 @@ export const userBreadcrumbResolver: ResolveFn<string> = (route) => {
   const userService = inject(UserService);
   const userId = route.paramMap.get('id');
 
-  if (!userId) return of('Unknown User');
+  if (!userId) return of('messages.unknownUser');
 
   return userService.getUserById(userId).pipe(
-    // We only want the name for the breadcrumb label
-    map((user) => (user ? user.name : 'User Not Found')),
+    map((user) => (user ? user.name : 'messages.userNotFound')),
   );
 };

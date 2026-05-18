@@ -227,7 +227,9 @@
     "updated": "Updated successfully",
     "created": "Created successfully",
     "invalidInput": "Please check your input",
-    "required": "This field is required"
+    "required": "This field is required",
+    "unknownUser": "Unknown User",
+    "userNotFound": "User Not Found"
   },
   "pagination": {
     "itemsPerPage": "Items per page",
@@ -241,5 +243,8 @@
     "clear": "Clear search",
     "noResults": "No results found",
     "searchResults": "Search results"
+  },
+  "breadcrumb": {
+    "homeTitle": "Return to homepage"
   }
 }

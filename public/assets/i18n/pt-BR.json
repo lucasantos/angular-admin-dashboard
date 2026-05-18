@@ -227,7 +227,9 @@
     "updated": "Atualizado com sucesso",
     "created": "Criado com sucesso",
     "invalidInput": "Por favor, verifique sua entrada",
-    "required": "Este campo é obrigatório"
+    "required": "Este campo é obrigatório",
+    "unknownUser": "Usuário desconhecido",
+    "userNotFound": "Usuário não encontrado"
   },
   "pagination": {
     "itemsPerPage": "Itens por página",
@@ -241,5 +243,8 @@
     "clear": "Limpar pesquisa",
     "noResults": "Nenhum resultado encontrado",
     "searchResults": "Resultados da pesquisa"
+  },
+  "breadcrumb": {
+    "homeTitle": "Voltar para a página inicial"
   }
 }

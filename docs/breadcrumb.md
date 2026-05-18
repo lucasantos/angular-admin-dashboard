@@ -1,167 +1,317 @@
 # Breadcrumb Implementation Guide
 
-Complete guide to the reactive, signal-based breadcrumb system in the Angular Admin Dashboard.
+A detailed reference for the current reactive breadcrumb implementation in the Angular Admin Dashboard.
 
 ---
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Architecture](#architecture)
-3. [Service Logic Deep Dive](#service-logic-deep-dive)
-4. [Dynamic Labels & Resolvers](#dynamic-labels--resolvers)
-5. [Master-Detail Hierarchy](#master-detail-hierarchy)
-6. [UI Component Implementation](#ui-component-implementation)
-7. [Best Practices](#best-practices)
-8. [Troubleshooting](#troubleshooting)
+2. [Files and Responsibilities](#files-and-responsibilities)
+3. [BreadcrumbService](#breadcrumbservice)
+4. [Dynamic Resolvers](#dynamic-resolvers)
+5. [Breadcrumb Component](#breadcrumb-component)
+6. [Template Behavior](#template-behavior)
+7. [Routing Integration](#routing-integration)
+8. [Best Practices](#best-practices)
+9. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Overview
 
-The breadcrumb system provides a **hierarchical navigation trail** that automatically synchronizes with the Angular Router. Key features include:
+The breadcrumb system generates a navigation trail from the active Angular route tree. It uses:
 
-- **Reactive Signals**: Built using Angular Signals for high-performance UI updates.
-- **Async Data Support**: Seamlessly integrates with Route Resolvers to display dynamic data (e.g., User Names).
-- **Automated Hierarchy**: Generates trails based on the nested structure defined in the routing configuration.
-- **Smart Formatting**: Automatically transforms technical slugs (e.g., `user_profile`) into readable labels (e.g., `USER PROFILE`).
+- Angular Signals for reactive state management.
+- `Router` events and `TranslocoService` translation state.
+- Route data and resolver output to support both static labels and dynamic labels like user names.
+- A recursive tree walker to build the trail from nested routes.
 
 ---
 
-## Architecture
+## Files and Responsibilities
 
-The system relies on a centralized service that reacts to router events and transforms the active route tree into an array of breadcrumb objects.
+- `src/app/services/breadcrumb.service.ts`
+  - Builds the breadcrumb trail.
+  - Stores breadcrumb state.
+  - Formats labels and applies dynamic overrides.
 
-### Component Hierarchy
+- `src/app/services/user-breadcrumb-resolver.ts`
+  - Resolves a dynamic breadcrumb label for a user detail page.
 
-```bash
-Router Events (NavigationEnd)
-↓
-BreadcrumbService (Logic Engine)
-├─ buildBreadcrumbs() (Recursive Tree Walker)
-└─ filteredBreadcrumbs (Formatted Computed Signal)
-↓
-BreadcrumbComponent (UI View)
-├─ Fixed Home Anchor
-└─ Dynamic Navigation Trail
+- `src/app/components/breadcrumb/breadcrumb.ts`
+  - Exposes breadcrumb signals to the template.
+  - Calculates whether the trail must collapse and which items are hidden.
+
+- `src/app/components/breadcrumb/breadcrumb.html`
+  - Renders the breadcrumb UI.
+  - Shows a home anchor, collapsed menu, and active last item.
+
+---
+
+## BreadcrumbService
+
+The service is the core of the implementation.
+
+### State
+
+```ts
+private readonly dynamicLabels = signal<Map<string, string>>(new Map());
+private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);
+
+readonly filteredBreadcrumbs = computed(() =>
+  this.breadcrumbsSignal().map((item) => {
+    const dynamicLabel = this.dynamicLabels().get(item.url);
+    const finalLabel = dynamicLabel || item.label;
+
+    return {
+      ...item,
+      label: finalLabel.replaceAll('_', ' ').toUpperCase(),
+    };
+  }),
+);
 ```
 
----
+- `breadcrumbsSignal` holds the raw breadcrumb items.
+- `filteredBreadcrumbs` formats each label by replacing `_` with spaces and converting to uppercase.
+- `setDynamicLabel(url, label)` allows runtime overrides for breadcrumbs.
 
-## Service Logic Deep Dive
+### Router and Translation Synchronization
 
-The `BreadcrumbService` is the core of the system. It manages the state and construction of the navigation trail.
+The service listens for navigation completion and waits for translation data:
 
-### 1. Router Event Subscription
+```ts
+const routerEvents$ = this.router.events.pipe(
+  filter((event) => event instanceof NavigationEnd),
+  startWith(null),
+);
 
-The service subscribes to the `Router.events` stream. It specifically waits for the `NavigationEnd` event, which ensures that all route resolvers have finished and the `ActivatedRouteSnapshot` contains the final data for the page.
+combineLatest([routerEvents$, this.translocoService.selectTranslation()])
+  .pipe(takeUntilDestroyed())
+  .subscribe(() => {
+    const rootSnapshot = this.router.routerState.snapshot.root;
+    const breadcrumbs: BreadcrumbItem[] = [];
+    this.buildBreadcrumbs(rootSnapshot, '', breadcrumbs);
+    this.breadcrumbsSignal.set(breadcrumbs);
+  });
+```
 
-### 2. State Management with Signals
+This guarantees the breadcrumb trail is refreshed after both route activation and translation loading.
 
-- **`breadcrumbsSignal`**: A private `signal<BreadcrumbItem[]>` that holds the raw trail data (URLs and labels).
-- **`filteredBreadcrumbs`**: A public `computed` signal that automatically formats labels (e.g., replacing underscores and converting to uppercase) whenever the raw signal changes.
+### Recursive Breadcrumb Construction
 
-### 3. The Recursive "Tree Walker"
+`buildBreadcrumbs()` walks the active route tree and appends breadcrumb items only for the `primary` outlet.
 
-The `buildBreadcrumbs` method is a recursive function that starts at the root of the `routerState.snapshot`.
+```ts
+private buildBreadcrumbs(
+  route: any,
+  url: string = '',
+  breadcrumbs: BreadcrumbItem[] = [],
+): void {
+  const children = route.children;
 
-- **Path Construction**: It iterates through the route's children. For each segment, it appends the path to a running `url` string to ensure every breadcrumb link is absolute and valid.
-- **Data Extraction**: It looks for breadcrumb data in the `route.data` object. It prioritizes `resolvedLabel` (provided by a resolver) over the static `label` defined in the configuration.
-- **Recursion**: If a route has children, the function calls itself, passing the current URL and the updated breadcrumb array, effectively walking down the tree to the leaf node.
+  if (children.length === 0) return;
 
----
+  for (const child of children) {
+    if (child.outlet === 'primary') {
+      const routeURL: string = child.url.map((segment: any) => segment.path).join('/');
 
-## Dynamic Labels & Resolvers
+      if (routeURL !== '') {
+        url += `/${routeURL}`;
+      }
 
-To display dynamic data instead of static placeholders, the system uses **Route Resolvers**. This is essential for routes like `/users/user/:id`, where the breadcrumb should show the user's name rather than "User Detail".
+      const resolvedLabel = child.data['resolvedLabel'];
+      const staticLabel = child.data['label'];
 
-### 1. Configuration in `menu-items.ts`
+      if (resolvedLabel || staticLabel) {
+        const label = resolvedLabel || this.translocoService.translate(staticLabel);
+        const icon = child.data['icon'];
 
-The resolver is linked to the route via the `resolve` property.
+        breadcrumbs.push({ label, url: url || '/', icon });
+      }
 
-```typescript
-{
-  label: 'User Detail',
-  route: 'user/:id',
-  component: () => import('./user-detail').then(m => m.UserDetail),
-  resolve: { resolvedLabel: userBreadcrumbResolver } // Dynamic data source
+      return this.buildBreadcrumbs(child, url, breadcrumbs);
+    }
+  }
 }
 ```
 
-### 2. Priority Logic
+- `resolvedLabel` is used first when a resolver provides dynamic data.
+- The static `label` is translated synchronously.
+- If a route segment has no breadcrumb data, it is skipped.
 
-Inside the service, the logic is:
+---
 
-  Check if `data['resolvedLabel']` exists (Dynamic).
+## Dynamic Resolvers
 
-  If not, fallback to `data['label']` (Static).
+Dynamic breadcrumb labels are resolved through route `resolve` metadata.
 
-  If neither exists, the segment is skipped in the trail.
+### Example resolver
 
-## Master-Detail Hierarchy
+```ts
+import { ResolveFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { UserService } from './user.service';
+import { map, of } from 'rxjs';
 
-For professional Master-Detail navigation, we use the Shell Pattern. This ensures the breadcrumb reflects the full hierarchy (e.g., USERS > JOHN DOE).
+export const userBreadcrumbResolver: ResolveFn<string> = (route) => {
+  const userService = inject(UserService);
+  const userId = route.paramMap.get('id');
 
-### The Shell Component
+  if (!userId) return of('messages.unknownUser');
 
-A simple "pass-through" component that contains only a `<router-outlet>`. This component acts as the parent for both the "List" and "Detail" views.
-
-### Configuration Structure
-
-By nesting the List and Detail pages as subItems under a single parent in menu-items.ts, the BreadcrumbService naturally treats them as a hierarchy.
-
-```typescript
-{
-  label: 'Users',
-  route: '/users',
-  component: UserShell, // Parent Shell
-  subItems: [
-    { label: 'List', route: '', component: UsersComponent }, // Default view
-    { label: 'User Detail', route: 'user/:id', ... } // Child view
-  ]
-}
+  return userService.getUserById(userId).pipe(
+    map((user) => (user ? user.name : 'messages.userNotFound')),
+  );
+};
 ```
 
-## UI Component Implementation
+- The resolver returns a string label for the breadcrumb.
+- It handles missing IDs and missing users gracefully.
+- `resolvedLabel` is allowed to be a plain label or a translation key.
 
-The Breadcrumb component consumes the filteredBreadcrumbs signal to render the trail.
+---
 
-  **Fixed Home Anchor**: The template includes a permanent link to the Dashboard. It is programmatically hidden when the user is already on the Dashboard page.
+## Breadcrumb Component
 
-  **Dynamic Trail**: It uses the @for control flow to iterate through the breadcrumbs.
+The component exposes the current breadcrumb trail and prepares the UI state.
 
-  **Active State**: The final item in the loop is identified using `let last = $last`. The last item is styled as `"active"` and is not clickable to prevent redundant navigation.
+```ts
+protected readonly allBreadcrumbs = this.breadcrumbService.filteredBreadcrumbs;
+readonly MAX_VISIBLE = 4;
+readonly needsToCollapse = computed(() => this.allBreadcrumbs().length > this.MAX_VISIBLE);
+readonly firstItem = computed(() => this.allBreadcrumbs()[0]);
+readonly lastItem = computed(() => this.allBreadcrumbs()[this.allBreadcrumbs().length - 1]);
+readonly hiddenItems = computed(() => this.allBreadcrumbs().slice(1, -1));
+```
+
+- `MAX_VISIBLE` controls how many items are shown before collapsing.
+- `hiddenItems` is the set of breadcrumbs between the first and last item.
+- `needsToCollapse` determines whether the overflow menu should be shown.
+
+---
+
+## Template Behavior
+
+The breadcrumb template renders:
+
+- a home icon anchor when not already on `/dashboard` or `/`
+- the first breadcrumb item as a clickable link
+- hidden items in a `mat-menu` when the trail is too long
+- the active last item as plain text
+
+### Rendering logic
+
+```html
+<nav class="breadcrumb-container" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    @if (firstItem(); as item) {
+      @if (item.url !== '/dashboard' && item.url !== '/') {
+        <li class="breadcrumb-item home-anchor">
+          <a routerLink="/dashboard" class="breadcrumb-link" [title]="'breadcrumb.homeTitle' | transloco">
+            <mat-icon class="breadcrumb-icon">home</mat-icon>
+          </a>
+          <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+        </li>
+      }
+      <li class="breadcrumb-item">
+        <a [routerLink]="item.url" class="breadcrumb-link">
+          <span class="breadcrumb-label">{{ item.label }}</span>
+        </a>
+        <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+      </li>
+    }
+
+    @if (needsToCollapse()) {
+      <li class="breadcrumb-item">
+        <button mat-icon-button [matMenuTriggerFor]="breadcrumbMenu" class="breadcrumb-more">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #breadcrumbMenu="matMenu">
+          @for (hidden of hiddenItems(); track hidden.url) {
+            <a mat-menu-item [routerLink]="hidden.url">
+              @if (hidden.icon) { <mat-icon>{{ hidden.icon }}</mat-icon> }
+              <span>{{ hidden.label }}</span>
+            </a>
+          }
+        </mat-menu>
+        <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+      </li>
+    } @else {
+      @for (item of hiddenItems(); track item.url) {
+        <li class="breadcrumb-item">
+          <a [routerLink]="item.url" class="breadcrumb-link">{{ item.label }}</a>
+          <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+        </li>
+      }
+    }
+
+    @if (lastItem(); as item) {
+      @if (allBreadcrumbs().length > 1) {
+        <li class="breadcrumb-item active" aria-current="page">
+          <span class="breadcrumb-label">{{ item.label }}</span>
+        </li>
+      }
+    }
+  </ol>
+</nav>
+```
+
+---
+
+## Routing Integration
+
+Breadcrumbs depend on route metadata delivered via `data` and `resolve` keys.
+
+### Static breadcrumb data
+
+```ts
+{ path: 'settings', data: { label: 'breadcrumb.settings', icon: 'settings' } }
+```
+
+### Dynamic breadcrumb data
+
+```ts
+{ path: 'user/:id', data: { icon: 'person' }, resolve: { resolvedLabel: userBreadcrumbResolver } }
+```
+
+- The service reads `child.data['resolvedLabel']` first.
+- If that key is missing, it falls back to `child.data['label']`.
+- Only routes with one of these values produce breadcrumb items.
+
+---
 
 ## Best Practices
 
-- **Absolute Paths**: Always build breadcrumb URLs by joining segments from the root to ensure links work regardless of nesting depth.
+- Use `resolvedLabel` for any breadcrumb item that depends on API data.
+- Avoid rendering breadcrumb segments for unnamed routes.
+- Keep the main app content in the `primary` outlet, since the service only walks that outlet.
+- Prefer `user.name` or another friendly string for resolved label output.
+- Call `setDynamicLabel(url, label)` when runtime changes must override breadcrumb labels after navigation.
 
-- **Resolver Naming**: Consistently use resolvedLabel in your resolvers to allow the service to pick up dynamic data automatically.
-
-- **Shell Usage**: Always use a Shell component when a section has a master-detail relationship to ensure the breadcrumb reflects the logical path.
-
-- **Visibility Control**: Use a hidden property in menu-items.ts for dynamic routes (like :id paths) to prevent them from appearing in the main sidebar menu while still allowing them in the breadcrumbs.
+---
 
 ## Troubleshooting
 
-Breadcrumb shows technical ID instead of Name
+### Breadcrumb shows route slug instead of friendly text
 
-**Cause**: The resolver is either not returning a value or isn't properly registered in the route's resolve object.
+- Confirm that `data.label` exists and is a translation key.
+- Confirm that a resolver returns a label if the route uses `resolvedLabel`.
+- Verify that `TranslocoService.selectTranslation()` is available so translations resolve before trail generation.
 
-**Fix**: Verify the resolver is mapped in menu-items.ts and that the itemToRoute function in app.routes.ts is correctly passing the resolve property.
-The trail is empty or missing segments
+### Breadcrumb list is empty or incomplete
 
-**Cause**: The recursive function only follows the primary outlet. If your routes use named outlets, they may be skipped.
+- Check that the route is inside the `primary` outlet.
+- Ensure nested routes are defined in a parent/child structure.
+- Make sure the route segment has `data.label` or `resolve.resolvedLabel`.
 
-**Fix**: Ensure your main application content is always rendered in the primary `<router-outlet>`.
-Clicking a breadcrumb doesn't change the page
+### Breadcrumb link navigation fails
 
-**Cause**: If the breadcrumb URL is malformed (e.g., missing a leading slash), Angular may treat it as a relative path.
+- Validate the constructed URLs are absolute and start with `/`.
+- If a segment is empty, the service uses `url || '/'`.
 
-**Fix**: Ensure the service logic correctly prepends / when constructing the routeURL.
+---
 
-## Symmary
+## Notes
 
-The breadcrumb system provides a robust, automated way to handle application navigation. By combining Recursive Tree Walking with Angular Route Resolvers, the system ensures that the navigation trail is always technically accurate and contextually relevant.
-
-Key takeaway: The use of the Shell Pattern is the primary driver for maintaining hierarchical integrity in complex Master-Detail scenarios.
+This implementation is intentionally minimal in component and service code. All route and breadcrumb behavior should be documented in `docs/breadcrumb.md` rather than within source comments.

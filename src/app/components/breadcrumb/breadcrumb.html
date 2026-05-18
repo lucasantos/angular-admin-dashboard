@@ -4,7 +4,7 @@
     @if (firstItem(); as item) {
       @if (item.url !== '/dashboard' && item.url !== '/') {
         <li class="breadcrumb-item home-anchor">
-          <a routerLink="/dashboard" class="breadcrumb-link" title="Return to homepage">
+          <a routerLink="/dashboard" class="breadcrumb-link" [title]="'breadcrumb.homeTitle' | transloco">
             <mat-icon class="breadcrumb-icon">home</mat-icon>
           </a>
           <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
@@ -12,7 +12,6 @@
       }
       <li class="breadcrumb-item">
         <a [routerLink]="item.url" class="breadcrumb-link">
-          <!-- <mat-icon class="breadcrumb-icon">home</mat-icon> -->
           <span class="breadcrumb-label">{{ item.label }}</span>
         </a>
         <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
@@ -43,10 +42,12 @@
       }
     }
 
-    @if (lastItem(); as last) {
-    <li class="breadcrumb-item active" aria-current="page">
-      <span class="breadcrumb-label">{{ last.label }}</span>
-    </li>
+    @if (lastItem(); as item) {
+      @if (allBreadcrumbs().length > 1) {
+        <li class="breadcrumb-item active" aria-current="page">
+          <span class="breadcrumb-label">{{ item.label }}</span>
+        </li>
+      }
     }
 
   </ol>

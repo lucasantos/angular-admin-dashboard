@@ -3,19 +3,19 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter, startWith } from 'rxjs/operators';
 import { BreadcrumbItem } from '../models/breadcrumb';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslocoService } from '@jsverse/transloco';
+import { combineLatest } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreadcrumbService {
   private readonly router = inject(Router);
+  private readonly translocoService = inject(TranslocoService);
 
   private readonly dynamicLabels = signal<Map<string, string>>(new Map());
-
-  // 1. Initialize as empty to prevent stale data
   private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);
 
-  // Method for components to call
   setDynamicLabel(url: string, label: string) {
     this.dynamicLabels.update((map) => {
       const newMap = new Map(map);
@@ -24,11 +24,10 @@ export class BreadcrumbService {
     });
   }
 
-  // Update the computed signal to check the registry first
   readonly filteredBreadcrumbs = computed(() =>
     this.breadcrumbsSignal().map((item) => {
       const dynamicLabel = this.dynamicLabels().get(item.url);
-      const finalLabel = dynamicLabel || item.label; // Registry takes priority
+      const finalLabel = dynamicLabel || item.label;
 
       return {
         ...item,
@@ -38,15 +37,14 @@ export class BreadcrumbService {
   );
 
   constructor() {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        // 2. startWith(null) triggers the logic immediately on app load/refresh
-        startWith(null),
-        takeUntilDestroyed(),
-      )
+    const routerEvents$ = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      startWith(null),
+    );
+
+    combineLatest([routerEvents$, this.translocoService.selectTranslation()])
+      .pipe(takeUntilDestroyed())
       .subscribe(() => {
-        // 3. Always walk the tree from the global router state snapshot
         const rootSnapshot = this.router.routerState.snapshot.root;
         const breadcrumbs: BreadcrumbItem[] = [];
         this.buildBreadcrumbs(rootSnapshot, '', breadcrumbs);
@@ -55,7 +53,7 @@ export class BreadcrumbService {
   }
 
   private buildBreadcrumbs(
-    route: any, // Using the snapshot route
+    route: any,
     url: string = '',
     breadcrumbs: BreadcrumbItem[] = [],
   ): void {
@@ -64,25 +62,23 @@ export class BreadcrumbService {
     if (children.length === 0) return;
 
     for (const child of children) {
-      // Only care about the primary outlet
       if (child.outlet === 'primary') {
-        // Join the URL segments for this specific level
         const routeURL: string = child.url.map((segment: any) => segment.path).join('/');
 
         if (routeURL !== '') {
           url += `/${routeURL}`;
         }
 
-        // 1. Check if the resolver put data into 'resolvedLabel'
-        // 2. Fallback to the static 'label' from the MenuItems
-        const label = child.data['resolvedLabel'] || child.data['label'];
-        const icon = child.data['icon'];
+        const resolvedLabel = child.data['resolvedLabel'];
+        const staticLabel = child.data['label'];
 
-        if (label) {
+        if (resolvedLabel || staticLabel) {
+          const label = resolvedLabel || this.translocoService.translate(staticLabel);
+          const icon = child.data['icon'];
+
           breadcrumbs.push({ label, url: url || '/', icon });
         }
 
-        // Continue walking down the tree
         return this.buildBreadcrumbs(child, url, breadcrumbs);
       }
     }
