@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { TenantService } from './tenant.service';
 import { environment } from '../../environments/environment.development';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Injectable({
   providedIn: 'root',
@@ -12,31 +13,33 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly tenantService = inject(TenantService);
-  private readonly API_URL = environment.mockAPI + '/users'; // Mock API db.json
+  private readonly API_URL = environment.mockAPI + '/users';
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly translocoService = inject(TranslocoService);
 
   readonly currentUser = signal<User | null>(null);
   readonly isAuthenticated = signal<boolean>(false);
 
   constructor() {
-    // It attempts to restore the session as soon as the service is instantiated.
     this.restoreSession();
   }
 
-  // Authentication Method
   authenticate(email: string, password: string): Observable<User> {
     return this.http.get<User[]>(`${this.API_URL}?email=${email}&password=${password}`).pipe(
       map((users) => {
         const user = users[0];
-        if (!user) throw new Error('Invalid credentials');
+        if (!user) throw new Error(this.translocoService.translate('auth.login.invalidCredentials'));
 
         const currentTenant = this.tenantService.currentTenantId();
 
-        // Debug log to verify tenant matching logic
-        console.log(`[Auth] User Tenant: ${user.tenantId} | URL Tenant: ${currentTenant}`);
+        console.log(
+          `${this.translocoService.translate('auth.login.userTenant')}: ${user.tenantId} | ${this.translocoService.translate('auth.login.urlTenant')}: ${currentTenant}`,
+        );
 
         if (user.tenantId !== currentTenant && currentTenant !== 'default') {
-          throw new Error(`Access denied: This user belongs to tenant ${user.tenantId}.`);
+          throw new Error(
+            `${this.translocoService.translate('auth.login.accessDenied')} ${user.tenantId}.`,
+          );
         }
 
         return user;
@@ -45,7 +48,6 @@ export class AuthService {
     );
   }
 
-  // Session Method (State Management and LocalStorage)
   private establishSession(user: User, token: string) {
     localStorage.setItem('auth_token', token);
     localStorage.setItem('user_profile', JSON.stringify(user));
@@ -53,7 +55,6 @@ export class AuthService {
     this.isAuthenticated.set(true);
   }
 
-  // Method to restore session on refresh or app initialization
   restoreSession(): boolean {
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('auth_token');
@@ -66,8 +67,8 @@ export class AuthService {
           this.isAuthenticated.set(true);
           return true;
         } catch (error) {
-          console.error('Failed to restore session from localStorage:', error);
-          this.logout(); // If the JSON is corrupted, clear everything.
+          console.error(this.translocoService.translate('auth.login.sessionFailed'), error);
+          this.logout();
           return false;
         }
       }

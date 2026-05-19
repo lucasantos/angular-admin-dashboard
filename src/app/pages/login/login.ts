@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    TranslocoDirective,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -30,6 +32,7 @@ export class Login {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly translocoService = inject(TranslocoService);
 
   isLoading = signal(false);
   hidePassword = signal(true);
@@ -46,17 +49,21 @@ export class Login {
 
       this.authService.authenticate(email!, password!).subscribe({
         next: () => {
-          this.snackBar.open('Login successful!', 'OK', {
+          this.snackBar.open(this.translocoService.translate('auth.login.loginSuccessfull'), 'OK', {
             duration: 3000,
           });
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.isLoading.set(false);
-          this.snackBar.open(err.message || 'Error occurred while trying to login', 'Close', {
-            panelClass: ['error-snackbar'],
-            duration: 5000,
-          });
+          this.snackBar.open(
+            err.message || this.translocoService.translate('auth.login.loginError'),
+            this.translocoService.translate('auth.login.loginErrorClose'),
+            {
+              panelClass: ['error-snackbar'],
+              duration: 5000,
+            },
+          );
         },
       });
     }

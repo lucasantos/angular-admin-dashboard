@@ -44,14 +44,22 @@
       "title": "Bem-vindo de Volta",
       "subtitle": "Entre no seu painel de administração",
       "email": "Endereço de E-mail",
-      "email_placeholder": "seu.email@exemplo.com",
+      "emailPlaceholder": "seu.email@exemplo.com",
       "password": "Senha",
       "rememberMe": "Lembre-se de mim",
       "signIn": "Fazer Login",
       "authenticating": "Autenticando...",
       "forgotPassword": "Esqueceu sua senha?",
       "noAccount": "Não tem uma conta?",
-      "createAccount": "Crie uma aqui"
+      "createAccount": "Crie uma aqui",
+      "loginSuccessfull": "Login efetuado com sucesso!",
+      "loginError": "Ocorreu um erro ao tentar fazer login",
+      "loginErrorClose": "Fechar",
+      "invalidCredentials": "Credenciais inválidas",
+      "accessDenied": "Acesso negado: Este usuário pertence ao inquilino",
+      "sessionFailed": "Falha ao restaurar a sessão do localStorage:",
+      "userTenant": "[Auth] Usuário Inquilino",
+      "urlTenant": "URL Inquilino"
     },
     "logout": {
       "logout": "Sair"

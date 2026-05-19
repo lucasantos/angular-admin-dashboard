@@ -44,14 +44,22 @@
       "title": "Bienvenido de Vuelta",
       "subtitle": "Inicia sesión en tu panel de administración",
       "email": "Dirección de Correo",
-      "email_placeholder": "tu.correo@ejemplo.com",
+      "emailPlaceholder": "tu.correo@ejemplo.com",
       "password": "Contraseña",
       "rememberMe": "Recuérdame",
       "signIn": "Iniciar Sesión",
       "authenticating": "Autenticando...",
       "forgotPassword": "¿Olvidaste tu contraseña?",
       "noAccount": "¿No tienes una cuenta?",
-      "createAccount": "Crea una aquí"
+      "createAccount": "Crea una aquí",
+      "loginSuccessfull": "Inicio de sesión exitoso!",
+      "loginError": "Se produjo un error al intentar iniciar sesión",
+      "loginErrorClose": "Cerrar",
+      "invalidCredentials": "Credenciales no válidas",
+      "accessDenied": "Acceso denegado: Este usuario pertenece al inquilino",
+      "sessionFailed": "No se pudo restaurar la sesión desde el localStorage:",
+      "userTenant": "[Auth] Usuario Inquilino",
+      "urlTenant": "URL del inquilino"
     },
     "logout": {
       "logout": "Cerrar sesión"

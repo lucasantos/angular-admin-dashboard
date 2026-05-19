@@ -44,14 +44,22 @@
       "title": "Welcome Back",
       "subtitle": "Sign in to your admin dashboard",
       "email": "Email Address",
-      "email_placeholder": "your.email@example.com",
+      "emailPlaceholder": "your.email@example.com",
       "password": "Password",
       "rememberMe": "Remember me",
       "signIn": "Sign In",
       "authenticating": "Authenticating...",
       "forgotPassword": "Forgot your password?",
       "noAccount": "Don't have an account?",
-      "createAccount": "Create one here"
+      "createAccount": "Create one here",
+      "loginSuccessfull": "Login successful!",
+      "loginError": "Error occurred while trying to login",
+      "loginErrorClose": "Close",
+      "invalidCredentials": "Invalid credentials",
+      "accessDenied": "Access denied: This user belongs to tenant",
+      "sessionFailed": "Failed to restore session from localStorage:",
+      "userTenant": "[Auth] User Tenant",
+      "urlTenant": "URL Tenant"
     },
     "logout": {
       "logout": "Logout"

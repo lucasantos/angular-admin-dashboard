@@ -1,23 +1,23 @@
-<div class="login-page login-container">
+<div class="login-page login-container" *transloco="let t; prefix: 'auth.login'">
   <mat-card class="login-card">
     <mat-card-header>
       <div class="logo-circle">
         <mat-icon color="primary">lock</mat-icon>
       </div>
-      <mat-card-title>Welcome to Admin Dashboard</mat-card-title>
-      <mat-card-subtitle>Please sign in to continue</mat-card-subtitle>
+      <mat-card-title>{{ t('title') }}</mat-card-title>
+      <mat-card-subtitle>{{ t('subtitle') }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email Address</mat-label>
-          <input matInput formControlName="email" type="email" placeholder="user@example.com">
+          <mat-label>{{ t('email') }}</mat-label>
+          <input matInput formControlName="email" type="email" [placeholder]="t('emailPlaceholder')">
           <mat-icon matPrefix>email</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Password</mat-label>
+          <mat-label>{{ t('password') }}</mat-label>
           <input matInput formControlName="password" [type]="hidePassword() ? 'password' : 'text'">
           <mat-icon matPrefix>key</mat-icon>
           <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())" type="button">
@@ -29,7 +29,7 @@
           @if (isLoading()) {
           <mat-spinner diameter="20" style="margin-right: 8px;"></mat-spinner>
           }
-          {{ isLoading() ? 'Autenticando...' : 'Sign In' }}
+          {{ isLoading() ? t('authenticating') : t('signIn') }}
         </button>
       </form>
     </mat-card-content>
