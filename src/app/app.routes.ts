@@ -14,6 +14,7 @@ const itemToRoute = (i: MenuItems): Route | null => {
 
   const route: Route = {
     path,
+    title: i.label,
     data: {
       label: i.label,
       icon: i.icon,

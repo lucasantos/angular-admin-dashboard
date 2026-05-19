@@ -9,13 +9,13 @@ export class I18nTitleStrategy extends TitleStrategy {
   private readonly titleService = inject(Title);
 
   override updateTitle(snapshot: RouterStateSnapshot): void {
-    const titleKey = this.buildTitle(snapshot); // Retrieves data.label ('menu.dashboard')
+    const titleKey = this.buildTitle(snapshot);
 
     if (titleKey) {
       const localized = this.transloco.translate(titleKey);
-      this.titleService.setTitle(`Platform — ${localized}`);
+      this.titleService.setTitle(`Admin Dashboard - ${localized}`);
     } else {
-      this.titleService.setTitle('Platform Suite');
+      this.titleService.setTitle('Angular Admin Dashboard');
     }
   }
 }
