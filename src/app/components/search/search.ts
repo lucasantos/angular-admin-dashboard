@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-search',
-  imports: [CommonModule, FormsModule, MatIconModule],
+  imports: [CommonModule, FormsModule, MatIconModule, TranslocoPipe],
   templateUrl: './search.html',
   styleUrl: './search.scss',
 })

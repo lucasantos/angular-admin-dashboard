@@ -1,15 +1,16 @@
-<!-- Help section -->
-<button mat-icon-button [matMenuTriggerFor]="helpMenu" matTooltip="Help" aria-label="Help menu">
-  <mat-icon>help</mat-icon>
-</button>
+<ng-container *transloco="let t; prefix: 'toolbar.help'">
+  <button mat-icon-button [matMenuTriggerFor]="helpMenu" matTooltip="{{ t('title') }}" aria-label="Help menu">
+    <mat-icon>help</mat-icon>
+  </button>
 
-<mat-menu #helpMenu="matMenu">
-  <button mat-menu-item routerLink="/faq">
-    <mat-icon>question_answer</mat-icon>
-    <span>FAQ</span>
-  </button>
-  <button mat-menu-item routerLink="/support">
-    <mat-icon>support</mat-icon>
-    <span>Support Ticket</span>
-  </button>
-</mat-menu>
+  <mat-menu #helpMenu="matMenu">
+    <button mat-menu-item routerLink="/faq">
+      <mat-icon>question_answer</mat-icon>
+      <span>{{ t('faq') }}</span>
+    </button>
+    <button mat-menu-item routerLink="/support">
+      <mat-icon>support</mat-icon>
+      <span>{{ t('supportTicket') }}</span>
+    </button>
+  </mat-menu>
+</ng-container>

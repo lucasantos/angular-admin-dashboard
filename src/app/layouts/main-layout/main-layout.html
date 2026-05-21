@@ -1,10 +1,10 @@
-<mat-toolbar class="toolbar-container">
+<mat-toolbar class="toolbar-container" *transloco="let t; prefix: 'toolbar'">
   @if (showProgressBar()) {
     <mat-progress-bar mode="indeterminate" class="toolbar-loader"></mat-progress-bar>
   }
   <div class="toolbar-left">
     <button mat-icon-button (click)="collapsed.set(!collapsed())"
-      [matTooltip]="!collapsed() ? 'Collapse menu' : 'Expand menu'" matTooltipPosition="below">
+      [matTooltip]="!collapsed() ? t('collapseMenu') : t('expandMenu')" matTooltipPosition="below">
       <mat-icon>menu</mat-icon>
     </button>
 

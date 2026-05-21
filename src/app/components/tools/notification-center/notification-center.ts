@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppNotification } from '../../../models/app-notification';
 import { MessageDetail } from './message-detail/message-detail';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-notification-center',
@@ -22,6 +23,7 @@ import { MessageDetail } from './message-detail/message-detail';
     MatBadgeModule,
     MatDividerModule,
     DatePipe,
+    TranslocoDirective
   ],
   templateUrl: './notification-center.html',
   styleUrl: './notification-center.scss',
@@ -32,7 +34,7 @@ export class NotificationCenter {
   private readonly router = inject(Router);
 
   handleAction(event: MouseEvent, action: () => void) {
-    event.stopPropagation(); // Prevents the menu from closing when clicking internal buttons
+    event.stopPropagation();
     action();
   }
 

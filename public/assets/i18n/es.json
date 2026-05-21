@@ -30,14 +30,47 @@
     "accountFeedback": "Retroalimentación de Cuenta"
   },
   "toolbar": {
-    "theme": "Cambiar modo de estilo",
-    "language": "Cambiar idioma",
-    "help": "Ayuda",
-    "notifications": "Ver notificaciones",
-    "account": "Menú de cuenta",
+    "theme": {
+      "title": "Cambiar modo de estilo",
+      "light": "Modo claro",
+      "dark": "Modo oscuro",
+      "system": "Preferencias del sistema",
+      "custom": "Identidad de marca personalizada",
+      "applyCustom": "Aplicar ",
+      "customColor": "Elige un color personalizado"
+    },
+    "language": {
+      "title": "Cambiar idioma",
+      "english": "Inglés",
+      "spanish": "Español",
+      "portuguese": "Portugués"
+    },
+    "help": {
+      "title": "Ayuda",
+      "faq": "Preguntas Frecuentes",
+      "supportTicket": "Ticket de Soporte"
+    },
+    "notifications": {
+      "title": "Ver notificaciones",
+      "notificationsTitle": "Notificaciones",
+      "markAllButton": "Marcar todo como leído",
+      "clearAllButton": "Borrar todas las notificaciones",
+      "noNotifications": "No hay nuevas notificaciones"
+    },
+    "account": {
+      "title": "Menú de cuenta",
+      "avatarAltText": "Avatar de usuario",
+      "myProfile": "Mi perfil",
+      "accountSettings": "Configuraciones de la cuenta",
+      "securityPrivacy": "Seguridad y privacidad",
+      "feedback": "Realimentación",
+      "admDashboard": "Panel de control de administración",
+      "logout": "Cerrar sesión"
+    },
     "collapseMenu": "Contraer menú",
     "expandMenu": "Expandir menú",
-    "search": "Buscar..."
+    "search": "Buscar...",
+    "clearSearchBt": "Borrar búsqueda"
   },
   "auth": {
     "login": {
@@ -159,11 +192,6 @@
     "searchPlaceholder": "Busca ayuda...",
     "noResults": "No se encontraron coincidencias para"
   },
-  "help": {
-    "title": "Ayuda",
-    "faq": "Preguntas Frecuentes",
-    "supportTicket": "Ticket de Soporte"
-  },
   "support": {
     "title": "Tickets de Soporte",
     "subtitle": "¿Necesitas ayuda? Estamos aquí para ti",
@@ -180,11 +208,6 @@
     "system": "Preferencia del Sistema",
     "customBrand": "Identidad de Marca Personalizada",
     "applyColor": "Aplicar"
-  },
-  "languages": {
-    "english": "Inglés",
-    "spanish": "Español",
-    "portuguese": "Portugués (Brasil)"
   },
   "buttons": {
     "save": "Guardar",

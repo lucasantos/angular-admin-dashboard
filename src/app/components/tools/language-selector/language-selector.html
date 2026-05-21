@@ -1,38 +1,22 @@
-<!-- Translation Button with flag icons for English, Spanish and Brazilian Portuguese -->
 <button
   mat-icon-button
   [matMenuTriggerFor]="translationMenu"
-  matTooltip="'toolbar.language' | transloco"
+  matTooltip="{{ 'toolbar.language.title' | transloco }}"
   aria-label="Translation menu"
 >
   <mat-icon>language</mat-icon>
 </button>
 
 <mat-menu #translationMenu="matMenu" class="language-menu">
-  @for (lang of langService.languages; track lang.code) {
-  <button mat-menu-item class="language-selector-item" (click)="changeLanguage(lang.code)">
-    <span class="flag" [class]="lang.flagClass" [title]="lang.label"></span>
-    <span [class.active-lang]="langService.currentLanguage() === lang.code">
-      {{ lang.label }}
+  @for (lang of languageService.languages; track lang.code) {
+  <button mat-menu-item class="language-selector-item" (click)="languageService.setLanguage(lang.code)">
+    <span class="flag" [class]="lang.flagClass" [title]="lang.label | transloco"></span>
+    <span [class.active-lang]="languageService.currentLanguage() === lang.code">
+      {{ lang.label | transloco }}
     </span>
-    @if (langService.currentLanguage() === lang.code) {
+    @if (languageService.currentLanguage() === lang.code) {
     <mat-icon class="check-icon">check</mat-icon>
     }
   </button>
   }
 </mat-menu>
-
-<!-- <mat-menu #translationMenu="matMenu">
-  <button mat-menu-item class="language-selector-item">
-    <span class="flag flag--us" title="English"></span>
-    <span>English</span>
-  </button>
-  <button mat-menu-item class="language-selector-item">
-    <span class="flag flag--es" title="Español"></span>
-    <span>Spanish</span>
-  </button>
-  <button mat-menu-item class="language-selector-item">
-    <span class="flag flag--br" title="Português (Brasil)"></span>
-    <span>Portuguese</span>
-  </button>
-</mat-menu> -->

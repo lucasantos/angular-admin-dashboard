@@ -30,14 +30,47 @@
     "accountFeedback": "Feedback da Conta"
   },
   "toolbar": {
-    "theme": "Alternar modo de estilo",
-    "language": "Alterar idioma",
-    "help": "Ajuda",
-    "notifications": "Ver notificações",
-    "account": "Menu da conta",
+    "theme": {
+      "title": "Alternar modo de estilo",
+      "light": "Modo claro",
+      "dark": "Modo escuro",
+      "system": "Preferências do sistema",
+      "custom": "Identidade Visual Personalizada",
+      "applyCustom": "Aplicar ",
+      "customColor": "Escolha uma cor personalizada"
+    },
+    "language": {
+      "title": "Alterar idioma",
+      "english": "Inglês",
+      "spanish": "Espanhol",
+      "portuguese": "Português"
+    },
+    "help": {
+      "title": "Ajuda",
+      "faq": "Perguntas Frequentes",
+      "supportTicket": "Ticket de Suporte"
+    },
+    "notifications": {
+      "title": "Ver notificações",
+      "notificationsTitle": "Notificações",
+      "markAllButton": "Marcar tudo como lido",
+      "clearAllButton": "Limpar todas as notificações",
+      "noNotifications": "Nenhuma notificação nova"
+    },
+    "account": {
+      "title": "Menu da conta",
+      "avatarAltText": "Avatar do usuário",
+      "myProfile": "Meu Perfil",
+      "accountSettings": "Configurações de Conta",
+      "securityPrivacy": "Segurança e Privacidade",
+      "feedback": "Feedback",
+      "admDashboard": "Painel de Controle Administrativo",
+      "logout": "Sair"
+    },
     "collapseMenu": "Recolher menu",
     "expandMenu": "Expandir menu",
-    "search": "Pesquisar..."
+    "search": "Pesquisar...",
+    "clearSearchBt": "Limpar pesquisa"
   },
   "auth": {
     "login": {
@@ -159,11 +192,6 @@
     "searchPlaceholder": "Procure ajuda...",
     "noResults": "Nenhum resultado encontrado para"
   },
-  "help": {
-    "title": "Ajuda",
-    "faq": "Perguntas Frequentes",
-    "supportTicket": "Ticket de Suporte"
-  },
   "support": {
     "title": "Tickets de Suporte",
     "subtitle": "Precisa de ajuda? Estamos aqui para você",
@@ -180,11 +208,6 @@
     "system": "Preferência do Sistema",
     "customBrand": "Identidade de Marca Personalizada",
     "applyColor": "Aplicar"
-  },
-  "languages": {
-    "english": "Inglês",
-    "spanish": "Espanhol",
-    "portuguese": "Português (Brasil)"
   },
   "buttons": {
     "save": "Salvar",

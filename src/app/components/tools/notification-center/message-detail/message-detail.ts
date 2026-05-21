@@ -5,10 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
 import { AppNotification } from '../../../../models/app-notification';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-message-detail',
-  imports: [MatDialogModule, MatButtonModule, MatIconModule, MatDividerModule, DatePipe],
+  imports: [MatDialogModule, MatButtonModule, MatIconModule, MatDividerModule, DatePipe, TranslocoPipe],
   templateUrl: './message-detail.html',
   styleUrl: './message-detail.scss',
 })

@@ -9,7 +9,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close>{{ 'buttons.close' | transloco }}</button>
 
   @if (data.action) {
   <button mat-flat-button color="primary" [mat-dialog-close]="'execute_action'">

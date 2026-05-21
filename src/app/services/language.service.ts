@@ -20,9 +20,9 @@ export class LanguageService {
   private readonly request = inject(REQUEST, { optional: true }) as any;
 
   readonly languages: Language[] = [
-    { code: 'en', label: 'English', flagClass: 'flag--us' },
-    { code: 'es', label: 'Spanish', flagClass: 'flag--es' },
-    { code: 'pt-BR', label: 'Portuguese', flagClass: 'flag--br' },
+    { code: 'en', label: 'toolbar.language.english', flagClass: 'flag--us' },
+    { code: 'es', label: 'toolbar.language.spanish', flagClass: 'flag--es' },
+    { code: 'pt-BR', label: 'toolbar.language.portuguese', flagClass: 'flag--br' },
   ];
 
   readonly currentLanguage = signal<LanguageCode>(this.getInitialLanguage());

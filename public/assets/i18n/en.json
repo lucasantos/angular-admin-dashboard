@@ -30,14 +30,47 @@
     "accountFeedback": "Account Feedback"
   },
   "toolbar": {
-    "theme": "Switch style mode",
-    "language": "Switch language",
-    "help": "Help",
-    "notifications": "View notifications",
-    "account": "Account menu",
+    "theme": {
+      "title": "Switch style mode",
+      "light": "Light Mode",
+      "dark": "Dark Mode",
+      "system": "System Preference",
+      "custom": "Custom Brand Identity",
+      "applyCustom": "Apply ",
+      "customColor": "Choose custom color"
+    },
+    "language": {
+      "title": "Switch language",
+      "english": "English",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese"
+    },
+    "help": {
+      "title": "Help",
+      "faq": "FAQ",
+      "supportTicket": "Support Ticket"
+    },
+    "notifications": {
+      "title": "View notifications",
+      "notificationsTitle": "Notifications",
+      "markAllButton": "Mark all as read",
+      "clearAllButton": "Clear all notifications",
+      "noNotifications": "No new notifications"
+    },
+    "account": {
+      "title": "Account menu",
+      "avatarAltText": "User Avatar",
+      "myProfile": "My Profile",
+      "accountSettings": "Account Settings",
+      "securityPrivacy": "Security & Privacy",
+      "feedback": "Feedback",
+      "admDashboard": "Admin Control Panel",
+      "logout": "Logout"
+    },
     "collapseMenu": "Collapse menu",
     "expandMenu": "Expand menu",
-    "search": "Search..."
+    "search": "Search...",
+    "clearSearchBt": "Clear search"
   },
   "auth": {
     "login": {
@@ -159,11 +192,6 @@
     "searchPlaceholder": "Search for help...",
     "noResults": "No matches found for"
   },
-  "help": {
-    "title": "Help",
-    "faq": "FAQ",
-    "supportTicket": "Support Ticket"
-  },
   "support": {
     "title": "Support Tickets",
     "subtitle": "Need help? We're here for you",
@@ -180,11 +208,6 @@
     "system": "System Preference",
     "customBrand": "Custom Brand Identity",
     "applyColor": "Apply"
-  },
-  "languages": {
-    "english": "English",
-    "spanish": "Spanish",
-    "portuguese": "Portuguese (Brazil)"
   },
   "buttons": {
     "save": "Save",

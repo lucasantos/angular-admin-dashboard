@@ -14,6 +14,7 @@ import { ThemeService } from '../../services/theme.service';
 import { AuthService } from '../../services/auth.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoadingService } from '../../services/loading.service';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-main-layout',
@@ -30,6 +31,7 @@ import { LoadingService } from '../../services/loading.service';
     Tools,
     Breadcrumb,
     MatProgressBarModule,
+    TranslocoDirective,
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',

@@ -4,11 +4,12 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDivider } from '@angular/material/list';
+import { MatDivider } from '@angular/material/divider';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-theme-selector',
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatTooltip, MatDivider],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, MatTooltip, MatDivider, TranslocoDirective],
   templateUrl: './theme-selector.html',
   styleUrl: './theme-selector.scss',
 })
