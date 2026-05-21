@@ -22,11 +22,11 @@
 
     <mat-divider></mat-divider>
 
-    <div class="custom-section-header">{{ t('custom') }}</div>
+    <div class="custom-section-header">{{ t('customBrand') }}</div>
 
     <div class="color-grid">
       @for (color of presets; track color) {
-      <button class="color-option" [style.background-color]="color" [matTooltip]="t('applyCustom') + color"
+      <button class="color-option" [style.background-color]="color" [matTooltip]="t('applyColor') + color"
         (click)="setCustomColor(color)"
         [class.is-selected]="themeService.mode() === 'custom' && themeService.customColor() === color">
         @if (themeService.mode() === 'custom' && themeService.customColor() === color) {

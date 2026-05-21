@@ -1,4 +1,30 @@
 {
+  "auth": {
+    "login": {
+      "title": "Bienvenido de Vuelta",
+      "subtitle": "Inicia sesión en tu panel de administración",
+      "email": "Dirección de Correo",
+      "emailPlaceholder": "tu.correo@ejemplo.com",
+      "password": "Contraseña",
+      "rememberMe": "Recuérdame",
+      "signIn": "Iniciar Sesión",
+      "authenticating": "Autenticando...",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "noAccount": "¿No tienes una cuenta?",
+      "createAccount": "Crea una aquí",
+      "loginSuccessfull": "Inicio de sesión exitoso!",
+      "loginError": "Se produjo un error al intentar iniciar sesión",
+      "loginErrorClose": "Cerrar",
+      "invalidCredentials": "Credenciales no válidas",
+      "accessDenied": "Acceso denegado: Este usuario pertenece al inquilino",
+      "sessionFailed": "No se pudo restaurar la sesión desde el localStorage:",
+      "userTenant": "[Auth] Usuario Inquilino",
+      "urlTenant": "URL del inquilino"
+    },
+    "logout": {
+      "logout": "Cerrar sesión"
+    }
+  },
   "menu": {
     "dashboard": "Panel de Control",
     "content": "Contenido",
@@ -35,8 +61,8 @@
       "light": "Modo claro",
       "dark": "Modo oscuro",
       "system": "Preferencias del sistema",
-      "custom": "Identidad de marca personalizada",
-      "applyCustom": "Aplicar ",
+      "customBrand": "Identidad de marca personalizada",
+      "applyColor": "Aplicar ",
       "customColor": "Elige un color personalizado"
     },
     "language": {
@@ -72,142 +98,119 @@
     "search": "Buscar...",
     "clearSearchBt": "Borrar búsqueda"
   },
-  "auth": {
-    "login": {
-      "title": "Bienvenido de Vuelta",
-      "subtitle": "Inicia sesión en tu panel de administración",
-      "email": "Dirección de Correo",
-      "emailPlaceholder": "tu.correo@ejemplo.com",
-      "password": "Contraseña",
-      "rememberMe": "Recuérdame",
-      "signIn": "Iniciar Sesión",
-      "authenticating": "Autenticando...",
-      "forgotPassword": "¿Olvidaste tu contraseña?",
-      "noAccount": "¿No tienes una cuenta?",
-      "createAccount": "Crea una aquí",
-      "loginSuccessfull": "Inicio de sesión exitoso!",
-      "loginError": "Se produjo un error al intentar iniciar sesión",
-      "loginErrorClose": "Cerrar",
-      "invalidCredentials": "Credenciales no válidas",
-      "accessDenied": "Acceso denegado: Este usuario pertenece al inquilino",
-      "sessionFailed": "No se pudo restaurar la sesión desde el localStorage:",
-      "userTenant": "[Auth] Usuario Inquilino",
-      "urlTenant": "URL del inquilino"
+  "breadcrumb": {
+    "homeTitle": "Volver a la página de inicio"
+  },
+  "pages": {
+    "settings": {
+      "title": "Configuración de Cuenta",
+      "subtitle": "Personaliza tu espacio de trabajo y preferencias de comunicación",
+      "appearance": {
+        "title": "Apariencia e Identidad",
+        "displayMode": "Modo de Visualización",
+        "light": "Modo Claro",
+        "dark": "Modo Oscuro",
+        "system": "Preferencia del Sistema",
+        "customBrand": "Identidad de Marca Personalizada",
+        "chooseCustomColor": "Elegir color personalizado"
+      },
+      "language": {
+        "title": "Idioma del Sistema",
+        "label": "Selecciona tu idioma preferido"
+      },
+      "communication": {
+        "title": "Canales de Comunicación",
+        "pushNotifications": "Notificaciones Push",
+        "pushDescription": "Alertas en tiempo real en tu navegador",
+        "emailUpdates": "Actualizaciones por Correo",
+        "emailDescription": "Resúmenes e informes",
+        "smsWhatsapp": "SMS y WhatsApp",
+        "smsDescription": "Alertas de seguridad urgentes del sistema",
+        "updatePreferences": "Actualizar Preferencias"
+      }
     },
-    "logout": {
-      "logout": "Cerrar sesión"
+    "profile": {
+      "title": "Mi Perfil",
+      "subtitle": "Gestiona tu identidad pública y seguridad",
+      "personalInformation": {
+        "title": "Información Personal",
+        "subtitle": "Actualiza tu identidad y avatar",
+        "avatarSource": "Origen del Avatar",
+        "url": "URL",
+        "upload": "Subir",
+        "imageUrl": "URL de la Imagen",
+        "chooseImageFile": "Elegir Archivo de Imagen",
+        "acceptedFormats": "PNG, JPG o GIF (Máx 2MB)",
+        "fullName": "Nombre Completo",
+        "emailAddress": "Dirección de Correo",
+        "phoneNumber": "Número de Teléfono",
+        "bio": "Biografía",
+        "saveChanges": "Guardar Cambios"
+      },
+      "updatePassword": {
+        "title": "Actualizar Contraseña",
+        "subtitle": "Asegura que tu cuenta se mantenga segura",
+        "currentPassword": "Contraseña Actual",
+        "newPassword": "Nueva Contraseña",
+        "confirmPassword": "Confirmar Nueva Contraseña",
+        "clear": "Limpiar",
+        "updatePassword": "Actualizar Contraseña"
+      }
+    },
+    "feedback": {
+      "title": "Centro de Retroalimentación",
+      "subtitle": "Cuéntanos qué está en tu mente. ¡Estamos escuchando!",
+      "sendFeedback": "Enviar Retroalimentación",
+      "closeForm": "Cerrar Formulario",
+      "category": "Categoría",
+      "categories": {
+        "ui_ux": "Diseño UI/UX",
+        "feature_request": "Solicitud de Función",
+        "bug_report": "Informe de Error",
+        "performance": "Rendimiento",
+        "other": "Otro"
+      },
+      "section": "¿Dónde en el sistema?",
+      "sectionPlaceholder": "p.ej. Barra lateral del Panel",
+      "subject": "Asunto",
+      "subjectPlaceholder": "Resumen de tu retroalimentación",
+      "message": "Tu Mensaje",
+      "messagePlaceholder": "Cuéntanos más detalles...",
+      "rateExperience": "Califica tu experiencia",
+      "ratings": {
+        "disappointing": "Decepcionante",
+        "average": "Promedio",
+        "good": "Bueno",
+        "great": "Excelente",
+        "amazing": "¡Increíble!"
+      },
+      "discard": "Descartar",
+      "submit": "Enviar Retroalimentación",
+      "recentFeedback": "Retroalimentación Reciente",
+      "total": "total",
+      "noFeedback": "Aún no has enviado retroalimentación",
+      "feedbackSubmitted": "¡Gracias! Tu retroalimentación ha sido enviada exitosamente."
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "searchPlaceholder": "Busca ayuda...",
+      "noResults": "No se encontraron coincidencias para"
+    },
+    "support": {
+      "title": "Tickets de Soporte",
+      "subtitle": "¿Necesitas ayuda? Estamos aquí para ti",
+      "createTicket": "Crear Nuevo Ticket",
+      "ticketTitle": "Título del Ticket",
+      "description": "Descripción",
+      "priority": "Prioridad",
+      "status": "Estado",
+      "submit": "Enviar Ticket"
+    },
+    "search": {
+      "clear": "Limpiar búsqueda",
+      "noResults": "No se encontraron resultados",
+      "searchResults": "Resultados de búsqueda"
     }
-  },
-  "settings": {
-    "title": "Configuración de Cuenta",
-    "subtitle": "Personaliza tu espacio de trabajo y preferencias de comunicación",
-    "appearance": {
-      "title": "Apariencia e Identidad",
-      "displayMode": "Modo de Visualización",
-      "light": "Modo Claro",
-      "dark": "Modo Oscuro",
-      "system": "Preferencia del Sistema",
-      "customBrand": "Identidad de Marca Personalizada",
-      "chooseCustomColor": "Elegir color personalizado"
-    },
-    "language": {
-      "title": "Idioma del Sistema",
-      "label": "Selecciona tu idioma preferido"
-    },
-    "communication": {
-      "title": "Canales de Comunicación",
-      "pushNotifications": "Notificaciones Push",
-      "pushDescription": "Alertas en tiempo real en tu navegador",
-      "emailUpdates": "Actualizaciones por Correo",
-      "emailDescription": "Resúmenes e informes",
-      "smsWhatsapp": "SMS y WhatsApp",
-      "smsDescription": "Alertas de seguridad urgentes del sistema",
-      "updatePreferences": "Actualizar Preferencias"
-    }
-  },
-  "profile": {
-    "title": "Mi Perfil",
-    "subtitle": "Gestiona tu identidad pública y seguridad",
-    "personalInformation": {
-      "title": "Información Personal",
-      "subtitle": "Actualiza tu identidad y avatar",
-      "avatarSource": "Origen del Avatar",
-      "url": "URL",
-      "upload": "Subir",
-      "imageUrl": "URL de la Imagen",
-      "chooseImageFile": "Elegir Archivo de Imagen",
-      "acceptedFormats": "PNG, JPG o GIF (Máx 2MB)",
-      "fullName": "Nombre Completo",
-      "emailAddress": "Dirección de Correo",
-      "phoneNumber": "Número de Teléfono",
-      "bio": "Biografía",
-      "saveChanges": "Guardar Cambios"
-    },
-    "updatePassword": {
-      "title": "Actualizar Contraseña",
-      "subtitle": "Asegura que tu cuenta se mantenga segura",
-      "currentPassword": "Contraseña Actual",
-      "newPassword": "Nueva Contraseña",
-      "confirmPassword": "Confirmar Nueva Contraseña",
-      "clear": "Limpiar",
-      "updatePassword": "Actualizar Contraseña"
-    }
-  },
-  "feedback": {
-    "title": "Centro de Retroalimentación",
-    "subtitle": "Cuéntanos qué está en tu mente. ¡Estamos escuchando!",
-    "sendFeedback": "Enviar Retroalimentación",
-    "closeForm": "Cerrar Formulario",
-    "category": "Categoría",
-    "categories": {
-      "ui_ux": "Diseño UI/UX",
-      "feature_request": "Solicitud de Función",
-      "bug_report": "Informe de Error",
-      "performance": "Rendimiento",
-      "other": "Otro"
-    },
-    "section": "¿Dónde en el sistema?",
-    "sectionPlaceholder": "p.ej. Barra lateral del Panel",
-    "subject": "Asunto",
-    "subjectPlaceholder": "Resumen de tu retroalimentación",
-    "message": "Tu Mensaje",
-    "messagePlaceholder": "Cuéntanos más detalles...",
-    "rateExperience": "Califica tu experiencia",
-    "ratings": {
-      "disappointing": "Decepcionante",
-      "average": "Promedio",
-      "good": "Bueno",
-      "great": "Excelente",
-      "amazing": "¡Increíble!"
-    },
-    "discard": "Descartar",
-    "submit": "Enviar Retroalimentación",
-    "recentFeedback": "Retroalimentación Reciente",
-    "total": "total",
-    "noFeedback": "Aún no has enviado retroalimentación",
-    "feedbackSubmitted": "¡Gracias! Tu retroalimentación ha sido enviada exitosamente."
-  },
-  "faq": {
-    "title": "Preguntas Frecuentes",
-    "searchPlaceholder": "Busca ayuda...",
-    "noResults": "No se encontraron coincidencias para"
-  },
-  "support": {
-    "title": "Tickets de Soporte",
-    "subtitle": "¿Necesitas ayuda? Estamos aquí para ti",
-    "createTicket": "Crear Nuevo Ticket",
-    "ticketTitle": "Título del Ticket",
-    "description": "Descripción",
-    "priority": "Prioridad",
-    "status": "Estado",
-    "submit": "Enviar Ticket"
-  },
-  "theme": {
-    "light": "Modo Claro",
-    "dark": "Modo Oscuro",
-    "system": "Preferencia del Sistema",
-    "customBrand": "Identidad de Marca Personalizada",
-    "applyColor": "Aplicar"
   },
   "buttons": {
     "save": "Guardar",
@@ -269,13 +272,5 @@
     "last": "Último",
     "previous": "Anterior",
     "next": "Siguiente"
-  },
-  "search": {
-    "clear": "Limpiar búsqueda",
-    "noResults": "No se encontraron resultados",
-    "searchResults": "Resultados de búsqueda"
-  },
-  "breadcrumb": {
-    "homeTitle": "Volver a la página de inicio"
   }
 }

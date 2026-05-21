@@ -1,4 +1,30 @@
 {
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de Volta",
+      "subtitle": "Entre no seu painel de administração",
+      "email": "Endereço de E-mail",
+      "emailPlaceholder": "seu.email@exemplo.com",
+      "password": "Senha",
+      "rememberMe": "Lembre-se de mim",
+      "signIn": "Fazer Login",
+      "authenticating": "Autenticando...",
+      "forgotPassword": "Esqueceu sua senha?",
+      "noAccount": "Não tem uma conta?",
+      "createAccount": "Crie uma aqui",
+      "loginSuccessfull": "Login efetuado com sucesso!",
+      "loginError": "Ocorreu um erro ao tentar fazer login",
+      "loginErrorClose": "Fechar",
+      "invalidCredentials": "Credenciais inválidas",
+      "accessDenied": "Acesso negado: Este usuário pertence ao inquilino",
+      "sessionFailed": "Falha ao restaurar a sessão do localStorage:",
+      "userTenant": "[Auth] Usuário Inquilino",
+      "urlTenant": "URL Inquilino"
+    },
+    "logout": {
+      "logout": "Sair"
+    }
+  },
   "menu": {
     "dashboard": "Painel de Controle",
     "content": "Conteúdo",
@@ -35,8 +61,8 @@
       "light": "Modo claro",
       "dark": "Modo escuro",
       "system": "Preferências do sistema",
-      "custom": "Identidade Visual Personalizada",
-      "applyCustom": "Aplicar ",
+      "customBrand": "Identidade Visual Personalizada",
+      "applyColor": "Aplicar ",
       "customColor": "Escolha uma cor personalizada"
     },
     "language": {
@@ -72,142 +98,119 @@
     "search": "Pesquisar...",
     "clearSearchBt": "Limpar pesquisa"
   },
-  "auth": {
-    "login": {
-      "title": "Bem-vindo de Volta",
-      "subtitle": "Entre no seu painel de administração",
-      "email": "Endereço de E-mail",
-      "emailPlaceholder": "seu.email@exemplo.com",
-      "password": "Senha",
-      "rememberMe": "Lembre-se de mim",
-      "signIn": "Fazer Login",
-      "authenticating": "Autenticando...",
-      "forgotPassword": "Esqueceu sua senha?",
-      "noAccount": "Não tem uma conta?",
-      "createAccount": "Crie uma aqui",
-      "loginSuccessfull": "Login efetuado com sucesso!",
-      "loginError": "Ocorreu um erro ao tentar fazer login",
-      "loginErrorClose": "Fechar",
-      "invalidCredentials": "Credenciais inválidas",
-      "accessDenied": "Acesso negado: Este usuário pertence ao inquilino",
-      "sessionFailed": "Falha ao restaurar a sessão do localStorage:",
-      "userTenant": "[Auth] Usuário Inquilino",
-      "urlTenant": "URL Inquilino"
+  "breadcrumb": {
+    "homeTitle": "Voltar para a página inicial"
+  },
+  "pages": {
+    "settings": {
+      "title": "Configurações da Conta",
+      "subtitle": "Personalize seu espaço de trabalho e preferências de comunicação",
+      "appearance": {
+        "title": "Aparência e Marca",
+        "displayMode": "Modo de Exibição",
+        "light": "Modo Claro",
+        "dark": "Modo Escuro",
+        "system": "Preferência do Sistema",
+        "customBrand": "Identidade de Marca Personalizada",
+        "chooseCustomColor": "Escolher cor personalizada"
+      },
+      "language": {
+        "title": "Idioma do Sistema",
+        "label": "Selecione seu idioma preferido"
+      },
+      "communication": {
+        "title": "Canais de Comunicação",
+        "pushNotifications": "Notificações Push",
+        "pushDescription": "Alertas em tempo real no seu navegador",
+        "emailUpdates": "Atualizações por E-mail",
+        "emailDescription": "Resumos e relatórios",
+        "smsWhatsapp": "SMS e WhatsApp",
+        "smsDescription": "Alertas de segurança urgentes do sistema",
+        "updatePreferences": "Atualizar Preferências"
+      }
     },
-    "logout": {
-      "logout": "Sair"
+    "profile": {
+      "title": "Meu Perfil",
+      "subtitle": "Gerencie sua identidade pública e segurança",
+      "personalInformation": {
+        "title": "Informações Pessoais",
+        "subtitle": "Atualize sua identidade e avatar",
+        "avatarSource": "Origem do Avatar",
+        "url": "URL",
+        "upload": "Enviar",
+        "imageUrl": "URL da Imagem",
+        "chooseImageFile": "Escolher Arquivo de Imagem",
+        "acceptedFormats": "PNG, JPG ou GIF (Máx 2MB)",
+        "fullName": "Nome Completo",
+        "emailAddress": "Endereço de E-mail",
+        "phoneNumber": "Número de Telefone",
+        "bio": "Biografia",
+        "saveChanges": "Salvar Alterações"
+      },
+      "updatePassword": {
+        "title": "Atualizar Senha",
+        "subtitle": "Garanta que sua conta permaneça segura",
+        "currentPassword": "Senha Atual",
+        "newPassword": "Nova Senha",
+        "confirmPassword": "Confirmar Nova Senha",
+        "clear": "Limpar",
+        "updatePassword": "Atualizar Senha"
+      }
+    },
+    "feedback": {
+      "title": "Centro de Feedback",
+      "subtitle": "Diga-nos o que está em sua mente. Estamos ouvindo!",
+      "sendFeedback": "Enviar Feedback",
+      "closeForm": "Fechar Formulário",
+      "category": "Categoria",
+      "categories": {
+        "ui_ux": "Design UI/UX",
+        "feature_request": "Solicitação de Recurso",
+        "bug_report": "Relatório de Bug",
+        "performance": "Desempenho",
+        "other": "Outro"
+      },
+      "section": "Onde no sistema?",
+      "sectionPlaceholder": "ex: Barra lateral do Painel",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Resumo do seu feedback",
+      "message": "Sua Mensagem",
+      "messagePlaceholder": "Conte-nos mais detalhes...",
+      "rateExperience": "Avalie sua experiência",
+      "ratings": {
+        "disappointing": "Desapontante",
+        "average": "Média",
+        "good": "Bom",
+        "great": "Ótimo",
+        "amazing": "Incrível!"
+      },
+      "discard": "Descartar",
+      "submit": "Enviar Feedback",
+      "recentFeedback": "Feedback Recente",
+      "total": "total",
+      "noFeedback": "Você ainda não enviou nenhum feedback",
+      "feedbackSubmitted": "Obrigado! Seu feedback foi enviado com sucesso."
+    },
+    "faq": {
+      "title": "Perguntas Frequentes",
+      "searchPlaceholder": "Procure ajuda...",
+      "noResults": "Nenhum resultado encontrado para"
+    },
+    "support": {
+      "title": "Tickets de Suporte",
+      "subtitle": "Precisa de ajuda? Estamos aqui para você",
+      "createTicket": "Criar Novo Ticket",
+      "ticketTitle": "Título do Ticket",
+      "description": "Descrição",
+      "priority": "Prioridade",
+      "status": "Status",
+      "submit": "Enviar Ticket"
+    },
+    "search": {
+      "clear": "Limpar pesquisa",
+      "noResults": "Nenhum resultado encontrado",
+      "searchResults": "Resultados da pesquisa"
     }
-  },
-  "settings": {
-    "title": "Configurações da Conta",
-    "subtitle": "Personalize seu espaço de trabalho e preferências de comunicação",
-    "appearance": {
-      "title": "Aparência e Marca",
-      "displayMode": "Modo de Exibição",
-      "light": "Modo Claro",
-      "dark": "Modo Escuro",
-      "system": "Preferência do Sistema",
-      "customBrand": "Identidade de Marca Personalizada",
-      "chooseCustomColor": "Escolher cor personalizada"
-    },
-    "language": {
-      "title": "Idioma do Sistema",
-      "label": "Selecione seu idioma preferido"
-    },
-    "communication": {
-      "title": "Canais de Comunicação",
-      "pushNotifications": "Notificações Push",
-      "pushDescription": "Alertas em tempo real no seu navegador",
-      "emailUpdates": "Atualizações por E-mail",
-      "emailDescription": "Resumos e relatórios",
-      "smsWhatsapp": "SMS e WhatsApp",
-      "smsDescription": "Alertas de segurança urgentes do sistema",
-      "updatePreferences": "Atualizar Preferências"
-    }
-  },
-  "profile": {
-    "title": "Meu Perfil",
-    "subtitle": "Gerencie sua identidade pública e segurança",
-    "personalInformation": {
-      "title": "Informações Pessoais",
-      "subtitle": "Atualize sua identidade e avatar",
-      "avatarSource": "Origem do Avatar",
-      "url": "URL",
-      "upload": "Enviar",
-      "imageUrl": "URL da Imagem",
-      "chooseImageFile": "Escolher Arquivo de Imagem",
-      "acceptedFormats": "PNG, JPG ou GIF (Máx 2MB)",
-      "fullName": "Nome Completo",
-      "emailAddress": "Endereço de E-mail",
-      "phoneNumber": "Número de Telefone",
-      "bio": "Biografia",
-      "saveChanges": "Salvar Alterações"
-    },
-    "updatePassword": {
-      "title": "Atualizar Senha",
-      "subtitle": "Garanta que sua conta permaneça segura",
-      "currentPassword": "Senha Atual",
-      "newPassword": "Nova Senha",
-      "confirmPassword": "Confirmar Nova Senha",
-      "clear": "Limpar",
-      "updatePassword": "Atualizar Senha"
-    }
-  },
-  "feedback": {
-    "title": "Centro de Feedback",
-    "subtitle": "Diga-nos o que está em sua mente. Estamos ouvindo!",
-    "sendFeedback": "Enviar Feedback",
-    "closeForm": "Fechar Formulário",
-    "category": "Categoria",
-    "categories": {
-      "ui_ux": "Design UI/UX",
-      "feature_request": "Solicitação de Recurso",
-      "bug_report": "Relatório de Bug",
-      "performance": "Desempenho",
-      "other": "Outro"
-    },
-    "section": "Onde no sistema?",
-    "sectionPlaceholder": "ex: Barra lateral do Painel",
-    "subject": "Assunto",
-    "subjectPlaceholder": "Resumo do seu feedback",
-    "message": "Sua Mensagem",
-    "messagePlaceholder": "Conte-nos mais detalhes...",
-    "rateExperience": "Avalie sua experiência",
-    "ratings": {
-      "disappointing": "Desapontante",
-      "average": "Média",
-      "good": "Bom",
-      "great": "Ótimo",
-      "amazing": "Incrível!"
-    },
-    "discard": "Descartar",
-    "submit": "Enviar Feedback",
-    "recentFeedback": "Feedback Recente",
-    "total": "total",
-    "noFeedback": "Você ainda não enviou nenhum feedback",
-    "feedbackSubmitted": "Obrigado! Seu feedback foi enviado com sucesso."
-  },
-  "faq": {
-    "title": "Perguntas Frequentes",
-    "searchPlaceholder": "Procure ajuda...",
-    "noResults": "Nenhum resultado encontrado para"
-  },
-  "support": {
-    "title": "Tickets de Suporte",
-    "subtitle": "Precisa de ajuda? Estamos aqui para você",
-    "createTicket": "Criar Novo Ticket",
-    "ticketTitle": "Título do Ticket",
-    "description": "Descrição",
-    "priority": "Prioridade",
-    "status": "Status",
-    "submit": "Enviar Ticket"
-  },
-  "theme": {
-    "light": "Modo Claro",
-    "dark": "Modo Escuro",
-    "system": "Preferência do Sistema",
-    "customBrand": "Identidade de Marca Personalizada",
-    "applyColor": "Aplicar"
   },
   "buttons": {
     "save": "Salvar",
@@ -269,13 +272,5 @@
     "last": "Último",
     "previous": "Anterior",
     "next": "Próximo"
-  },
-  "search": {
-    "clear": "Limpar pesquisa",
-    "noResults": "Nenhum resultado encontrado",
-    "searchResults": "Resultados da pesquisa"
-  },
-  "breadcrumb": {
-    "homeTitle": "Voltar para a página inicial"
   }
 }

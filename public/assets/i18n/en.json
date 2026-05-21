@@ -1,4 +1,30 @@
 {
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your admin dashboard",
+      "email": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "signIn": "Sign In",
+      "authenticating": "Authenticating...",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create one here",
+      "loginSuccessfull": "Login successful!",
+      "loginError": "Error occurred while trying to login",
+      "loginErrorClose": "Close",
+      "invalidCredentials": "Invalid credentials",
+      "accessDenied": "Access denied: This user belongs to tenant",
+      "sessionFailed": "Failed to restore session from localStorage:",
+      "userTenant": "[Auth] User Tenant",
+      "urlTenant": "URL Tenant"
+    },
+    "logout": {
+      "logout": "Logout"
+    }
+  },
   "menu": {
     "dashboard": "Dashboard",
     "content": "Content",
@@ -27,7 +53,8 @@
     "profile": "Profile",
     "accountSettings": "Account Settings",
     "securityPrivacy": "Security & Privacy",
-    "accountFeedback": "Account Feedback"
+    "accountFeedback": "Account Feedback",
+    "noMenuItemsFound": "No menu items found!"
   },
   "toolbar": {
     "theme": {
@@ -35,8 +62,8 @@
       "light": "Light Mode",
       "dark": "Dark Mode",
       "system": "System Preference",
-      "custom": "Custom Brand Identity",
-      "applyCustom": "Apply ",
+      "customBrand": "Custom Brand Identity",
+      "applyColor": "Apply ",
       "customColor": "Choose custom color"
     },
     "language": {
@@ -72,142 +99,119 @@
     "search": "Search...",
     "clearSearchBt": "Clear search"
   },
-  "auth": {
-    "login": {
-      "title": "Welcome Back",
-      "subtitle": "Sign in to your admin dashboard",
-      "email": "Email Address",
-      "emailPlaceholder": "your.email@example.com",
-      "password": "Password",
-      "rememberMe": "Remember me",
-      "signIn": "Sign In",
-      "authenticating": "Authenticating...",
-      "forgotPassword": "Forgot your password?",
-      "noAccount": "Don't have an account?",
-      "createAccount": "Create one here",
-      "loginSuccessfull": "Login successful!",
-      "loginError": "Error occurred while trying to login",
-      "loginErrorClose": "Close",
-      "invalidCredentials": "Invalid credentials",
-      "accessDenied": "Access denied: This user belongs to tenant",
-      "sessionFailed": "Failed to restore session from localStorage:",
-      "userTenant": "[Auth] User Tenant",
-      "urlTenant": "URL Tenant"
+  "breadcrumb": {
+    "homeTitle": "Return to homepage"
+  },
+  "pages": {
+    "settings": {
+      "title": "Account Settings",
+      "subtitle": "Customize your workspace and communication preferences",
+      "appearance": {
+        "title": "Appearance & Branding",
+        "displayMode": "Display Mode",
+        "light": "Light Mode",
+        "dark": "Dark Mode",
+        "system": "System Preference",
+        "customBrand": "Custom Brand Identity",
+        "chooseCustomColor": "Choose custom color"
+      },
+      "language": {
+        "title": "System Language",
+        "label": "Select your preferred language"
+      },
+      "communication": {
+        "title": "Communication Channels",
+        "pushNotifications": "Push Notifications",
+        "pushDescription": "Real-time alerts in your browser",
+        "emailUpdates": "Email Updates",
+        "emailDescription": "Summaries and reports",
+        "smsWhatsapp": "SMS & WhatsApp",
+        "smsDescription": "Urgent system security alerts",
+        "updatePreferences": "Update Preferences"
+      }
     },
-    "logout": {
-      "logout": "Logout"
+    "profile": {
+      "title": "My Profile",
+      "subtitle": "Manage your public identity and security",
+      "personalInformation": {
+        "title": "Personal Information",
+        "subtitle": "Update your identity and avatar",
+        "avatarSource": "Avatar Source",
+        "url": "URL",
+        "upload": "Upload",
+        "imageUrl": "Image URL",
+        "chooseImageFile": "Choose Image File",
+        "acceptedFormats": "PNG, JPG or GIF (Max 2MB)",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "phoneNumber": "Phone Number",
+        "bio": "Bio",
+        "saveChanges": "Save Changes"
+      },
+      "updatePassword": {
+        "title": "Update Password",
+        "subtitle": "Ensure your account stays secure",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "clear": "Clear",
+        "updatePassword": "Update Password"
+      }
+    },
+    "feedback": {
+      "title": "Feedback Center",
+      "subtitle": "Tell us what's on your mind. We're listening!",
+      "sendFeedback": "Send Feedback",
+      "closeForm": "Close Form",
+      "category": "Category",
+      "categories": {
+        "ui_ux": "UI/UX Design",
+        "feature_request": "Feature Request",
+        "bug_report": "Bug Report",
+        "performance": "Performance",
+        "other": "Other"
+      },
+      "section": "Where in the system?",
+      "sectionPlaceholder": "e.g. Dashboard Sidebar",
+      "subject": "Subject",
+      "subjectPlaceholder": "Summary of your feedback",
+      "message": "Your Message",
+      "messagePlaceholder": "Tell us more details...",
+      "rateExperience": "Rate your experience",
+      "ratings": {
+        "disappointing": "Disappointing",
+        "average": "Average",
+        "good": "Good",
+        "great": "Great",
+        "amazing": "Amazing!"
+      },
+      "discard": "Discard",
+      "submit": "Submit Feedback",
+      "recentFeedback": "Recent Feedback",
+      "total": "total",
+      "noFeedback": "You haven't submitted any feedback yet",
+      "feedbackSubmitted": "Thank you! Your feedback has been submitted successfully."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "searchPlaceholder": "Search for help...",
+      "noResults": "No matches found for"
+    },
+    "support": {
+      "title": "Support Tickets",
+      "subtitle": "Need help? We're here for you",
+      "createTicket": "Create New Ticket",
+      "ticketTitle": "Ticket Title",
+      "description": "Description",
+      "priority": "Priority",
+      "status": "Status",
+      "submit": "Submit Ticket"
+    },
+    "search": {
+      "clear": "Clear search",
+      "noResults": "No results found",
+      "searchResults": "Search results"
     }
-  },
-  "settings": {
-    "title": "Account Settings",
-    "subtitle": "Customize your workspace and communication preferences",
-    "appearance": {
-      "title": "Appearance & Branding",
-      "displayMode": "Display Mode",
-      "light": "Light Mode",
-      "dark": "Dark Mode",
-      "system": "System Preference",
-      "customBrand": "Custom Brand Identity",
-      "chooseCustomColor": "Choose custom color"
-    },
-    "language": {
-      "title": "System Language",
-      "label": "Select your preferred language"
-    },
-    "communication": {
-      "title": "Communication Channels",
-      "pushNotifications": "Push Notifications",
-      "pushDescription": "Real-time alerts in your browser",
-      "emailUpdates": "Email Updates",
-      "emailDescription": "Summaries and reports",
-      "smsWhatsapp": "SMS & WhatsApp",
-      "smsDescription": "Urgent system security alerts",
-      "updatePreferences": "Update Preferences"
-    }
-  },
-  "profile": {
-    "title": "My Profile",
-    "subtitle": "Manage your public identity and security",
-    "personalInformation": {
-      "title": "Personal Information",
-      "subtitle": "Update your identity and avatar",
-      "avatarSource": "Avatar Source",
-      "url": "URL",
-      "upload": "Upload",
-      "imageUrl": "Image URL",
-      "chooseImageFile": "Choose Image File",
-      "acceptedFormats": "PNG, JPG or GIF (Max 2MB)",
-      "fullName": "Full Name",
-      "emailAddress": "Email Address",
-      "phoneNumber": "Phone Number",
-      "bio": "Bio",
-      "saveChanges": "Save Changes"
-    },
-    "updatePassword": {
-      "title": "Update Password",
-      "subtitle": "Ensure your account stays secure",
-      "currentPassword": "Current Password",
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm New Password",
-      "clear": "Clear",
-      "updatePassword": "Update Password"
-    }
-  },
-  "feedback": {
-    "title": "Feedback Center",
-    "subtitle": "Tell us what's on your mind. We're listening!",
-    "sendFeedback": "Send Feedback",
-    "closeForm": "Close Form",
-    "category": "Category",
-    "categories": {
-      "ui_ux": "UI/UX Design",
-      "feature_request": "Feature Request",
-      "bug_report": "Bug Report",
-      "performance": "Performance",
-      "other": "Other"
-    },
-    "section": "Where in the system?",
-    "sectionPlaceholder": "e.g. Dashboard Sidebar",
-    "subject": "Subject",
-    "subjectPlaceholder": "Summary of your feedback",
-    "message": "Your Message",
-    "messagePlaceholder": "Tell us more details...",
-    "rateExperience": "Rate your experience",
-    "ratings": {
-      "disappointing": "Disappointing",
-      "average": "Average",
-      "good": "Good",
-      "great": "Great",
-      "amazing": "Amazing!"
-    },
-    "discard": "Discard",
-    "submit": "Submit Feedback",
-    "recentFeedback": "Recent Feedback",
-    "total": "total",
-    "noFeedback": "You haven't submitted any feedback yet",
-    "feedbackSubmitted": "Thank you! Your feedback has been submitted successfully."
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "searchPlaceholder": "Search for help...",
-    "noResults": "No matches found for"
-  },
-  "support": {
-    "title": "Support Tickets",
-    "subtitle": "Need help? We're here for you",
-    "createTicket": "Create New Ticket",
-    "ticketTitle": "Ticket Title",
-    "description": "Description",
-    "priority": "Priority",
-    "status": "Status",
-    "submit": "Submit Ticket"
-  },
-  "theme": {
-    "light": "Light Mode",
-    "dark": "Dark Mode",
-    "system": "System Preference",
-    "customBrand": "Custom Brand Identity",
-    "applyColor": "Apply"
   },
   "buttons": {
     "save": "Save",
@@ -269,13 +273,5 @@
     "last": "Last",
     "previous": "Previous",
     "next": "Next"
-  },
-  "search": {
-    "clear": "Clear search",
-    "noResults": "No results found",
-    "searchResults": "Search results"
-  },
-  "breadcrumb": {
-    "homeTitle": "Return to homepage"
   }
 }

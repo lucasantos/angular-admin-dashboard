@@ -7,10 +7,11 @@ import { RouterModule } from '@angular/router';
 import { MenuItems } from '../../models/menu-item';
 import { MenuItem } from "../menu-item/menu-item";
 import { AuthService } from '../../services/auth.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-custom-sidenav',
-  imports: [CommonModule, MatListModule, MatIconModule, RouterModule, MatTooltipModule, MenuItem],
+  imports: [CommonModule, MatListModule, MatIconModule, RouterModule, MatTooltipModule, MenuItem, TranslocoPipe],
   templateUrl: './custom-sidenav.html',
   styleUrl: './custom-sidenav.scss',
 })
