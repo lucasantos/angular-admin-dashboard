@@ -28,8 +28,6 @@ export class LanguageService {
   readonly currentLanguage = signal<LanguageCode>(this.getInitialLanguage());
 
   constructor() {
-    this.translocoService.setActiveLang(this.currentLanguage());
-
     effect(() => {
       const lang = this.currentLanguage();
       this.translocoService.setActiveLang(lang);
