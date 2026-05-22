@@ -103,6 +103,37 @@
     "homeTitle": "Return to homepage"
   },
   "pages": {
+    "profile": {
+      "title": "My Profile",
+      "subtitle": "Manage your public identity and security.",
+      "personalInformation": {
+        "title": "Personal Information",
+        "subtitle": "Update your identity and avatar",
+        "avatarSource": "Avatar Source",
+        "url": "URL",
+        "upload": "Upload",
+        "imageUrl": "Image URL",
+        "chooseImageFile": "Choose Image File",
+        "acceptedFormats": "PNG, JPG or GIF (Max 2MB)",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "phoneNumber": "Phone Number",
+        "bio": "Bio",
+        "saveChanges": "Save Changes",
+        "profileUpdated": "Profile updated successfully!"
+      },
+      "updatePassword": {
+        "title": "Update Password",
+        "subtitle": "Ensure your account stays secure",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "clear": "Clear",
+        "updatePassword": "Update Password",
+        "passwordComparison": "New password and confirmation do not match!",
+        "passwordUpdated": "Password changed successfully!"
+      }
+    },
     "settings": {
       "title": "Account Settings",
       "subtitle": "Customize your workspace and communication preferences",
@@ -128,34 +159,6 @@
         "smsWhatsapp": "SMS & WhatsApp",
         "smsDescription": "Urgent system security alerts",
         "updatePreferences": "Update Preferences"
-      }
-    },
-    "profile": {
-      "title": "My Profile",
-      "subtitle": "Manage your public identity and security",
-      "personalInformation": {
-        "title": "Personal Information",
-        "subtitle": "Update your identity and avatar",
-        "avatarSource": "Avatar Source",
-        "url": "URL",
-        "upload": "Upload",
-        "imageUrl": "Image URL",
-        "chooseImageFile": "Choose Image File",
-        "acceptedFormats": "PNG, JPG or GIF (Max 2MB)",
-        "fullName": "Full Name",
-        "emailAddress": "Email Address",
-        "phoneNumber": "Phone Number",
-        "bio": "Bio",
-        "saveChanges": "Save Changes"
-      },
-      "updatePassword": {
-        "title": "Update Password",
-        "subtitle": "Ensure your account stays secure",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password",
-        "clear": "Clear",
-        "updatePassword": "Update Password"
       }
     },
     "feedback": {

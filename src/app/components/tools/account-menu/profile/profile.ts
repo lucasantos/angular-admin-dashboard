@@ -10,6 +10,7 @@ import { UserService } from '../../../../services/user.service';
 import { MatDivider } from "@angular/material/divider";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { AuthService } from '../../../../services/auth.service';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ import { AuthService } from '../../../../services/auth.service';
     MatSnackBarModule,
     MatDivider,
     MatButtonToggleModule,
+    TranslocoDirective
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
@@ -31,6 +33,7 @@ export class Profile implements OnInit {
   private readonly fb = inject(FormBuilder);
   protected readonly userService = inject(UserService);
   protected readonly authService = inject(AuthService);
+  private readonly translocoService = inject(TranslocoService);
   private readonly snackBar = inject(MatSnackBar);
 
   // Signal to toggle between avatar URL and file upload modes
@@ -87,9 +90,13 @@ export class Profile implements OnInit {
   saveProfile() {
     if (this.profileForm.valid) {
       this.userService.updateProfile(this.profileForm.value as any);
-      this.snackBar.open('Profile updated successfully!', 'Close', {
-        duration: 3000,
-      });
+      this.snackBar.open(
+        this.translocoService.translate('pages.profile.personalInformation.profileUpdated'),
+        this.translocoService.translate('buttons.close'),
+        {
+          duration: 3000,
+        },
+      );
       this.isEditing.set(false);
     }
   }
@@ -98,14 +105,22 @@ export class Profile implements OnInit {
     if (this.passwordForm.valid) {
       // TO DO: Add logic to verify newPassword === confirmPassword
       if (this.passwordForm.value.newPassword !== this.passwordForm.value.confirmPassword) {
-        this.snackBar.open('New password and confirmation do not match!', 'Close', {
-          duration: 3000,
-        });
+        this.snackBar.open(
+          this.translocoService.translate('pages.profile.updatePassword.passwordComparison'),
+          this.translocoService.translate('buttons.close'),
+          {
+            duration: 3000,
+          },
+        );
         return;
       }
-      this.snackBar.open('Password changed successfully!', 'Close', {
-        duration: 3000,
-      });
+      this.snackBar.open(
+        this.translocoService.translate('pages.profile.updatePassword.passwordUpdated'),
+        this.translocoService.translate('buttons.close'),
+        {
+          duration: 3000,
+        },
+      );
       this.passwordForm.reset();
     }
   }

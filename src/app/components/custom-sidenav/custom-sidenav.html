@@ -1,6 +1,6 @@
 <div class="sidenav-header">
   <img [width]="profilePicSize()" [height]="profilePicSize()"
-    [src]="authService.currentUser()?.avatarUrl || '/assets/images/default-avatar.png'" alt="Profile"
+    [src]="authService.currentUser()?.avatarUrl || '/assets/images/default-avatar.png'" alt="{{ 'toolbar.account.avatarAltText' | transloco }}"
     class="profile-image">
 
   <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">

@@ -1,17 +1,17 @@
-<div class="profile-container">
+<div class="profile-container" *transloco="let t">
   <header class="section-header">
-    <h1 class="mat-headline-medium">My Profile</h1>
-    <p class="mat-body-large opacity-70">Manage your public identity and security.</p>
+    <h1 class="mat-headline-medium">{{ t('pages.profile.title') }}</h1>
+    <p class="mat-body-large opacity-70">{{ t('pages.profile.subtitle') }}</p>
   </header>
 
   <div class="grid-layout">
     <mat-card appearance="outlined" class="profile-card">
       <mat-card-header>
         <div mat-card-avatar class="user-avatar">
-          <img [src]="authService.currentUser()?.avatarUrl" alt="Avatar">
+          <img [src]="authService.currentUser()?.avatarUrl" alt="{{ t('toolbar.account.avatarAltText') }}">
         </div>
-        <mat-card-title>Personal Information</mat-card-title>
-        <mat-card-subtitle>Update your identity and avatar</mat-card-subtitle>
+        <mat-card-title>{{ t('pages.profile.personalInformation.title') }}</mat-card-title>
+        <mat-card-subtitle>{{ t('pages.profile.personalInformation.subtitle') }}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
@@ -24,15 +24,15 @@
           </div>
 
           <div class="avatar-controls">
-            <label class="mat-body-small">Avatar Source:</label>
+            <label class="mat-body-small">{{ t('pages.profile.personalInformation.avatarSource') }}:</label>
             <mat-button-toggle-group [value]="avatarMode()" (change)="avatarMode.set($event.value)">
-              <mat-button-toggle value="url">URL</mat-button-toggle>
-              <mat-button-toggle value="upload">Upload</mat-button-toggle>
+              <mat-button-toggle value="url">{{ t('pages.profile.personalInformation.url') }}</mat-button-toggle>
+              <mat-button-toggle value="upload">{{ t('pages.profile.personalInformation.upload') }}</mat-button-toggle>
             </mat-button-toggle-group>
 
             @if (avatarMode() === 'url') {
             <mat-form-field appearance="outline" class="full-width mt-10">
-              <mat-label>Image URL</mat-label>
+              <mat-label>{{ t('pages.profile.personalInformation.imageUrl') }}</mat-label>
               <input matInput [formControl]="$any(profileForm.get('avatarUrl'))" placeholder="https://...">
               <mat-icon matSuffix>link</mat-icon>
             </mat-form-field>
@@ -40,10 +40,10 @@
             <div class="upload-zone mt-10">
               <button mat-stroked-button (click)="fileInput.click()">
                 <mat-icon>upload_file</mat-icon>
-                Choose Image File
+                {{ t('pages.profile.personalInformation.chooseImageFile') }}
               </button>
               <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
-              <span class="mat-body-small opacity-70">PNG, JPG or GIF (Max 2MB)</span>
+              <span class="mat-body-small opacity-70">{{ t('pages.profile.personalInformation.acceptedFormats') }}</span>
             </div>
             }
           </div>
@@ -54,24 +54,24 @@
         <form [formGroup]="profileForm" class="standard-form">
           <div class="form-row">
             <mat-form-field appearance="outline">
-              <mat-label>Full Name</mat-label>
+              <mat-label>{{ t('pages.profile.personalInformation.fullName') }}</mat-label>
               <input matInput formControlName="name">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-              <mat-label>Email Address</mat-label>
+              <mat-label>{{ t('pages.profile.personalInformation.emailAddress') }}</mat-label>
               <input matInput formControlName="email" type="email">
             </mat-form-field>
           </div>
 
           <mat-form-field appearance="outline">
-            <mat-label>Phone Number</mat-label>
+            <mat-label>{{ t('pages.profile.personalInformation.phoneNumber') }}</mat-label>
             <input matInput formControlName="phone">
             <mat-icon matPrefix>phone</mat-icon>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Bio</mat-label>
+            <mat-label>{{ t('pages.profile.personalInformation.bio') }}</mat-label>
             <textarea matInput formControlName="bio" rows="3"></textarea>
           </mat-form-field>
         </form>
@@ -79,7 +79,7 @@
 
       <mat-card-actions align="end">
         <button mat-flat-button (click)="saveProfile()" [disabled]="profileForm.invalid || profileForm.pristine">
-          Save Changes
+          {{ t('pages.profile.personalInformation.saveChanges') }}
         </button>
       </mat-card-actions>
     </mat-card>
@@ -87,14 +87,14 @@
     <mat-card appearance="outlined" class="security-card">
       <mat-card-header>
         <mat-icon mat-card-avatar color="primary">lock_reset</mat-icon>
-        <mat-card-title>Update Password</mat-card-title>
-        <mat-card-subtitle>Ensure your account stays secure</mat-card-subtitle>
+        <mat-card-title>{{ t('pages.profile.updatePassword.title') }}</mat-card-title>
+        <mat-card-subtitle>{{ t('pages.profile.updatePassword.subtitle') }}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
         <form [formGroup]="passwordForm" class="standard-form">
           <mat-form-field appearance="outline">
-            <mat-label>Current Password</mat-label>
+            <mat-label>{{ t('pages.profile.updatePassword.currentPassword') }}</mat-label>
             <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="currentPassword">
             <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
               <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -102,7 +102,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>New Password</mat-label>
+            <mat-label>{{ t('pages.profile.updatePassword.newPassword') }}</mat-label>
             <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="newPassword">
             <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
               <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -110,7 +110,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Confirm New Password</mat-label>
+            <mat-label>{{ t('pages.profile.updatePassword.confirmPassword') }}</mat-label>
             <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="confirmPassword">
             <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
               <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -120,9 +120,9 @@
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-button color="warn" (click)="passwordForm.reset()">Clear</button>
+        <button mat-button color="warn" (click)="passwordForm.reset()">{{ t('pages.profile.updatePassword.clear') }}</button>
         <button mat-flat-button color="primary" (click)="updatePassword()" [disabled]="passwordForm.invalid">
-          Update Password
+          {{ t('pages.profile.updatePassword.updatePassword') }}
         </button>
       </mat-card-actions>
     </mat-card>

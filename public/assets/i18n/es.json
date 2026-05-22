@@ -102,6 +102,37 @@
     "homeTitle": "Volver a la página de inicio"
   },
   "pages": {
+    "profile": {
+      "title": "Mi Perfil",
+      "subtitle": "Gestiona tu identidad pública y seguridad.",
+      "personalInformation": {
+        "title": "Información Personal",
+        "subtitle": "Actualiza tu identidad y avatar",
+        "avatarSource": "Origen del Avatar",
+        "url": "URL",
+        "upload": "Subir",
+        "imageUrl": "URL de la Imagen",
+        "chooseImageFile": "Elegir Archivo de Imagen",
+        "acceptedFormats": "PNG, JPG o GIF (Máx 2MB)",
+        "fullName": "Nombre Completo",
+        "emailAddress": "Dirección de Correo",
+        "phoneNumber": "Número de Teléfono",
+        "bio": "Biografía",
+        "saveChanges": "Guardar Cambios",
+        "profileUpdated": "¡Perfil actualizado correctamente!!"
+      },
+      "updatePassword": {
+        "title": "Actualizar Contraseña",
+        "subtitle": "Asegura que tu cuenta se mantenga segura",
+        "currentPassword": "Contraseña Actual",
+        "newPassword": "Nueva Contraseña",
+        "confirmPassword": "Confirmar Nueva Contraseña",
+        "clear": "Limpiar",
+        "updatePassword": "Actualizar Contraseña",
+        "passwordComparison": "¡La nueva contraseña y la confirmación no coinciden!",
+        "passwordUpdated": "¡Contraseña cambiada correctamente!"
+      }
+    },
     "settings": {
       "title": "Configuración de Cuenta",
       "subtitle": "Personaliza tu espacio de trabajo y preferencias de comunicación",
@@ -127,34 +158,6 @@
         "smsWhatsapp": "SMS y WhatsApp",
         "smsDescription": "Alertas de seguridad urgentes del sistema",
         "updatePreferences": "Actualizar Preferencias"
-      }
-    },
-    "profile": {
-      "title": "Mi Perfil",
-      "subtitle": "Gestiona tu identidad pública y seguridad",
-      "personalInformation": {
-        "title": "Información Personal",
-        "subtitle": "Actualiza tu identidad y avatar",
-        "avatarSource": "Origen del Avatar",
-        "url": "URL",
-        "upload": "Subir",
-        "imageUrl": "URL de la Imagen",
-        "chooseImageFile": "Elegir Archivo de Imagen",
-        "acceptedFormats": "PNG, JPG o GIF (Máx 2MB)",
-        "fullName": "Nombre Completo",
-        "emailAddress": "Dirección de Correo",
-        "phoneNumber": "Número de Teléfono",
-        "bio": "Biografía",
-        "saveChanges": "Guardar Cambios"
-      },
-      "updatePassword": {
-        "title": "Actualizar Contraseña",
-        "subtitle": "Asegura que tu cuenta se mantenga segura",
-        "currentPassword": "Contraseña Actual",
-        "newPassword": "Nueva Contraseña",
-        "confirmPassword": "Confirmar Nueva Contraseña",
-        "clear": "Limpiar",
-        "updatePassword": "Actualizar Contraseña"
       }
     },
     "feedback": {
