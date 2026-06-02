@@ -11,6 +11,7 @@ import { SettingsService } from '../../../../services/settings.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ThemeService } from '../../../../services/theme.service';
 import { LanguageService } from '../../../../services/language.service';
+import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-settings',
@@ -24,6 +25,8 @@ import { LanguageService } from '../../../../services/language.service';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    TranslocoDirective,
+    TranslocoPipe
   ],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',

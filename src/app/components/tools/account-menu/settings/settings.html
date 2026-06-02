@@ -1,38 +1,38 @@
-<div class="settings-container">
+<div class="settings-container" *transloco="let t; prefix: 'pages.settings'">
   <header class="section-header">
-    <h1 class="mat-headline-medium">Account Settings</h1>
-    <p class="mat-body-large opacity-70">Customize your workspace and communication preferences.</p>
+    <h1 class="mat-headline-medium">{{ t('title') }}</h1>
+    <p class="mat-body-large opacity-70">{{ t('subtitle') }}.</p>
   </header>
 
   <div class="settings-grid">
     <mat-card appearance="outlined">
       <mat-card-header>
         <mat-icon mat-card-avatar color="primary">palette</mat-icon>
-        <mat-card-title>Appearance & Branding</mat-card-title>
+        <mat-card-title>{{ t('appearance.title') }}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content class="mt-20">
         <div class="setting-item">
-          <span class="mat-body-strong">Display Mode</span>
+          <span class="mat-body-strong">{{ t('appearance.displayMode') }}</span>
           <mat-button-toggle-group [value]="themeService.mode()" (change)="themeService.mode.set($event.value)">
-            <mat-button-toggle value="light" matTooltip="Light mode"><mat-icon>light_mode</mat-icon></mat-button-toggle>
-            <mat-button-toggle value="dark" matTooltip="Dark mode"><mat-icon>dark_mode</mat-icon></mat-button-toggle>
-            <mat-button-toggle value="system" matTooltip="System mode"><mat-icon>auto_mode</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="light" matTooltip="{{ t('appearance.light') }}"><mat-icon>light_mode</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="dark" matTooltip="{{ t('appearance.dark') }}"><mat-icon>dark_mode</mat-icon></mat-button-toggle>
+            <mat-button-toggle value="system" matTooltip="{{ t('appearance.system') }}"><mat-icon>auto_mode</mat-icon></mat-button-toggle>
           </mat-button-toggle-group>
         </div>
 
         <div class="brand-section">
-          <span class="mat-body-strong">Custom Brand Identity</span>
+          <span class="mat-body-strong">{{ t('appearance.customBrand') }}</span>
           <div class="color-grid">
             @for (color of presets; track color) {
-            <button class="color-option" [style.background-color]="color" (click)="setCustomColor(color)"
+            <button class="color-option" [style.background-color]="color" [matTooltip]="t('appearance.applyColor') + color" (click)="setCustomColor(color)"
               [class.is-selected]="themeService.mode() === 'custom' && themeService.customColor() === color">
               @if (themeService.mode() === 'custom' && themeService.customColor() === color) {
               <mat-icon>check</mat-icon>
               }
             </button>
             }
-            <div class="picker-wrapper" matTooltip="Choose custom color">
+            <div class="picker-wrapper" matTooltip="{{ t('appearance.chooseCustomColor') }}">
               <mat-icon>colorize</mat-icon>
               <input type="color" [value]="themeService.customColor()"
                 (input)="setCustomColor($any($event.target).value)">
@@ -43,13 +43,16 @@
         <mat-divider class="my-20"></mat-divider>
 
         <div class="setting-item">
-          <span class="mat-body-strong">System Language</span>
+          <div class="label-group">
+            <span class="mat-body-strong">{{ t('language.title') }}</span>
+            <small>{{ t('language.label') }}</small>
+          </div>
           <mat-form-field appearance="outline" class="dense-field">
             <mat-select [value]="languageService.currentLanguage()" (selectionChange)="languageService.setLanguage($event.value)">
 
               @for (lang of languageService.languages; track lang.code) {
               <mat-option [value]="lang.code">
-                {{ lang.label }}
+                {{ lang.label | transloco }}
               </mat-option>
               }
             </mat-select>
@@ -61,29 +64,29 @@
     <mat-card appearance="outlined" [formGroup]="notifForm">
       <mat-card-header>
         <mat-icon mat-card-avatar color="primary">hub</mat-icon>
-        <mat-card-title>Communication Channels</mat-card-title>
+        <mat-card-title>{{ t('communication.title') }}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content class="mt-20">
         <div class="toggle-list">
           <div class="toggle-item">
             <div class="label-group">
-              <span>Push Notifications</span>
-              <small>Real-time alerts in your browser</small>
+              <span>{{ t('communication.pushNotifications') }}</span>
+              <small>{{ t('communication.pushDescription') }}</small>
             </div>
             <mat-slide-toggle formControlName="push"></mat-slide-toggle>
           </div>
           <div class="toggle-item">
             <div class="label-group">
-              <span>Email Updates</span>
-              <span>Summaries and reports</span>
+              <span>{{ t('communication.emailUpdates') }}</span>
+              <small>{{ t('communication.emailDescription') }}</small>
             </div>
             <mat-slide-toggle formControlName="email"></mat-slide-toggle>
           </div>
           <div class="toggle-item">
             <div class="label-group">
-              <span>SMS & WhatsApp</span>
-              <span>Urgent system security alerts</span>
+              <span>{{ t('communication.smsWhatsapp') }}</span>
+              <small>{{ t('communication.smsDescription') }}</small>
             </div>
             <div class="multi-toggle">
               <mat-icon [color]="notifForm.get('sms')?.value ? 'primary' : ''">sms</mat-icon>
@@ -95,7 +98,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-flat-button color="primary">Update Preferences</button>
+        <button mat-flat-button color="primary">{{ t('communication.updatePreferences') }}</button>
       </mat-card-actions>
     </mat-card>
   </div>

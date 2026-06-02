@@ -24,7 +24,7 @@
   "users": [
     {
       "id": "1",
-      "tenantId": "tenant-a",
+      "tenantId": "default",
       "name": "Lucas Santos",
       "email": "lucas@lucasantos.com",
       "password": "password123",

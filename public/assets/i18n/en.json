@@ -144,6 +144,7 @@
         "dark": "Dark Mode",
         "system": "System Preference",
         "customBrand": "Custom Brand Identity",
+        "applyColor": "Apply ",
         "chooseCustomColor": "Choose custom color"
       },
       "language": {

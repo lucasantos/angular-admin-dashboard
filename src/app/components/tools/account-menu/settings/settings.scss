@@ -62,6 +62,16 @@
   }
 }
 
+.label-group {
+  display: flex;
+  flex-direction: column;
+
+  small {
+    opacity: 0.6;
+    font-size: 0.75rem;
+  }
+}
+
 .toggle-item {
   display: flex;
   justify-content: space-between;
@@ -70,16 +80,6 @@
 
   &:last-child {
     border: none;
-  }
-
-  .label-group {
-    display: flex;
-    flex-direction: column;
-
-    small {
-      opacity: 0.6;
-      font-size: 0.75rem;
-    }
   }
 }
 
