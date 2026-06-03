@@ -161,6 +161,51 @@
         "updatePreferences": "Actualizar Preferencias"
       }
     },
+    "securityPrivacy": {
+      "title": "Seguridad y Privacidad",
+      "subtitle": "Gestiona tu protección de datos y protocolos de seguridad de cuenta.",
+      "privaPolicyAwareness": {
+        "title": "Política de Privacidad y Conciencia",
+        "description": "Nuestro sistema prioriza tu soberanía de datos. Utilizamos encriptación de extremo a extremo para todos los tickets de soporte sensibles e identificadores personales. Al marcar las casillas a continuación, reconoces que has leído nuestra Actualización de Privacidad de Datos 2026.",
+        "securityForm": {
+          "awareOfTerms": "Confirmo que soy consciente de los protocolos de seguridad y términos de privacidad.",
+          "allowDataProcessing": "Permitir procesamiento de datos anonimizados para mejorar características de IA.",
+          "publicProfile": "Hacer visible mi perfil a otros miembros del equipo.",
+          "confirmButton": "Confirmar Reconocimiento"
+        }
+      },
+      "twoFactorAuth": {
+        "title": "Autenticación de Dos Factores (2FA)",
+        "secureLogin": "Inicio de Sesión Seguro",
+        "description": "Añade una capa adicional de seguridad a tu cuenta. Habilita 2FA para requerir una segunda forma de verificación al iniciar sesión, como un código de una aplicación de autenticador o un mensaje de texto. Esto ayuda a proteger tu cuenta incluso si tu contraseña se ha comprometido.",
+        "2FAEnabled": "2FA está activo a través de la Aplicación de Autenticador"
+      },
+      "dataManagement": {
+        "title": "Gestión de Datos",
+        "downloadData": "Descargar Datos Personales",
+        "exportData": "Exportar datos",
+        "description": "Solicita una copia de tus datos personales en un formato legible por máquina. Respetamos tu derecho a acceder y controlar tu información."
+      },
+      "accountActivity": {
+        "title": "Actividad de Cuenta",
+        "description": "Revisa la actividad de inicio de sesión reciente y gestiona las sesiones activas. Si notas cualquier actividad sospechosa, puedes cerrar sesión de todas las sesiones y cambiar tu contraseña inmediatamente.",
+        "activeSession": "Actual",
+        "lastLogin": "Último Inicio de Sesión",
+        "ipAddress": "Dirección IP",
+        "device": "Dispositivo",
+        "location": "Ubicación",
+        "logoutDevice": "Cerrar sesión desde este dispositivo",
+        "logoutAll": "Cerrar sesión de todas las sesiones",
+        "noSessions": "No se encontraron sesiones activas.",
+        "sessionsCount": "Contar sesiones activas",
+        "countSessions": "sesiones totales",
+        "countActiveSessions": "sesiones activas"
+      },
+      "deleteAccount": {
+        "title": "Eliminar Cuenta",
+        "description": "Si deseas eliminar tu cuenta, ten en cuenta que esta acción es irreversible. Todos tus datos se eliminarán permanentemente de nuestro sistema. Si tienes alguna inquietud o pregunta sobre la eliminación de la cuenta, comunícate con nuestro equipo de soporte antes de proceder."
+      }
+    },
     "feedback": {
       "title": "Centro de Retroalimentación",
       "subtitle": "Cuéntanos qué está en tu mente. ¡Estamos escuchando!",

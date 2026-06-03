@@ -1,3 +1,18 @@
+.settings-container {
+  padding-bottom: 32px;
+  max-width: 100%;
+  margin: 0 auto;
+
+  .section-header {
+    margin-bottom: 32px;
+
+    h1 {
+      color: var(--mat-sys-on-surface);
+      margin-bottom: 4px;
+    }
+  }
+}
+
 .settings-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

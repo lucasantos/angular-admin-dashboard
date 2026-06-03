@@ -161,6 +161,51 @@
         "updatePreferences": "Atualizar Preferências"
       }
     },
+    "securityPrivacy": {
+      "title": "Segurança e Privacidade",
+      "subtitle": "Gerencie sua proteção de dados e protocolos de segurança de conta.",
+      "privaPolicyAwareness": {
+        "title": "Política de Privacidade e Conscientização",
+        "description": "Nosso sistema prioriza sua soberania de dados. Usamos criptografia de ponta a ponta para todos os tickets de suporte sensíveis e identificadores pessoais. Ao marcar as caixas abaixo, você reconhece que leu nossa Atualização de Privacidade de Dados 2026.",
+        "securityForm": {
+          "awareOfTerms": "Confirmo que estou ciente dos protocolos de segurança e termos de privacidade.",
+          "allowDataProcessing": "Permitir o processamento de dados anonimizados para melhorar recursos de IA.",
+          "publicProfile": "Tornar meu perfil visível para outros membros da equipe.",
+          "confirmButton": "Confirmar Reconhecimento"
+        }
+      },
+      "twoFactorAuth": {
+        "title": "Autenticação de Dois Fatores (2FA)",
+        "secureLogin": "Login Seguro",
+        "description": "Adicione uma camada extra de segurança à sua conta. Ative 2FA para exigir uma segunda forma de verificação ao fazer login, como um código de um aplicativo autenticador ou uma mensagem de texto. Isso ajuda a proteger sua conta mesmo se sua senha for comprometida.",
+        "2FAEnabled": "2FA está Ativo via Aplicativo Autenticador"
+      },
+      "dataManagement": {
+        "title": "Gerenciamento de Dados",
+        "downloadData": "Baixar Dados Pessoais",
+        "exportData": "Exportar dados",
+        "description": "Solicite uma cópia de seus dados pessoais em um formato legível por máquina. Respeitamos seu direito de acessar e controlar suas informações."
+      },
+      "accountActivity": {
+        "title": "Atividade da Conta",
+        "description": "Revise atividade de login recente e gerencie sessões ativas. Se notar qualquer atividade suspeita, você pode fazer logout de todas as sessões e alterar sua senha imediatamente.",
+        "activeSession": "Atual",
+        "lastLogin": "Último Login",
+        "ipAddress": "Endereço IP",
+        "device": "Dispositivo",
+        "location": "Localização",
+        "logoutDevice": "Fazer logout deste dispositivo",
+        "logoutAll": "Fazer logout de todas as sessões",
+        "noSessions": "Nenhuma sessão ativa encontrada.",
+        "sessionsCount": "Contar sessões ativas",
+        "countSessions": "total de sessões",
+        "countActiveSessions": "sessões ativas"
+      },
+      "deleteAccount": {
+        "title": "Excluir Conta",
+        "description": "Se deseja excluir sua conta, esteja ciente de que esta ação é irreversível. Todos os seus dados serão removidos permanentemente do nosso sistema. Se tiver dúvidas ou perguntas sobre a exclusão de conta, entre em contato com nossa equipe de suporte antes de prosseguir."
+      }
+    },
     "feedback": {
       "title": "Centro de Feedback",
       "subtitle": "Diga-nos o que está em sua mente. Estamos ouvindo!",

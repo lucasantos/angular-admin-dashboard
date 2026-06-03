@@ -162,6 +162,51 @@
         "updatePreferences": "Update Preferences"
       }
     },
+    "securityPrivacy": {
+      "title": "Security & Privacy",
+      "subtitle": "Manage your data protection and account safety protocols.",
+      "privaPolicyAwareness": {
+        "title": "Privacy Policy & Awareness",
+        "description": "Our system prioritizes your data sovereignty. We use end-to-end encryption for all sensitive support tickets and personal identifiers. By checking the boxes below, you acknowledge that you have read our 2026 Data Privacy Update.",
+        "securityForm": {
+          "awareOfTerms": "I confirm that I am aware of the security protocols and privacy terms.",
+          "allowDataProcessing": "Allow anonymized data processing to improve AI features.",
+          "publicProfile": "Make my profile visible to other team members.",
+          "confirmButton": "Confirm Acknowledgement"
+        }
+      },
+      "twoFactorAuth": {
+        "title": "Two-Factor Authentication (2FA)",
+        "secureLogin": "Secure Login",
+        "description": "Add an extra layer of security to your account. Enable 2FA to require a second form of verification when logging in, such as a code from an authenticator app or a text message. This helps protect your account even if your password is compromised.",
+        "2FAEnabled": "2FA is Active via Authenticator App"
+      },
+      "dataManagement": {
+        "title": "Data Management",
+        "downloadData": "Download Personal Data",
+        "exportData": "Export data",
+        "description": "Request a copy of your personal data in a machine-readable format. We respect your right to access and control your information."
+      },
+      "accountActivity": {
+        "title": "Account Activity",
+        "description": "Review recent login activity and manage active sessions. If you notice any suspicious activity, you can log out of all sessions and change your password immediately.",
+        "activeSession": "Current",
+        "lastLogin": "Last Login",
+        "ipAddress": "IP Address",
+        "device": "Device",
+        "location": "Location",
+        "logoutDevice": "Logout from this device",
+        "logoutAll": "Logout of all sessions",
+        "noSessions": "No active sessions found.",
+        "sessionsCount": "Count active session(s)",
+        "countSessions": "total sessions",
+        "countActiveSessions": "active sessions"
+      },
+      "deleteAccount": {
+        "title": "Delete Account",
+        "description": "If you wish to delete your account, please be aware that this action is irreversible. All your data will be permanently removed from our system. If you have any concerns or questions about account deletion, please contact our support team before proceeding."
+      }
+    },
     "feedback": {
       "title": "Feedback Center",
       "subtitle": "Tell us what's on your mind. We're listening!",

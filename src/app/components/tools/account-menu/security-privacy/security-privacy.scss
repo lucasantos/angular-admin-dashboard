@@ -1,7 +1,16 @@
 .security-container {
-  padding: 32px;
-  max-width: 1200px;
+  padding-bottom: 32px;
+  max-width: 100%;
   margin: 0 auto;
+
+  .section-header {
+    margin-bottom: 32px;
+
+    h1 {
+      color: var(--mat-sys-on-surface);
+      margin-bottom: 4px;
+    }
+  }
 }
 
 .security-grid {
@@ -11,6 +20,16 @@
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
+  }
+}
+
+.label-group {
+  display: flex;
+  flex-direction: column;
+
+  small {
+    opacity: 0.6;
+    font-size: 0.75rem;
   }
 }
 
@@ -60,10 +79,31 @@
   color: var(--mat-sys-primary);
 }
 
+.no-sessions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+
+  mat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    color: var(--mat-sys-primary);
+  }
+}
+
 .mt-10 {
   margin-top: 10px;
 }
 
 .mt-20 {
   margin-top: 20px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
 }

@@ -1,36 +1,34 @@
-<div class="security-container">
+<div class="security-container" *transloco="let t; prefix: 'pages.securityPrivacy'">
   <header class="section-header">
-    <h1 class="mat-headline-medium">Security & Privacy</h1>
-    <p class="mat-body-large opacity-70">Manage your data protection and account safety protocols.</p>
+    <h1 class="mat-headline-medium">{{ t('title') }}</h1>
+    <p class="mat-body-large opacity-70">{{ t('subtitle') }}</p>
   </header>
 
   <div class="security-grid">
     <mat-card appearance="outlined" class="compliance-card">
       <mat-card-header>
         <mat-icon mat-card-avatar color="primary">gavel</mat-icon>
-        <mat-card-title>Privacy Policy & Awareness</mat-card-title>
+        <mat-card-title>{{ t('privaPolicyAwareness.title') }}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content class="mt-20">
         <div class="policy-text-box">
           <p class="mat-body-small">
-            Our system prioritizes your data sovereignty. We use end-to-end encryption for all sensitive
-            support tickets and personal identifiers. By checking the boxes below, you acknowledge
-            that you have read our 2026 Data Privacy Update.
+            {{ t('privaPolicyAwareness.description') }}
           </p>
         </div>
 
         <form [formGroup]="securityForm" class="checkbox-group">
           <mat-checkbox formControlName="awareOfTerms" color="primary">
-            I confirm that I am aware of the security protocols and privacy terms.
+            {{ t('privaPolicyAwareness.securityForm.awareOfTerms') }}
           </mat-checkbox>
 
           <mat-checkbox formControlName="allowDataProcessing">
-            Allow anonymized data processing to improve AI features.
+            {{ t('privaPolicyAwareness.securityForm.allowDataProcessing') }}
           </mat-checkbox>
 
           <mat-checkbox formControlName="publicProfile">
-            Make my profile visible to other team members.
+            {{ t('privaPolicyAwareness.securityForm.publicProfile') }}
           </mat-checkbox>
         </form>
       </mat-card-content>
@@ -39,7 +37,7 @@
         <button mat-flat-button color="primary"
                 [disabled]="!securityForm.get('awareOfTerms')?.value"
                 (click)="confirmAwareness()">
-          Confirm Acknowledgement
+          {{ t('privaPolicyAwareness.securityForm.confirmButton') }}
         </button>
       </mat-card-actions>
     </mat-card>
@@ -47,14 +45,14 @@
     <mat-card appearance="outlined">
       <mat-card-header>
         <mat-icon mat-card-avatar color="primary">verified_user</mat-icon>
-        <mat-card-title>Two-Factor Authentication (2FA)</mat-card-title>
+        <mat-card-title>{{ t('twoFactorAuth.title') }}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content class="mt-20">
         <div class="setting-item">
           <div class="label-group">
-            <span class="mat-body-strong">Secure Login</span>
-            <span class="mat-body-small opacity-70">Add an extra layer of security to your account.</span>
+            <span class="mat-body-strong">{{ t('twoFactorAuth.secureLogin') }}</span>
+            <small class="mat-body-small opacity-70">{{ t('twoFactorAuth.description') }}</small>
           </div>
           <mat-slide-toggle [checked]="is2FAEnabled()" (change)="is2FAEnabled.set($event.checked)">
           </mat-slide-toggle>
@@ -62,7 +60,7 @@
 
         @if (is2FAEnabled()) {
           <div class="status-badge success">
-            <mat-icon>check_circle</mat-icon> 2FA is Active via Authenticator App
+            <mat-icon>check_circle</mat-icon> {{ t('twoFactorAuth.2FAEnabled') }}
           </div>
         }
       </mat-card-content>
@@ -71,37 +69,63 @@
     <mat-card appearance="outlined" class="sessions-card">
       <mat-card-header>
         <mat-icon mat-card-avatar color="primary">devices</mat-icon>
-        <mat-card-title>Active Sessions</mat-card-title>
-        <mat-card-subtitle>Where you're currently logged in</mat-card-subtitle>
+        <mat-card-title>{{ t('accountActivity.title') }}</mat-card-title>
+        <mat-card-subtitle>{{ t('accountActivity.description') }}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
+        <mat-divider class="mt-20 mb-20"></mat-divider>
+
+        <span class="mat-body-small opacity-70 text-primary mb-10">
+          <strong>{{ sessions().length }}</strong> {{ t('accountActivity.countSessions') }}
+        </span>
+        |
+        <span class="mat-body-small opacity-70 text-primary mb-10">
+          <strong>{{ activeSessionsCount }}</strong> {{ t('accountActivity.countActiveSessions') }}
+        </span>
+
         <mat-list>
           @for (session of sessions(); track session.device; let i = $index) {
             <mat-list-item>
               <mat-icon matListItemIcon>{{ session.icon }}</mat-icon>
               <div matListItemTitle>{{ session.device }}</div>
-              <div matListItemLine>{{ session.location }} @if(session.active){ <b class="text-primary">• Current</b> }</div>
-              <button mat-icon-button matListItemMeta (click)="revokeSession(i)" matTooltip="Logout from device">
+              <div matListItemLine>{{ session.location }} @if(session.active){ <b class="text-primary">•  {{ t('accountActivity.activeSession') }}</b> }</div>
+              <div matListItemLine class="opacity-70 text-xs">IP: {{ session.ipAdress }}</div>
+              <button mat-icon-button matListItemMeta (click)="revokeSession(i)" matTooltip="{{ t('accountActivity.logoutDevice') }}">
                 <mat-icon color="warn">logout</mat-icon>
               </button>
             </mat-list-item>
           }
         </mat-list>
+
+        @if (sessions().length === 0) {
+          <span class="no-sessions">
+            <mat-icon>info</mat-icon>
+            <p class="mat-body-small opacity-70 text-center mt-20">
+              {{ t('accountActivity.noSessions') }}
+            </p>
+          </span>
+        } @else {
+          <button mat-stroked-button (click)="logoutAllSessions()" matTooltip="{{ t('accountActivity.logoutAll') }}">
+            <mat-icon>logout</mat-icon>
+            {{ t('accountActivity.logoutAll') }}
+          </button>
+        }
       </mat-card-content>
     </mat-card>
 
     <mat-card appearance="outlined" class="danger-zone">
       <mat-card-header>
-        <mat-card-title>Data Management</mat-card-title>
+        <mat-icon mat-card-avatar color="primary">data_usage</mat-icon>
+        <mat-card-title>{{ t('dataManagement.title') }}</mat-card-title>
       </mat-card-header>
       <mat-card-content class="mt-10">
         <div class="danger-item">
-          <div>
-            <div class="mat-body-strong">Download Personal Data</div>
-            <div class="mat-body-small">Get a JSON export of all your tickets and settings.</div>
+          <div class="label-group">
+            <div class="mat-body-strong">{{ t('dataManagement.downloadData') }}</div>
+            <small class="mat-body-small">{{ t('dataManagement.description') }}</small>
           </div>
-          <button mat-stroked-button>Export Data</button>
+          <button mat-stroked-button>{{ t('dataManagement.exportData') }}</button>
         </div>
       </mat-card-content>
     </mat-card>

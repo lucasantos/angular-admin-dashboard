@@ -7,6 +7,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-security-privacy',
@@ -19,6 +21,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatDividerModule,
     MatSlideToggleModule,
     MatListModule,
+    MatTooltipModule,
+    TranslocoDirective,
   ],
   templateUrl: './security-privacy.html',
   styleUrl: './security-privacy.scss',
@@ -41,12 +45,14 @@ export class SecurityPrivacy {
     {
       device: 'Chrome on Windows',
       location: 'São Paulo, BR',
+      ipAdress: '192.168.1.1',
       active: true,
       icon: 'desktop_windows',
     },
     {
       device: 'Safari on iPhone 15',
       location: 'Rio de Janeiro, BR',
+      ipAdress: '192.168.1.2',
       active: false,
       icon: 'smartphone',
     },
@@ -61,5 +67,15 @@ export class SecurityPrivacy {
 
   revokeSession(index: number) {
     this.sessions.update((s) => s.filter((_, i) => i !== index));
+  }
+
+  // Counter for active sessions
+  get activeSessionsCount() {
+    return this.sessions().filter((s) => s.active).length;
+  }
+
+  logoutAllSessions() {
+    // Clear all sessions logic
+    this.sessions.set([]);
   }
 }
