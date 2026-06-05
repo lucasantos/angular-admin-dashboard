@@ -238,7 +238,9 @@
       "recentFeedback": "Retroalimentación Reciente",
       "total": "total",
       "noFeedback": "Aún no has enviado retroalimentación",
-      "feedbackSubmitted": "¡Gracias! Tu retroalimentación ha sido enviada exitosamente."
+      "feedbackSubmitted": "¡Gracias! Tu retroalimentación ha sido enviada exitosamente.",
+      "viewDetails": "Ver Detalles",
+      "closeDetails": "Cerrar Detalles"
     },
     "faq": {
       "title": "Preguntas Frecuentes",

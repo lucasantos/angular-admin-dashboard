@@ -16,6 +16,8 @@ import { FeedbackEntry } from '../../../../models/feedback-entry';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Pagination } from '../../../shared/pagination/pagination';
 import { PageEvent } from '@angular/material/paginator';
+import { TranslocoDirective } from '@jsverse/transloco';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-feedback',
@@ -35,6 +37,8 @@ import { PageEvent } from '@angular/material/paginator';
     QuillModule,
     UpperCasePipe,
     Pagination,
+    MatTooltipModule,
+    TranslocoDirective
   ],
   templateUrl: './feedback.html',
   styleUrl: './feedback.scss',
@@ -47,8 +51,7 @@ export class Feedback {
 
   showForm = signal(false);
   currentRating = signal(0);
-  hoverRating = signal(0); // For visual feedback when hovering stars
-  // Pagination State
+  hoverRating = signal(0);
   pageSize = signal(5);
   pageIndex = signal(0);
 
@@ -73,7 +76,6 @@ export class Feedback {
 
   submit() {
     if (this.feedbackForm.valid && this.currentRating() > 0) {
-      // We explicitly take the signal value and the form value
       const newEntry = {
         category: this.feedbackForm.value.category,
         section: this.feedbackForm.value.section,
@@ -95,7 +97,6 @@ export class Feedback {
     this.showForm.set(false);
   }
 
-  // Derived Signal: Filtered and Paginated List
   paginatedFeedback = computed(() => {
     const all = this.feedbackService.feedbackHistory();
     const start = this.pageIndex() * this.pageSize();

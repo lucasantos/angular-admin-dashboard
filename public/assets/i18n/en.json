@@ -239,7 +239,9 @@
       "recentFeedback": "Recent Feedback",
       "total": "total",
       "noFeedback": "You haven't submitted any feedback yet",
-      "feedbackSubmitted": "Thank you! Your feedback has been submitted successfully."
+      "feedbackSubmitted": "Thank you! Your feedback has been submitted successfully.",
+      "viewDetails": "View Details",
+      "closeDetails": "Close Details"
     },
     "faq": {
       "title": "Frequently Asked Questions",

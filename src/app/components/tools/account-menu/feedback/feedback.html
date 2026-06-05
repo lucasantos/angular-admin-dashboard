@@ -1,13 +1,13 @@
-<div class="feedback-container">
+<div class="feedback-container" *transloco="let t; prefix: 'pages.feedback'">
   <div class="feedback-header">
     <div class="title-group">
-      <h1 class="mat-headline-medium">Feedback Center</h1>
-      <p class="mat-body-medium opacity-70">Tell us what's on your mind. We're listening!</p>
+      <h1 class="mat-headline-medium">{{ t('title') }}</h1>
+      <p class="mat-body-medium opacity-70">{{ t('subtitle') }}</p>
     </div>
 
     <button mat-flat-button [color]="showForm() ? 'warn' : 'primary'" (click)="showForm.set(!showForm())">
       <mat-icon>{{ showForm() ? 'expand_less' : 'add' }}</mat-icon>
-      {{ showForm() ? 'Close Form' : 'Send Feedback' }}
+      {{ showForm() ? t('closeForm') : t('sendFeedback') }}
     </button>
   </div>
 
@@ -18,35 +18,35 @@
 
         <div class="form-row">
           <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
+            <mat-label>{{ t('category') }}</mat-label>
             <mat-select formControlName="category">
-              <mat-option value="ui_ux">UI/UX Design</mat-option>
-              <mat-option value="feature_request">Feature Request</mat-option>
-              <mat-option value="bug_report">Bug Report</mat-option>
-              <mat-option value="performance">Performance</mat-option>
-              <mat-option value="other">Other</mat-option>
+              <mat-option value="ui_ux">{{ t('categories.ui_ux') }}</mat-option>
+              <mat-option value="feature_request">{{ t('categories.feature_request') }}</mat-option>
+              <mat-option value="bug_report">{{ t('categories.bug_report') }}</mat-option>
+              <mat-option value="performance">{{ t('categories.performance') }}</mat-option>
+              <mat-option value="other">{{ t('categories.other') }}</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Where in the system?</mat-label>
-            <input matInput formControlName="section" placeholder="e.g. Dashboard Sidebar">
+            <mat-label>{{ t('section') }}</mat-label>
+            <input matInput formControlName="section" placeholder="{{ t('sectionPlaceholder') }}">
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Subject</mat-label>
-          <input matInput formControlName="subject" placeholder="Summary of your feedback">
+          <mat-label>{{ t('subject') }}</mat-label>
+          <input matInput formControlName="subject" placeholder="{{ t('subjectPlaceholder') }}">
         </mat-form-field>
 
         <div class="editor-container">
-          <label class="editor-label">Your Message</label>
-          <quill-editor formControlName="message" placeholder="Tell us more details...">
+          <label class="editor-label">{{ t('message') }}</label>
+          <quill-editor formControlName="message" placeholder="{{ t('messagePlaceholder') }}">
           </quill-editor>
         </div>
 
         <div class="rating-wrapper">
-          <span class="mat-body-strong">Rate your experience:</span>
+          <span class="mat-body-strong">{{ t('rateExperience') }}</span>
           <div class="star-rating">
             @for (star of [1,2,3,4,5]; track star) {
             <button type="button" mat-icon-button (mouseenter)="hoverRating.set(star)" (mouseleave)="hoverRating.set(0)"
@@ -56,15 +56,15 @@
             }
             <span class="rating-text">
             @if (currentRating() === 1) {
-              <small>Disappointing</small>
+              <small>{{ t('ratings.disappointing') }}</small>
             } @else if (currentRating() === 2) {
-              <small>Average</small>
+              <small>{{ t('ratings.average') }}</small>
             } @else if (currentRating() === 3) {
-              <small>Good</small>
+              <small>{{ t('ratings.good') }}</small>
             } @else if (currentRating() === 4) {
-              <small>Great</small>
+              <small>{{ t('ratings.great') }}</small>
             } @else if (currentRating() === 5) {
-              <small>Amazing!</small>
+              <small>{{ t('ratings.amazing') }}</small>
             }
           </span>
           </div>
@@ -73,10 +73,10 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-button (click)="resetForm()">Discard</button>
+      <button mat-button (click)="resetForm()">{{ t('discard') }}</button>
       <button mat-flat-button color="primary" [disabled]="feedbackForm.invalid || currentRating() === 0"
         (click)="submit()">
-        Submit Feedback
+        {{ t('submit') }}
       </button>
     </mat-card-actions>
   </mat-card>
@@ -84,21 +84,21 @@
   @else {
   <div class="history-wrapper">
     <div class="history-title">
-      <h3 class="mat-title-medium">Recent Feedback</h3>
-      <span class="count">{{ feedbackService.feedbackHistory().length }} total</span>
+      <h3 class="mat-title-medium">{{ t('recentFeedback') }}</h3>
+      <span class="count">{{ feedbackService.feedbackHistory().length }} {{ t('total') }}</span>
     </div>
 
     <div class="scroll-area">
       @if (feedbackService.feedbackHistory().length === 0) {
       <div class="empty-state">
         <mat-icon>history</mat-icon>
-        <p>You haven't submitted any feedback yet.</p>
+        <p>{{ t('noFeedback') }}</p>
       </div>
       }
 
       <div class="feedback-list">
         @for (item of paginatedFeedback(); track item.id) {
-        <div class="feedback-item-card" (click)="openDetail(item)">
+        <div class="feedback-item-card" (click)="openDetail(item)" matTooltip="{{ t('viewDetails') }}" matTooltipPosition="above">
           <div class="item-header">
             <span class="category-tag">{{ item.category | uppercase }}</span>
             <span class="date">{{ item.timestamp | date:'shortDate' }}</span>

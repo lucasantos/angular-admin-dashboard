@@ -238,7 +238,9 @@
       "recentFeedback": "Feedback Recente",
       "total": "total",
       "noFeedback": "Você ainda não enviou nenhum feedback",
-      "feedbackSubmitted": "Obrigado! Seu feedback foi enviado com sucesso."
+      "feedbackSubmitted": "Obrigado! Seu feedback foi enviado com sucesso.",
+      "viewDetails": "Ver Detalhes",
+      "closeDetails": "Fechar Detalhes"
     },
     "faq": {
       "title": "Perguntas Frequentes",

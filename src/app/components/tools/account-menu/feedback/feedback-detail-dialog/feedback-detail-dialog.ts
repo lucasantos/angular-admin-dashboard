@@ -5,10 +5,11 @@ import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FeedbackEntry } from '../../../../../models/feedback-entry';
 import { MatDivider } from "@angular/material/divider";
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-feedback-detail-dialog',
-  imports: [MatDialogModule, MatButtonModule, MatIconModule, DatePipe, MatDivider],
+  imports: [MatDialogModule, MatButtonModule, MatIconModule, DatePipe, MatDivider, TranslocoPipe],
   templateUrl: './feedback-detail-dialog.html',
   styleUrl: './feedback-detail-dialog.scss',
 })
