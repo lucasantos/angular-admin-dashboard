@@ -6,17 +6,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FaqService } from '../../../../services/faq.service';
 import { FormsModule } from '@angular/forms';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-faq',
-  imports: [CommonModule, MatExpansionModule, MatIconModule, MatFormFieldModule, MatInputModule, FormsModule],
+  imports: [CommonModule, MatExpansionModule, MatIconModule, MatFormFieldModule, MatInputModule, FormsModule, TranslocoDirective],
   templateUrl: './faq.html',
   styleUrl: './faq.scss',
 })
 export class Faq {
   private readonly faqService = inject(FaqService);
 
-  // Search state
   searchQuery = signal('');
 
   // Filtered FAQs computed automatically when data or search changes

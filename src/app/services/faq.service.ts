@@ -5,7 +5,6 @@ import { FaqItem } from '../models/faq-item';
   providedIn: 'root',
 })
 export class FaqService {
-  // Simulating an API data source
   private readonly faqData: FaqItem[] = [
     { id: 1, category: 'General', question: 'How do I change my password?', answer: 'Navigate to the Account Settings menu and select the Security tab.' },
     { id: 2, category: 'Billing', question: 'Where can I find my invoices?', answer: 'Invoices are available under the Billing section of your profile.' },
@@ -19,6 +18,5 @@ export class FaqService {
     { id: 10, category: 'General', question: 'Can I have multiple users on one account?', answer: 'Yes, you can add team members to your account from the Users section.' },
   ];
 
-  // Using a signal to make the data reactive
   readonly faqs = signal<FaqItem[]>(this.faqData);
 }
