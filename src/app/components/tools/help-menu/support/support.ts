@@ -15,6 +15,8 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { SupportService } from '../../../../services/support.service';
 import { SupportTicket } from '../../../../models/support-ticket';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-support',
@@ -30,8 +32,10 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatChipsModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatTooltipModule,
     QuillModule,
     MatPaginatorModule,
+    TranslocoDirective
   ],
   templateUrl: './support.html',
   styleUrl: './support.scss',
@@ -45,6 +49,7 @@ export class Support {
   readonly statusFilter = signal<'all' | 'open' | 'pending' | 'closed'>('all');
   readonly pageIndex = signal(0);
   readonly pageSize = signal(10);
+  private readonly translocoService = inject(TranslocoService);
 
   // Track which tab is active (0 = New Ticket, 1 = My Tickets)
   selectedTabIndex = signal(0);
@@ -103,7 +108,7 @@ export class Support {
     if (this.ticketForm.valid) {
       const fileNames = this.tempFiles().map((f) => f.name);
       this.supportService.createTicket(this.ticketForm.getRawValue(), fileNames);
-      this.snackBar.open('Ticket submitted successfully!', 'OK', { duration: 3000 });
+      this.snackBar.open(this.translocoService.translate('pages.support.createTicket.ticketCreated'), 'OK', { duration: 3000 });
       this.ticketForm.reset({ category: 'Technical', priority: 'medium' });
       this.tempFiles.set([]);
     }

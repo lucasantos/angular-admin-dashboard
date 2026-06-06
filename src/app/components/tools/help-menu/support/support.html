@@ -1,37 +1,43 @@
-<div class="support-wrapper">
+<div class="support-wrapper" *transloco="let t; prefix: 'pages.support'">
+  <header class="section-header">
+    <h1 class="mat-headline-medium">{{ t('title') }}</h1>
+    <p class="mat-body-large opacity-70">{{ t('subtitle') }}</p>
+  </header>
+
   <mat-tab-group [selectedIndex]="selectedTabIndex()" (selectedIndexChange)="selectedTabIndex.set($event)" animationDuration="200ms">
 
-    <mat-tab label="Create New Ticket">
-      <h2>Create New Support Ticket</h2>
-      <p>Fill out the form below to create a new support ticket.</p>
-      <p>Input the maximum information possible to help us assist you better.</p>
+    <mat-tab label="{{ t('createTicket.tabTitle') }}">
+      <h2>{{ t('createTicket.createTicket') }}</h2>
+      <p>{{ t('createTicket.formDescription') }}</p>
+      <p>{{ t('createTicket.formInstructions') }}</p>
 
       <form [formGroup]="ticketForm" (ngSubmit)="submitTicket()" class="tab-content create-form">
         <div class="form-row">
           <mat-form-field appearance="outline" class="flex-2">
-            <mat-label>Subject</mat-label>
-            <input matInput formControlName="subject" placeholder="Issue summary">
+            <mat-label>{{ t('createTicket.subject') }}</mat-label>
+            <input matInput formControlName="subject" placeholder="{{ t('createTicket.subjectPlaceholder') }}">
           </mat-form-field>
           <mat-form-field appearance="outline" class="flex-1">
-            <mat-label>Priority</mat-label>
+            <mat-label>{{ t('createTicket.priority') }}</mat-label>
             <mat-select formControlName="priority">
-              <mat-option value="low">Low</mat-option>
-              <mat-option value="medium">Medium</mat-option>
-              <mat-option value="high">High</mat-option>
+              <mat-option value="low">{{ t('createTicket.priorityLow') }}</mat-option>
+              <mat-option value="medium">{{ t('createTicket.priorityMedium') }}</mat-option>
+              <mat-option value="high">{{ t('createTicket.priorityHigh') }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
 
         <div class="editor-container">
-          <label class="mat-body-strong">Detailed Description</label>
-          <quill-editor formControlName="description" class="custom-quill"></quill-editor>
+          <label class="mat-body-strong">{{ t('createTicket.description') }}</label>
+          <quill-editor formControlName="description" class="custom-quill" placeholder="{{ t('createTicket.descriptionPlaceholder') }}"></quill-editor>
         </div>
 
         <div class="upload-zone">
           <button type="button" mat-stroked-button (click)="fileInput.click()">
-            <mat-icon>cloud_upload</mat-icon> Add Attachments
+            <mat-icon>cloud_upload</mat-icon> {{ t('createTicket.addAttachment') }}
           </button>
           <input #fileInput type="file" hidden multiple (change)="onFileChange($event)">
+          <p class="mat-body-small opacity-70"><small>{{ t('createTicket.attachmentGuidelines') }}</small></p>
 
           <mat-chip-set class="mt-1">
             @for (file of tempFiles(); track file.name; let i = $index) {
@@ -44,28 +50,28 @@
         </div>
 
         <button mat-flat-button color="primary" type="submit" [disabled]="ticketForm.invalid">
-          Submit Ticket
+        {{ t('createTicket.submit') }}
         </button>
       </form>
     </mat-tab>
 
-    <mat-tab label="My Tickets">
+    <mat-tab label="{{ t('viewTickets.tabTitle') }}">
       <div class="tab-content">
         @if (!selectedTicket()) {
 
           <div class="filter-header">
-            <span class="mat-body-strong">Filter by Status:</span>
+            <span class="mat-body-strong">{{ t('viewTickets.filterStatus.title') }}:</span>
             <mat-chip-listbox [value]="statusFilter()" (change)="handleFilterChange($event.value)">
-              <mat-chip-option value="all">All</mat-chip-option>
-              <mat-chip-option value="open">Open</mat-chip-option>
-              <mat-chip-option value="pending">Pending</mat-chip-option>
-              <mat-chip-option value="closed">Closed</mat-chip-option>
+              <mat-chip-option value="all">{{ t('viewTickets.filterStatus.all') }}</mat-chip-option>
+              <mat-chip-option value="open">{{ t('viewTickets.filterStatus.open') }}</mat-chip-option>
+              <mat-chip-option value="pending">{{ t('viewTickets.filterStatus.pending') }}</mat-chip-option>
+              <mat-chip-option value="closed">{{ t('viewTickets.filterStatus.closed') }}</mat-chip-option>
             </mat-chip-listbox>
           </div>
 
         <div class="ticket-list-container">
           @for (ticket of filteredTickets(); track ticket.id; let last = $last) {
-          <div class="ticket-item" (click)="selectedTicket.set(ticket)">
+          <div class="ticket-item" (click)="selectedTicket.set(ticket)" matTooltip="{{ t('viewTickets.viewTicketDetails') }}">
             <div class="ticket-info">
               <span class="ticket-id">{{ ticket.id }}</span>
               <div class="subject-wrapper">
@@ -80,7 +86,7 @@
           } @empty {
           <div class="empty-state">
             <mat-icon>search_off</mat-icon>
-            <p>No tickets found for this filter.</p>
+            <p>{{ t('viewTickets.noTicketsFound') }}</p>
           </div>
           }
         </div>
@@ -96,7 +102,7 @@
         } @else {
         <div class="detail-container">
           <button mat-button (click)="backToList()">
-            <mat-icon>arrow_back</mat-icon> Back to Tickets
+            <mat-icon>arrow_back</mat-icon> {{ t('viewTickets.ticketDetail.backToList') }}
           </button>
 
           <div class="ticket-header">
@@ -115,10 +121,10 @@
 
           <div class="reply-box">
             <mat-form-field appearance="outline" class="full-width">
-              <textarea matInput [formControl]="replyControl" placeholder="Write a reply..."></textarea>
+              <textarea matInput [formControl]="replyControl" placeholder="{{ t('viewTickets.ticketDetail.replyTicketArea') }}"></textarea>
             </mat-form-field>
             <button mat-flat-button color="primary" (click)="sendReply()" [disabled]="replyControl.invalid">
-              Send Message
+              {{ t('viewTickets.ticketDetail.sendReply') }}
             </button>
           </div>
         </div>

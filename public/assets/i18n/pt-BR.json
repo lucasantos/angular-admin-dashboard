@@ -249,13 +249,44 @@
     },
     "support": {
       "title": "Tickets de Suporte",
-      "subtitle": "Precisa de ajuda? Estamos aqui para você",
-      "createTicket": "Criar Novo Ticket",
-      "ticketTitle": "Título do Ticket",
-      "description": "Descrição",
-      "priority": "Prioridade",
-      "status": "Status",
-      "submit": "Enviar Ticket"
+      "subtitle": "Precisa de ajuda? Estamos aqui para você! Crie um ticket de suporte e nossa equipe entrará em contato com você o mais rápido possível.",
+      "createTicket": {
+        "tabTitle": "Criar Novo Ticket",
+        "createTicket": "Criar Novo Ticket de Suporte",
+        "formDescription": "Preencha o formulário abaixo para criar um novo ticket de suporte.",
+        "formInstructions": "Forneça o máximo de informações possível para que possamos ajudá-lo(a) melhor.",
+        "subject": "Assunto",
+        "subjectPlaceholder": "Resumo do seu problema",
+        "description": "Descrição detalhada",
+        "descriptionPlaceholder": "Forneça uma descrição detalhada do seu problema...",
+        "priority": "Prioridade",
+        "priorityLow": "Baixa",
+        "priorityMedium": "Média",
+        "priorityHigh": "Alta",
+        "status": "Status",
+        "addAttachment": "Adicionar Anexo",
+        "attachmentGuidelines": "Formatos aceitos: PNG, JPG, PDF, DOCX (Máx 8MB)",
+        "submit": "Enviar Ticket",
+        "ticketCreated": "Seu ticket de suporte foi criado com sucesso! Nossa equipe irá revisá-lo e entrar em contato com você em breve."
+      },
+       "viewTickets": {
+         "tabTitle": "Meus Tickets",
+         "noTickets": "Você ainda não criou nenhum ticket de suporte.",
+         "filterStatus": {
+           "title": "Filtrar por Status",
+           "all": "Todos",
+           "open": "Aberto",
+           "pending": "Pendente",
+           "closed": "Encerrado"
+         },
+         "noTicketsFound": "Nenhum ticket encontrado para este filtro.",
+         "viewTicketDetails": "Ver detalhes do ticket",
+         "ticketDetail": {
+           "backToList": "Voltar para a lista de tickets",
+           "replyTicketArea": "Escreva sua resposta aqui...",
+           "sendReply": "Enviar Resposta"
+         }
+       }
     },
     "search": {
       "clear": "Limpar pesquisa",

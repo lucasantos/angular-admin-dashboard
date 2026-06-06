@@ -250,13 +250,44 @@
     },
     "support": {
       "title": "Support Tickets",
-      "subtitle": "Need help? We're here for you",
-      "createTicket": "Create New Ticket",
-      "ticketTitle": "Ticket Title",
-      "description": "Description",
-      "priority": "Priority",
-      "status": "Status",
-      "submit": "Submit Ticket"
+      "subtitle": "Need help? We're here for you! Create a support ticket and our team will get back to you as soon as possible.",
+      "createTicket": {
+        "tabTitle": "Create New Ticket",
+        "createTicket": "Create New Support Ticket",
+        "formDescription": "Fill out the form below to create a new support ticket.",
+        "formInstructions": "Input the maximum information possible to help us assist you better.",
+        "subject": "Subject",
+        "subjectPlaceholder": "Brief summary of your issue",
+        "description": "Detailed Description",
+        "descriptionPlaceholder": "Provide a detailed description of your issue...",
+        "priority": "Priority",
+        "priorityLow": "Low",
+        "priorityMedium": "Medium",
+        "priorityHigh": "High",
+        "status": "Status",
+        "addAttachment": "Add Attachments",
+        "attachmentGuidelines": "Accepted formats: PNG, JPG, PDF, DOCX (Max 8MB)",
+        "submit": "Submit Ticket",
+        "ticketCreated": "Your support ticket has been created successfully! Our team will review it and get back to you shortly."
+      },
+      "viewTickets": {
+        "tabTitle": "My Tickets",
+        "noTickets": "You have not submitted any support tickets yet.",
+        "filterStatus": {
+          "title": "Filter by Status",
+          "all": "All",
+          "open": "Open",
+          "pending": "Pending",
+          "closed": "Closed"
+        },
+        "noTicketsFound": "No tickets found for this filter.",
+        "viewTicketDetails": "View ticket details",
+        "ticketDetail": {
+          "backToList": "Back to ticket list",
+          "replyTicketArea": "Write your reply here...",
+          "sendReply": "Send Reply"
+        }
+      }
     },
     "search": {
       "clear": "Clear search",
