@@ -1,5 +1,5 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { AppNotification, NotificationAction } from '../../models/app-notification';
+import { AppNotification, NotificationAction } from '../../shared/models/app-notification';
 import { Router } from '@angular/router';
 import { MOCK_NOTIFICATIONS } from '../../mocks/notifications.mock';
 

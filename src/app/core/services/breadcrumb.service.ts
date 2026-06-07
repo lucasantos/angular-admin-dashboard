@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, startWith } from 'rxjs/operators';
-import { BreadcrumbItem } from '../../models/breadcrumb';
+import { BreadcrumbItem } from '../../shared/models/breadcrumb';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoService } from '@jsverse/transloco';
 import { combineLatest } from 'rxjs';

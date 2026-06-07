@@ -1,4 +1,4 @@
-// models/user.ts
+// shared/models/user.ts
 export interface User {
   id: string;
   tenantId: string; // Para multi-tenancy

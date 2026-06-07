@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, of, delay, tap } from 'rxjs';
-import { User } from '../../models/user';
+import { User } from '../../shared/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 

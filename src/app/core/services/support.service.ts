@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { SupportTicket } from '../../models/support-ticket';
+import { SupportTicket } from '../../features/support/models/support-ticket';
 
 @Injectable({
   providedIn: 'root',

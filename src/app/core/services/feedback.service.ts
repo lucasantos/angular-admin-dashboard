@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { FeedbackEntry } from '../../models/feedback-entry';
+import { FeedbackEntry } from '../../features/feedback/models/feedback-entry';
 
 @Injectable({
   providedIn: 'root',

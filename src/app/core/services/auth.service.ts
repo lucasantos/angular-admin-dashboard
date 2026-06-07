@@ -1,7 +1,7 @@
 import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
-import { User } from '../../models/user';
+import { User } from '../../shared/models/user';
 import { TenantService } from './tenant.service';
 import { environment } from '../../../environments/environment.development';
 import { isPlatformBrowser } from '@angular/common';

@@ -1,4 +1,4 @@
-import { AppNotification } from '../models/app-notification';
+import { AppNotification } from '../shared/models/app-notification';
 
 export const MOCK_NOTIFICATIONS: Omit<AppNotification, 'id' | 'isRead' | 'timestamp'>[] = [
   {
