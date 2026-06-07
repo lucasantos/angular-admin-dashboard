@@ -1,7 +1,7 @@
 import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
 import { provideServerRendering, withRoutes, withAppShell } from '@angular/ssr';
 import { appConfig } from './app.config';
-import { MainLayout } from './layouts/main-layout/main-layout';
+import { MainLayout } from './core/layout/main-layout/main-layout';
 import { serverRoutes } from './app.routes.server';
 
 const serverConfig: ApplicationConfig = {

@@ -5,7 +5,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../core/services/user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Route, Routes } from '@angular/router';
 import { Type } from '@angular/core';
-import { MenuItems } from './models/menu-item';
-import { menuItems } from './menu-items';
-import { authGuard } from './guards/auth-guard';
+import { MenuItems } from './core/navigation/menu-item';
+import { menuItems } from './core/navigation/menu-items';
+import { authGuard } from './core/auth/auth-guard';
 
 const itemToRoute = (i: MenuItems): Route | null => {
   const path = i.route ? i.route.replace(/^\//, '') : '';
@@ -57,7 +57,7 @@ export const routes: Routes = [
   // Protected routes (everything inside here requires login) will be added here dynamically based on menuItems
   {
     path: '',
-    loadComponent: () => import('./layouts/main-layout/main-layout').then((m) => m.MainLayout),
+    loadComponent: () => import('./core/layout/main-layout/main-layout').then((m) => m.MainLayout),
     canActivate: [authGuard],
     children: [
       {

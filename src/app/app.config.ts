@@ -5,15 +5,15 @@ import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { menuItems } from './menu-items';
-import { validateMenuItemsConfig } from './utils/route-validator';
-import { TranslocoHttpLoader } from './transloco-loader';
+import { menuItems } from './core/navigation/menu-items';
+import { validateMenuItemsConfig } from './shared/utils/route-validator';
+import { TranslocoHttpLoader } from './core/i18n/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
-import { PaginatorIntlService } from './services/paginator-intl.service';
+import { PaginatorIntlService } from './core/services/paginator-intl.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { loadingInterceptor } from './interceptors/loading-interceptor';
-import { AuthService } from './services/auth.service';
-import { I18nTitleStrategy } from './strategies/i18n-title.strategy';
+import { loadingInterceptor } from './core/interceptors/loading-interceptor';
+import { AuthService } from './core/services/auth.service';
+import { I18nTitleStrategy } from './core/i18n/i18n-title.strategy';
 
 if (isDevMode()) {
   validateMenuItemsConfig(menuItems, false);

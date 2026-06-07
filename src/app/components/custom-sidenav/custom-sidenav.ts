@@ -4,9 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from "@angular/material/list";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
-import { MenuItems } from '../../models/menu-item';
+import { MenuItems } from '../../core/navigation/menu-item';
 import { MenuItem } from "../menu-item/menu-item";
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
