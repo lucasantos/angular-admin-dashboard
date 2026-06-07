@@ -9,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { NotificationService } from '../../../services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AppNotification } from '../../../../models/app-notification';
+import { AppNotification } from '../../../../shared/models/app-notification';
 import { MessageDetail } from './message-detail/message-detail';
 import { TranslocoDirective } from '@jsverse/transloco';
 

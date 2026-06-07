@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { FeedbackEntry } from '../../../../../../models/feedback-entry';
+import { FeedbackEntry } from '../../../../../../features/feedback/models/feedback-entry';
 import { MatDivider } from "@angular/material/divider";
 import { TranslocoPipe } from '@jsverse/transloco';
 

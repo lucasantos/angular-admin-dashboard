@@ -12,7 +12,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { QuillModule } from 'ngx-quill';
 import { FeedbackDetailDialog } from './feedback-detail-dialog/feedback-detail-dialog';
-import { FeedbackEntry } from '../../../../../models/feedback-entry';
+import { FeedbackEntry } from '../../../../../features/feedback/models/feedback-entry';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Pagination } from '../../../../../shared/components/shared/pagination/pagination';
 import { PageEvent } from '@angular/material/paginator';
