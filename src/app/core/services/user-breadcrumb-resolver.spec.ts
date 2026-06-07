@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { userBreadcrumbResolver } from './user-breadcrumb-resolver';
 
 describe('userBreadcrumbResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) =>
+  const executeResolver: ResolveFn<any> = (...resolverParameters) =>
     TestBed.runInInjectionContext(() => userBreadcrumbResolver(...resolverParameters));
 
   beforeEach(() => {
