@@ -52,7 +52,7 @@ export const routes: Routes = [
   // Public route for login
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login').then((m) => m.Login),
+    loadComponent: () => import('./features/login/login').then((m) => m.Login),
   },
   // Protected routes (everything inside here requires login) will be added here dynamically based on menuItems
   {

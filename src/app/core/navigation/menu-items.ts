@@ -1,5 +1,5 @@
 import { MenuItems } from "./menu-item";
-import { UserShell } from "../../pages/user/users/user-shell";
+import { UserShell } from "../../features/user/users/user-shell";
 import { userBreadcrumbResolver } from "../services/user-breadcrumb-resolver";
 
 export const menuItems: MenuItems[] = [
@@ -90,19 +90,19 @@ export const menuItems: MenuItems[] = [
         label: 'menu.podcasts',
         icon: 'podcasts',
         route: '/podcasts',
-        component: () => import('../../pages/content/podcasts/podcasts').then((m) => m.Podcasts),
+        component: () => import('../../features/content/podcasts/podcasts').then((m) => m.Podcasts),
       },
       {
         label: 'menu.images',
         icon: 'image',
         route: '/images',
-        component: () => import('../../pages/content/images/images').then((m) => m.Images),
+        component: () => import('../../features/content/images/images').then((m) => m.Images),
       },
       {
         label: 'menu.documents',
         icon: 'description',
         route: '/documents',
-        component: () => import('../../pages/content/documents/documents').then((m) => m.Documents),
+        component: () => import('../../features/content/documents/documents').then((m) => m.Documents),
       },
     ],
   },
