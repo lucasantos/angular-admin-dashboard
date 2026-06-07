@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PageEvent } from '../../../models/page-event';
+import { PageEvent } from '../../../../models/page-event';
 import { MatDivider } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 

@@ -14,7 +14,7 @@ import { QuillModule } from 'ngx-quill';
 import { FeedbackDetailDialog } from './feedback-detail-dialog/feedback-detail-dialog';
 import { FeedbackEntry } from '../../../../../models/feedback-entry';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Pagination } from '../../../../../components/shared/pagination/pagination';
+import { Pagination } from '../../../../../shared/components/shared/pagination/pagination';
 import { PageEvent } from '@angular/material/paginator';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { MatTooltipModule } from '@angular/material/tooltip';
