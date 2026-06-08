@@ -7,7 +7,7 @@ describe('PaginatorIntlService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PaginatorIntlService);
+    service = TestBed.inject<PaginatorIntlService>(PaginatorIntlService);
   });
 
   it('should be created', () => {

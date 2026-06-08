@@ -7,7 +7,7 @@ describe('LanguageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LanguageService);
+    service = TestBed.inject<LanguageService>(LanguageService);
   });
 
   it('should be created', () => {

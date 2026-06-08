@@ -1,7 +1,7 @@
 import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
-import { User } from '../../shared/models/user';
+import { User } from '../../features/user/models/user';
 import { TenantService } from './tenant.service';
 import { environment } from '../../../environments/environment.development';
 import { isPlatformBrowser } from '@angular/common';
@@ -11,11 +11,11 @@ import { TranslocoService } from '@jsverse/transloco';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly http = inject(HttpClient);
-  private readonly tenantService = inject(TenantService);
+  private readonly http = inject<HttpClient>(HttpClient);
+  private readonly tenantService = inject<TenantService>(TenantService);
   private readonly API_URL = environment.mockAPI + '/users';
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly translocoService = inject(TranslocoService);
+  private readonly translocoService = inject<TranslocoService>(TranslocoService);
 
   readonly currentUser = signal<User | null>(null);
   readonly isAuthenticated = signal<boolean>(false);

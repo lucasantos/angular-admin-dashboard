@@ -8,7 +8,7 @@ export type ThemeMode = 'light' | 'dark' | 'system' | 'custom';
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
+  private readonly renderer = inject<RendererFactory2>(RendererFactory2).createRenderer(null, null);
 
   readonly mode = signal<ThemeMode>(this.getInitialMode());
   // Store the custom hex code (defaulting to a Material Violet)

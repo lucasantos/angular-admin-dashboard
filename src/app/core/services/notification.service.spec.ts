@@ -7,7 +7,7 @@ describe('NotificationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NotificationService);
+    service = TestBed.inject<NotificationService>(NotificationService);
   });
 
   it('should be created', () => {

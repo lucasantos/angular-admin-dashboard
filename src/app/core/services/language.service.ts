@@ -14,7 +14,7 @@ interface Language {
   providedIn: 'root',
 })
 export class LanguageService {
-  private readonly translocoService = inject(TranslocoService);
+  private readonly translocoService = inject<TranslocoService>(TranslocoService);
   private readonly platformId = inject(PLATFORM_ID);
 
   private readonly request = inject(REQUEST, { optional: true }) as any;

@@ -7,7 +7,7 @@ import { MOCK_NOTIFICATIONS } from '../../mocks/notifications.mock';
   providedIn: 'root',
 })
 export class NotificationService {
-  private readonly router = inject(Router);
+  private readonly router = inject<Router>(Router);
   readonly notifications = signal<AppNotification[]>([]);
 
   constructor() {

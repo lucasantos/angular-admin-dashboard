@@ -10,8 +10,8 @@ import { combineLatest } from 'rxjs';
   providedIn: 'root',
 })
 export class BreadcrumbService {
-  private readonly router = inject(Router);
-  private readonly translocoService = inject(TranslocoService);
+  private readonly router = inject<Router>(Router);
+  private readonly translocoService = inject<TranslocoService>(TranslocoService);
 
   private readonly dynamicLabels = signal<Map<string, string>>(new Map());
   private readonly breadcrumbsSignal = signal<BreadcrumbItem[]>([]);

@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { SupportTicket } from '../../features/support/models/support-ticket';
+import { SupportTicket } from '../models/support-ticket';
 
 @Injectable({
   providedIn: 'root',
@@ -191,7 +191,7 @@ export class SupportService {
               ...t,
               messages: [
                 ...t.messages,
-                { id: Date.now().toString(), sender: 'user', text, timestamp: new Date() },
+                { id: Date.now().toString(), sender: '../../user/models/user', text, timestamp: new Date() },
               ],
             }
           : t,

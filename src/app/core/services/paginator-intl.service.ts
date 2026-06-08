@@ -6,7 +6,7 @@ import { LanguageService } from './language.service';
   providedIn: 'root',
 })
 export class PaginatorIntlService extends MatPaginatorIntl {
-  private readonly languageService = inject(LanguageService);
+  private readonly languageService = inject<LanguageService>(LanguageService);
 
   // Define translations
   private readonly translations: any = {

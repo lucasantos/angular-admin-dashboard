@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { FaqItem } from '../../shared/models/faq-item';
+import { FaqItem } from '../models/faq-item';
 
 @Injectable({
   providedIn: 'root',

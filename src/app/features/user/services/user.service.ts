@@ -1,15 +1,15 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, of, delay, tap } from 'rxjs';
-import { User } from '../../shared/models/user';
+import { User } from '../models/user';
 import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private readonly router = inject(Router);
-  private readonly authService = inject(AuthService);
+  private readonly router = inject<Router>(Router);
+  private readonly authService = inject<AuthService>(AuthService);
   readonly currentUser = signal<User | null>(null);
 
   // Computed helper to get initials if avatar fails

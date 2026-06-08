@@ -7,7 +7,7 @@ describe('PushNotificationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PushNotificationService);
+    service = TestBed.inject<PushNotificationService>(PushNotificationService);
   });
 
   it('should be created', () => {

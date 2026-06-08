@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class PushNotificationService {
-  private readonly swPush = inject(SwPush);
+  private readonly swPush = inject<SwPush>(SwPush);
 
   // Track subscription state
   readonly isSubscribed = signal<boolean>(false);
