@@ -4,9 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatDivider } from "@angular/material/divider";
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../../features/user/services/user.service';
 import { Router, RouterLink } from "@angular/router";
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
@@ -16,9 +16,9 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrl: './account-menu.scss',
 })
 export class AccountMenu {
-  private readonly router = inject(Router);
-  protected readonly userService = inject(UserService);
-  protected readonly authService = inject(AuthService);
+  private readonly router = inject<Router>(Router);
+  protected readonly userService = inject<UserService>(UserService);
+  protected readonly authService = inject<AuthService>(AuthService);
 
   logout() {
     this.authService.logout();

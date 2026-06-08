@@ -6,10 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { UserService } from '../../../../services/user.service';
+import { UserService } from '../../../../../features/user/services/user.service';
 import { MatDivider } from "@angular/material/divider";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService } from '../../../../../core/services/auth.service';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 
 @Component({
@@ -30,11 +30,11 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
   styleUrl: './profile.scss',
 })
 export class Profile implements OnInit {
-  private readonly fb = inject(FormBuilder);
-  protected readonly userService = inject(UserService);
-  protected readonly authService = inject(AuthService);
-  private readonly translocoService = inject(TranslocoService);
-  private readonly snackBar = inject(MatSnackBar);
+  private readonly fb = inject<FormBuilder>(FormBuilder);
+  protected readonly userService = inject<UserService>(UserService);
+  protected readonly authService = inject<AuthService>(AuthService);
+  private readonly translocoService = inject<TranslocoService>(TranslocoService);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
 
   // Signal to toggle between avatar URL and file upload modes
   avatarMode = signal<'url' | 'upload'>('url');

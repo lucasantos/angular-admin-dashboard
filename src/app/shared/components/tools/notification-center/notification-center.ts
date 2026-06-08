@@ -6,10 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
-import { NotificationService } from '../../../services/notification.service';
+import { NotificationService } from '../../../../core/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AppNotification } from '../../../../shared/models/app-notification';
+import { AppNotification } from '../../../models/app-notification';
 import { MessageDetail } from './message-detail/message-detail';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -29,9 +29,9 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrl: './notification-center.scss',
 })
 export class NotificationCenter {
-  protected readonly notificationService = inject(NotificationService);
-  private readonly dialog = inject(MatDialog);
-  private readonly router = inject(Router);
+  protected readonly notificationService = inject<NotificationService>(NotificationService);
+  private readonly dialog = inject<MatDialog>(MatDialog);
+  private readonly router = inject<Router>(Router);
 
   handleAction(event: MouseEvent, action: () => void) {
     event.stopPropagation();

@@ -8,7 +8,7 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { Breadcrumb } from '../../../shared/components/breadcrumb/breadcrumb';
 import { CustomSidenav } from '../../../shared/components/custom-sidenav/custom-sidenav';
 import { Search } from '../../../shared/components/search/search';
-import { Tools } from '../tools/tools';
+import { Tools } from '../../../shared/components/tools/tools';
 import { menuItems } from '../../navigation/menu-items';
 import { ThemeService } from '../../services/theme.service';
 import { AuthService } from '../../services/auth.service';
@@ -37,13 +37,13 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrl: './main-layout.scss',
 })
 export class MainLayout {
-  protected readonly authService = inject(AuthService);
-  private readonly loadingService = inject(LoadingService);
+  protected readonly authService = inject<AuthService>(AuthService);
+  private readonly loadingService = inject<LoadingService>(LoadingService);
   protected readonly title = signal('Dashboard');
   protected readonly logo = 'icons/icon-72x72.png';
 
   // Injecting it here initializes the theme from localStorage immediately
-  private readonly themeService = inject(ThemeService);
+  private readonly themeService = inject<ThemeService>(ThemeService);
 
   collapsed = signal(false);
 

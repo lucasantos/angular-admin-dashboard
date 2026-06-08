@@ -12,7 +12,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { QuillModule } from 'ngx-quill';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { SupportService } from '../../../../services/support.service';
+import { SupportService } from '../../../../../features/support/services/support.service';
 import { SupportTicket } from '../../../../../features/support/models/support-ticket';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
@@ -41,15 +41,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './support.scss',
 })
 export class Support {
-  private readonly fb = inject(FormBuilder);
-  private readonly snackBar = inject(MatSnackBar);
-  private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
-  protected readonly supportService = inject(SupportService);
+  private readonly fb = inject<FormBuilder>(FormBuilder);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+  private readonly route = inject<ActivatedRoute>(ActivatedRoute);
+  private readonly router = inject<Router>(Router);
+  protected readonly supportService = inject<SupportService>(SupportService);
   readonly statusFilter = signal<'all' | 'open' | 'pending' | 'closed'>('all');
   readonly pageIndex = signal(0);
   readonly pageSize = signal(10);
-  private readonly translocoService = inject(TranslocoService);
+  private readonly translocoService = inject<TranslocoService>(TranslocoService);
 
   // Track which tab is active (0 = New Ticket, 1 = My Tickets)
   selectedTabIndex = signal(0);

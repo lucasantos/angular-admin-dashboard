@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ThemeMode, ThemeService } from '../../../services/theme.service';
+import { ThemeMode, ThemeService } from '../../../../core/services/theme.service';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -14,7 +14,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrl: './theme-selector.scss',
 })
 export class ThemeSelector {
-  protected readonly themeService = inject(ThemeService);
+  protected readonly themeService = inject<ThemeService>(ThemeService);
 
   // Curated professional M3 palettes
   protected readonly presets = [

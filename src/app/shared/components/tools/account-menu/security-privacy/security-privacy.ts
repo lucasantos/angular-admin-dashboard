@@ -28,7 +28,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrl: './security-privacy.scss',
 })
 export class SecurityPrivacy {
-  private readonly fb = inject(FormBuilder);
+  private readonly fb = inject<FormBuilder>(FormBuilder);
 
   // Security States
   is2FAEnabled = signal(false);

@@ -7,10 +7,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { SettingsService } from '../../../../services/settings.service';
+import { SettingsService } from '../../../../../features/settings/services/settings.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ThemeService } from '../../../../services/theme.service';
-import { LanguageService } from '../../../../services/language.service';
+import { ThemeService } from '../../../../../core/services/theme.service';
+import { LanguageService } from '../../../../../core/services/language.service';
 import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
@@ -32,10 +32,10 @@ import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
   styleUrl: './settings.scss',
 })
 export class Settings {
-  private readonly fb = inject(FormBuilder);
-  protected themeService = inject(ThemeService);
-  protected languageService = inject(LanguageService);
-  protected settingsService = inject(SettingsService);
+  private readonly fb = inject<FormBuilder>(FormBuilder);
+  protected themeService = inject<ThemeService>(ThemeService);
+  protected languageService = inject<LanguageService>(LanguageService);
+  protected settingsService = inject<SettingsService>(SettingsService);
 
   // Presets for theme colors (could be expanded to include more options or user-defined colors)
   protected readonly presets = ['#6750A4', '#006A6A', '#984061', '#445E91', '#606200'];

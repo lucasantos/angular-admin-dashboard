@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
-import { AppNotification } from '../../../../../shared/models/app-notification';
+import { AppNotification } from '../../../../models/app-notification';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({

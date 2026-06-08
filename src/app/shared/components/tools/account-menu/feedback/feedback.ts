@@ -7,14 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FeedbackService } from '../../../../services/feedback.service';
+import { FeedbackService } from '../../../../../features/feedback/services/feedback.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { QuillModule } from 'ngx-quill';
 import { FeedbackDetailDialog } from './feedback-detail-dialog/feedback-detail-dialog';
 import { FeedbackEntry } from '../../../../../features/feedback/models/feedback-entry';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Pagination } from '../../../../../shared/components/shared/pagination/pagination';
+import { Pagination } from '../../../pagination/pagination';
 import { PageEvent } from '@angular/material/paginator';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -44,10 +44,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './feedback.scss',
 })
 export class Feedback {
-  private readonly fb = inject(FormBuilder);
-  private readonly snackBar = inject(MatSnackBar);
-  private readonly dialog = inject(MatDialog);
-  protected feedbackService = inject(FeedbackService);
+  private readonly fb = inject<FormBuilder>(FormBuilder);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+  private readonly dialog = inject<MatDialog>(MatDialog);
+  protected feedbackService = inject<FeedbackService>(FeedbackService);
 
   showForm = signal(false);
   currentRating = signal(0);

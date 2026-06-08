@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
-import { LanguageCode, LanguageService } from '../../../services/language.service';
+import { LanguageCode, LanguageService } from '../../../../core/services/language.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
@@ -19,7 +19,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   styleUrl: './language-selector.scss',
 })
 export class LanguageSelector {
-  protected readonly languageService = inject(LanguageService);
+  protected readonly languageService = inject<LanguageService>(LanguageService);
 
   changeLanguage(code: LanguageCode) {
     this.languageService.setLanguage(code);
