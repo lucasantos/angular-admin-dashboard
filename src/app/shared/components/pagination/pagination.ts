@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PageEvent } from '../../../models/page-event';
-import { MatDivider } from '@angular/material/divider';
+import { PageEvent } from '../../models/page-event';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-pagination',
-  imports: [MatPaginatorModule, MatDivider],
+  standalone: true,
+  imports: [MatPaginatorModule, MatDividerModule],
   templateUrl: './pagination.html',
   styleUrl: './pagination.scss',
 })
