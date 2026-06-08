@@ -11,8 +11,7 @@ export interface RouteValidationError {
 /**
  * Validates menu items configuration for routing issues.
  * Runs at dev time to catch configuration errors early.
- */
-export class RouteValidator {
+ */export class RouteValidator {
   private errors: RouteValidationError[] = [];
 
   /**
@@ -125,8 +124,7 @@ export class RouteValidator {
 /**
  * Entry point validator for app initialization
  * Call this early in your app (e.g., in main.ts or app.config.ts)
- */
-export function validateMenuItemsConfig(menuItems: MenuItems[], shouldThrow: boolean = false): boolean {
+ */export function validateMenuItemsConfig(menuItems: MenuItems[], shouldThrow: boolean = false): boolean {
   const validator = new RouteValidator();
   const errors = validator.validate(menuItems);
 

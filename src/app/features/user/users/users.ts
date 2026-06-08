@@ -5,7 +5,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../services/user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -22,7 +22,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './users.scss',
 })
 export class Users {
-  private readonly userService = inject(UserService);
+  private readonly userService = inject<UserService>(UserService);
 
   // Convert the Observable to a Signal for clean template usage
   protected readonly users = toSignal(this.userService.getUsers(), {

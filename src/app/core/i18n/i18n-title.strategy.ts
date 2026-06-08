@@ -5,8 +5,8 @@ import { TranslocoService } from '@jsverse/transloco';
 
 @Injectable({ providedIn: 'root' })
 export class I18nTitleStrategy extends TitleStrategy {
-  private readonly transloco = inject(TranslocoService);
-  private readonly titleService = inject(Title);
+  private readonly transloco = inject<TranslocoService>(TranslocoService);
+  private readonly titleService = inject<Title>(Title);
 
   override updateTitle(snapshot: RouterStateSnapshot): void {
     const titleKey = this.buildTitle(snapshot);

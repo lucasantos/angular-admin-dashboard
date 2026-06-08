@@ -4,8 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 
 export const authGuard: CanActivateFn = (route) => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
+  const authService = inject<AuthService>(AuthService);
+  const router = inject<Router>(Router);
   const platformId = inject(PLATFORM_ID);
 
   if (!isPlatformBrowser(platformId)) {

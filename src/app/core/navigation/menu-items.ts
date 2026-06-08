@@ -157,28 +157,28 @@ export const menuItems: MenuItems[] = [
     icon: 'question_answer',
     route: '/faq',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Help menu
-    component: () => import('../layout/tools/help-menu/faq/faq').then((m) => m.Faq),
+    component: () => import('../../shared/components/tools/help-menu/faq/faq').then((m) => m.Faq),
   },
   {
     label: 'menu.support',
     icon: 'support',
     route: '/support',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Help menu
-    component: () => import('../layout/tools/help-menu/support/support').then((m) => m.Support),
+    component: () => import('../../shared/components/tools/help-menu/support/support').then((m) => m.Support),
   },
   {
     label: 'menu.profile',
     icon: 'person',
     route: '/profile',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
-    component: () => import('../layout/tools/account-menu/profile/profile').then((m) => m.Profile),
+    component: () => import('../../shared/components/tools/account-menu/profile/profile').then((m) => m.Profile),
   },
   {
     label: 'menu.accountSettings',
     icon: 'settings',
     route: '/account-settings',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
-    component: () => import('../layout/tools/account-menu/settings/settings').then((m) => m.Settings),
+    component: () => import('../../shared/components/tools/account-menu/settings/settings').then((m) => m.Settings),
   },
   {
     label: 'menu.securityPrivacy',
@@ -186,7 +186,7 @@ export const menuItems: MenuItems[] = [
     route: '/security-privacy',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
     component: () =>
-      import('../layout/tools/account-menu/security-privacy/security-privacy').then(
+      import('../../shared/components/tools/account-menu/security-privacy/security-privacy').then(
         (m) => m.SecurityPrivacy,
       ),
   },
@@ -196,7 +196,7 @@ export const menuItems: MenuItems[] = [
     route: '/account-feedback',
     hidden: true, // This route won't appear in the main menu but can be accessed via the Account menu
     component: () =>
-      import('../layout/tools/account-menu/feedback/feedback').then((m) => m.Feedback),
+      import('../../shared/components/tools/account-menu/feedback/feedback').then((m) => m.Feedback),
   },
   { label: 'auth.logout.logout', icon: 'logout', class: 'logout', route: '/logout' },
 ];

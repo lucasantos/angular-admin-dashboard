@@ -16,7 +16,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   styleUrl: './custom-sidenav.scss',
 })
 export class CustomSidenav {
-  protected readonly authService = inject(AuthService);
+  protected readonly authService = inject<AuthService>(AuthService);
   sideNavCollapsed = signal(false);
 
   @Input() set collapsed(value: boolean) {

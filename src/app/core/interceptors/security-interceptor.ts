@@ -4,8 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { TenantService } from '../services/tenant.service';
 
 export const securityInterceptor: HttpInterceptorFn = (req, next) => {
-  const authService = inject(AuthService);
-  const tenantService = inject(TenantService);
+  const authService = inject<AuthService>(AuthService);
+  const tenantService = inject<TenantService>(TenantService);
 
   const token = authService.getToken();
   const tenantId = tenantService.currentTenantId();

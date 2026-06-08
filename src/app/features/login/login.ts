@@ -28,11 +28,11 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
   styleUrl: './login.scss',
 })
 export class Login {
-  private readonly fb = inject(FormBuilder);
-  private readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
-  private readonly snackBar = inject(MatSnackBar);
-  private readonly translocoService = inject(TranslocoService);
+  private readonly fb = inject<FormBuilder>(FormBuilder);
+  private readonly authService = inject<AuthService>(AuthService);
+  private readonly router = inject<Router>(Router);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+  private readonly translocoService = inject<TranslocoService>(TranslocoService);
 
   isLoading = signal(false);
   hidePassword = signal(true);

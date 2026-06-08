@@ -13,7 +13,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './breadcrumb.scss',
 })
 export class Breadcrumb {
-  private readonly breadcrumbService = inject(BreadcrumbService);
+  private readonly breadcrumbService = inject<BreadcrumbService>(BreadcrumbService);
   protected readonly allBreadcrumbs = this.breadcrumbService.filteredBreadcrumbs;
 
   readonly MAX_VISIBLE = 4;

@@ -59,7 +59,7 @@ export const appConfig: ApplicationConfig = {
     }),
     { provide: MatPaginatorIntl, useClass: PaginatorIntlService },
     provideAppInitializer(() => {
-      const authService = inject(AuthService);
+      const authService = inject<AuthService>(AuthService);
       authService.restoreSession();
     }),
     { provide: TitleStrategy, useClass: I18nTitleStrategy },
