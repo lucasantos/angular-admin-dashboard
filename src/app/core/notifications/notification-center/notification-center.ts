@@ -6,10 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
-import { NotificationService } from '../../../../core/services/notification.service';
+import { NotificationService } from '../../services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AppNotification } from '../../../models/app-notification';
+import { AppNotification } from '../models/app-notification';
 import { MessageDetail } from './message-detail/message-detail';
 import { TranslocoDirective } from '@jsverse/transloco';
 

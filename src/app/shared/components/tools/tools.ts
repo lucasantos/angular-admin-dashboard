@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeSelector } from "./theme-selector/theme-selector";
 import { LanguageSelector } from "./language-selector/language-selector";
-import { HelpMenu } from "./help-menu/help-menu";
-import { NotificationCenter } from "./notification-center/notification-center";
-import { AccountMenu } from "./account-menu/account-menu";
+import { HelpMenu } from "../../../features/support/ui/help-menu/help-menu";
+import { NotificationCenter } from "../../../core/notifications/notification-center/notification-center";
+import { AccountMenu } from "../../../features/user/ui/account-menu/account-menu";
 
 @Component({
   selector: 'app-tools',

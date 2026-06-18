@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { UserService } from '../../../../../features/user/services/user.service';
+import { UserService } from '../../../services/user.service';
 import { MatDivider } from "@angular/material/divider";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { AuthService } from '../../../../../core/services/auth.service';

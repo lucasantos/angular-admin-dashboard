@@ -1,6 +1,6 @@
 export interface TicketMessage {
   id: string;
-  sender: '../../user/models/user' | "agent";
+  sender: "user" | "agent";
   text: string;
   timestamp: Date;
 }

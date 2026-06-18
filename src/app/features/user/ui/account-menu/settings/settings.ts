@@ -7,7 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { SettingsService } from '../../../../../features/settings/services/settings.service';
+import { SettingsService } from '../../../../settings/services/settings.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ThemeService } from '../../../../../core/services/theme.service';
 import { LanguageService } from '../../../../../core/services/language.service';

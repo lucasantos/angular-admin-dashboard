@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatDivider } from "@angular/material/divider";
-import { UserService } from '../../../../features/user/services/user.service';
+import { UserService } from '../../services/user.service';
 import { Router, RouterLink } from "@angular/router";
 import { AuthService } from '../../../../core/services/auth.service';
 import { TranslocoDirective } from '@jsverse/transloco';

@@ -191,7 +191,7 @@ export class SupportService {
               ...t,
               messages: [
                 ...t.messages,
-                { id: Date.now().toString(), sender: '../../user/models/user', text, timestamp: new Date() },
+                { id: Date.now().toString(), sender: 'user', text, timestamp: new Date() },
               ],
             }
           : t,
