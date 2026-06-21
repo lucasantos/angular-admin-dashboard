@@ -25,7 +25,7 @@
 
           <div class="avatar-controls">
             <label class="mat-body-small">{{ t('pages.profile.personalInformation.avatarSource') }}:</label>
-            <mat-button-toggle-group [value]="avatarMode()" (change)="avatarMode.set($event.value)">
+            <mat-button-toggle-group class="avatar-source" [value]="avatarMode()" (change)="avatarMode.set($event.value)">
               <mat-button-toggle value="url">{{ t('pages.profile.personalInformation.url') }}</mat-button-toggle>
               <mat-button-toggle value="upload">{{ t('pages.profile.personalInformation.upload') }}</mat-button-toggle>
             </mat-button-toggle-group>
