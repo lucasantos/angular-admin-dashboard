@@ -1,7 +1,5 @@
 @use '@angular/material'as mat;
 
-:root {}
-
 mat-toolbar {
   position: relative;
   z-index: 9 !important;
@@ -69,6 +67,7 @@ mat-sidenav-container {
 mat-sidenav {
   border-right: 1px solid var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.12));
   border-radius: 0px;
+  overflow: hidden !important; // Ensure the native mat-sidenav block shields overflow tracking
 }
 
 mat-sidenav,

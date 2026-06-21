@@ -1,19 +1,19 @@
+:host {
+  display: block;
+}
+
 :host * {
   transition: all 500ms ease-in-out;
 }
 
 .menu-item {
-  border-left: 5px solid;
-  border-left-color: rgba(0, 0, 0, 0);
+  border-left: 5px solid transparent;
+  // border-left-color: rgba(0, 0, 0, 0);
   border-radius: 0px !important;
+  height: 48px;;
 
   &.logout {
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    border-left: 0;
-    border-top: 1px solid var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.12));
 
     mat-icon {
       color: var(--mat-sys-primary);
@@ -23,15 +23,22 @@
 
 .selected-menu-item {
   border-left-color: var(--mat-sys-primary) !important;
-  background: rgba(0, 0, 0, 0.05) !important;
+  background: var(--mat-sys-surface-container-high) !important;
+  // background: rgba(0, 0, 0, 0.05) !important;
 
   mat-icon {
     color: var(--mat-sys-primary) !important;
+  }
+
+  span[matListItemTitle] {
+    color: var(--mat-sys-primary) !important;
+    font-weight: 600;
   }
 }
 
 .sub-menu {
   display: grid;
+  background-color: var(--mat-sys-surface-container-low);
 
   > div {
     overflow: hidden;

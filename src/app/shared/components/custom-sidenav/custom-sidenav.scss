@@ -1,39 +1,142 @@
-:host * {
-  transition: all 500ms ease-in-out;
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidenav-container-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--mat-sys-surface);
 }
 
 .sidenav-header {
-  padding-top: 24px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
   text-align: center;
-  // position: sticky;
-  // top: 0;
-  // z-index: 100;
-  // background-color: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.08));
+  transition: padding 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  .avatar-transform-box {
+    display: inline-block;
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1), margin-bottom 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    margin-bottom: 12px;
+    backface-visibility: hidden;
+    will-change: transform;
 
-  > img {
-    border-radius: 100%;
-    object-fit: cover;
-    margin-bottom: 10px;
+    > img {
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
   }
 
   .header-text {
-    height: 3rem;
+    max-height: 60px;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 250ms ease-in-out, max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
 
     > h2 {
       margin: 0;
-      font-size: 1rem;
-      line-height: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.4rem;
+      color: var(--mat-sys-on-surface);
+      white-space: nowrap;
     }
 
     > p {
       margin: 0;
       font-size: 0.8rem;
+      color: var(--mat-sys-on-surface-variant);
+      white-space: nowrap;
     }
   }
+}
 
-  .hide-header-text {
-    opacity: 0;
-    height: 0px !important;
+.sidenav-scroll-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+
+  scrollbar-gutter: stable;
+
+  /* ------------------------------------
+     Standard CSS Properties (Firefox/Modern Engines)
+  ------------------------------------ */
+  scrollbar-width: thin;
+  // Format: [Thumb Color] [Track Color]
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 250ms ease-in-out;
+
+  &:hover {
+    scrollbar-color: var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.15)) transparent;
   }
+
+  /* ------------------------------------
+     WebKit Extensions (Chrome, Safari, Edge, Opera)
+  ------------------------------------ */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.15));
+
+    &:hover {
+      background: var(--mat-sys-outline, rgba(0, 0, 0, 0.45));
+    }
+  }
+}
+
+.premium-nav-list {
+  padding-top: 0;
+}
+
+.sidenav-footer {
+  flex: 0 0 auto;
+  background-color: var(--mat-sys-surface);
+  border-top: 1px solid var(--mat-sys-outline-variant, rgba(0, 0, 0, 0.12));
+  padding: 6px 0;
+  z-index: 10;
+}
+
+.is-collapsed {
+    .sidenav-header {
+        padding: 0;
+        // border-bottom-color: transparent;
+
+        .avatar-transform-box {
+            margin-bottom: 0px;
+            transform: scale(0.5);
+        }
+
+        .header-text {
+            display: none !important;
+            opacity: 0;
+            max-height: 0px;
+            transform: scale(0.7);
+            pointer-events: none;
+        }
+    }
 }
